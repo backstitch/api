@@ -112,6 +112,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 		id: "3984756jfdkgh3q48ytjf",
 		type: "status",
 		description: "On the plane to JFK",
+		published_at: "2014-01-13T20:17:11Z",
 		location: {
 			lat_lon: null,
 			street_address: null,
@@ -144,8 +145,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		published_at: "2014-01-13T20:17:11Z"
+		}
 	}
 	
 ### video
@@ -155,9 +155,9 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 		type: "video",
 		title: "FASTER HORSES FESTIVAL",
 		description: "",
+		published_at: "2014-01-14T14:11:58Z",
 		url: "https://www.youtube.com",
 		embed_code: null,
-		published_at: "2014-01-14T14:11:58Z",
 		images: {
 			thumbnail: {
 				url: null,
@@ -219,28 +219,12 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 			long: "Kerafiber Hair Building Product Gives thinning hair a thicker appearance 100% natural organic keratin protein Adds volume Indistinguishable from natural hair, except to Superman",
 			short: " Kerafiber Hair Building Product. Multiple Colors Available."
 		},
-		fine_print: "Limit 3 per person, may buy 2 more as gifts",
-		model: null,
-		manufacturer: {
-			name: "Kerafiber Hair Building Product",
-			url: ""
-		},
-		sku: null,
-		condition: "new",
-		price: {
-			value: 12.99,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
+		published_at: "2014-01-14T06:00:00Z",
 		urls: {
 			info: "http://www.groupon.com",
 			reviews: null,
 			purchase: "https://www.groupon.com"
 		},
-		published_at: "2014-01-14T06:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://sjdhkf98q3yrkjsdhf.jpg",
@@ -254,6 +238,30 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 			},
 			other: [ ]
 		},
+		price: {
+			value: 12.99,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		shiping_cost: {
+			value: 12.99,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		fine_print: "Limit 3 per person, may buy 2 more as gifts",
+		model: null,
+		manufacturer: {
+			name: "Kerafiber Hair Building Product",
+			url: ""
+		},
+		sku: null,
+		condition: "new",
 		source: {
 			id: null,
 			name: null,
@@ -290,28 +298,12 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 			long: "Although some dogs earn accolades by saving their owners' lives, others earn them by leaving muddy tracks leading to their evil owners' lairs. Clean up the trail with this Groupon. Choose Between Two Options $8 for one self-service dog-washing session (up to $17 value) $24 for three Groupons.",
 			short: "Although some dogs earn accolades by saving their owners' lives, others earn them by leaving muddy tracks leading to their evil owners' lairs."
 		},
-		fine_print: "Limit 2 per person, may buy 1 additional as gift.",
-		price: {
-			value: 8,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
-		merchant: {
-			name: "Scrubbers Self-Serve Dog Wash & Grooming",
-			phone_number: "723-345-2345",
-			url: "http://www.scrubbersdogwash.com/"
-		}
-
+		published_at: "2014-01-12T05:00:00Z",
 		urls: {
 			info: "http://www.groupon.com",
 			reviews: "http://www.yelp.com",
 			purchase: "https://www.groupon.com"
 		},
-		
-		published_at: "2014-01-12T05:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://jhsdf89y4.jpg",
@@ -344,6 +336,20 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				-83.1787334
 			]
 		},
+		price: {
+			value: 8,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		fine_print: "Limit 2 per person, may buy 1 additional as gift.",
+		merchant: {
+			name: "Scrubbers Self-Serve Dog Wash & Grooming",
+			phone_number: "723-345-2345",
+			url: "http://www.scrubbersdogwash.com/"
+		}
 		source: {
 			id: null,
 			name: null,
@@ -380,25 +386,11 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 			long: "<h4>Top Reasons to Stay at The Capri Hotel</h4> <ul> <li>The chic hotel resides in the Ojai Valley, amid views of the Topa Topa Mountains and a short drive from the Pacific Ocean. </li> <li>From the retro sign outside to the lobby’s button-back white sofas, this boutique hotel exudes vintage style. But its recently overhauled <a href="http://www.hotelojai.com/gues_rooms.php">guest rooms</a> still have plenty of modern comforts, including 42-inch plasma TVs and iPod docking stations. Each room has a patio or balcony with expansive vistas of the mountains or the landscaped garden. </li> <li>Guests can access The Capri’s extensive DVD library of more than 400 titles. </li> <li>With this getaway, you get a $15 credit to use toward a meal at the nearby <a href="http://hotelojai.com/index.php/dining">Deer Lodge</a>, an Ojai standby since 1932.</li> <li>For a bit of R & R, indulge in a hot-stone <a href="http://hotelojai.com/index.php/spa-services">massage</a> or, weather permitting, take a dip in the outdoor pool. </li> <li>Less than five minutes away, downtown Ojai is lined with teahouses, boutiques, and art galleries. <p></li> </ul>",
 			short: "The chic hotel resides in the Ojai Valley, amid views of the Topa Topa Mountains and a short drive from the Pacific Ocean."
 		},
-		fine_print: "Must book by 3/7/14 or promotional value expires. Must complete travel by 4/30/14.",
-		price: {
-			value: 79,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
-		merchant: {
-			name: "The Capri Hotel",
-			phone_number: "987-234-3456",
-			url: "http://www.hotelojai.com/"
-		}
+		published_at: "2014-01-07T08:00:00Z",
 		urls: {
 			info: "http://www.groupon.com",
 			reviews: "http://www.expedia.com"
 		},
-		published_at: "2014-01-07T08:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://skjdhfas84.jpg",
@@ -428,6 +420,20 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				-119.232622
 			]
 		},
+		fine_print: "Must book by 3/7/14 or promotional value expires. Must complete travel by 4/30/14.",
+		price: {
+			value: 79,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		merchant: {
+			name: "The Capri Hotel",
+			phone_number: "987-234-3456",
+			url: "http://www.hotelojai.com/"
+		}
 		source: {
 			id: null,
 			name: null,

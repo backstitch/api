@@ -11,7 +11,7 @@
 ###### token
 _required_
 
-To obtain a token, you must first log in to the backstitch and set the topic to allow api calls in the topic editor.  This will generate the token that will identify the topic.
+To obtain a token, you must first log into backstitch and from with inisde the topic editor set the topic to allow api calls.  This will generate a secure token to identify the topic.
 
 * * *
 ###### count
@@ -35,13 +35,13 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 ###### token
 _required_
 
-To obtain a token, you must first log in to the backstitch and set the topic to allow api calls in the topic editor.  This will generate the token that will identify the topic.
+To obtain a token, you must first log into backstitch and from with inisde the topic editor set the topic to allow api calls.  This will generate a secure token to identify the topic.
 
 * * * 
 ###### term
 _required_
 
-This behaves similar to a Google like search and will returns results that are most relevant to the term you entered.
+This will return results that are most relevant to the passed term.  A "quoted term" will filter only results that match the phrase completely.
 
 * * *
 ###### count
@@ -56,15 +56,20 @@ _optional_
 The number of results to skip per call, to be used for paging. Defaults to 0.
 
 
-## Result json
+## Result Examples
 
-### atricle
+### article
 
 	{
 		id: "sdjfhsakjdhfuewfbjdsf843857349857",
 		type: "article",
+		title: "Eidetic Helps You Remember Anything Through Repetition",
 		description: "iOS: Remembering random tidbits of information like a new phone number, a dictionary definition, or a quote is tough for a lot of us. Eidetic is an app that makes remembering a little easier by repeatedly sending notifications at specific intervals.",
-		:full_text: "",
+		full_text: "",
+		author: {
+			name: "Thorin Klosowski"
+		},
+		published_at: "2014-01-14T00:00:00Z",
 		images: {
 			thumbnail: {
 				url: null,
@@ -98,13 +103,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		title: "Eidetic Helps You Remember Anything Through Repetition",
-		published_at: "2014-01-14T00:00:00Z",
-		full_text: null,
-		author: {
-			name: "Thorin Klosowski"
-		}
+		}				
 	}
 	
 ### status
@@ -154,7 +153,11 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 	{
 		id: "sdncjkfh3487ryjsdfh9834ry",
 		type: "video",
+		title: "FASTER HORSES FESTIVAL",
 		description: "",
+		url: "https://www.youtube.com",
+		embed_code: null,
+		published_at: "2014-01-14T14:11:58Z",
 		images: {
 			thumbnail: {
 				url: null,
@@ -200,11 +203,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		title: "FASTER HORSES FESTIVAL",
-		published_at: "2014-01-14T14:11:58Z",
-		url: "https://www.youtube.com",
-		embed_code: null
+		}
 	}
 	
 ### product
@@ -212,10 +211,36 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 	{
 		id: "jdsfh38945jkshdf983q4yr",
 		type: "product",
+		title: {
+			long: "Kerafiber Hair Building Product",
+			short: "Kerafiber Hair Building Product"
+		},
 		description: {
 			long: "Kerafiber Hair Building Product Gives thinning hair a thicker appearance 100% natural organic keratin protein Adds volume Indistinguishable from natural hair, except to Superman",
 			short: " Kerafiber Hair Building Product. Multiple Colors Available."
 		},
+		fine_print: "Limit 3 per person, may buy 2 more as gifts",
+		model: null,
+		manufacturer: {
+			name: "Kerafiber Hair Building Product",
+			url: ""
+		},
+		sku: null,
+		condition: "new",
+		price: {
+			value: 12.99,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		urls: {
+			info: "http://www.groupon.com",
+			reviews: null,
+			purchase: "https://www.groupon.com"
+		},
+		published_at: "2014-01-14T06:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://sjdhkf98q3yrkjsdhf.jpg",
@@ -249,33 +274,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		title: {
-			long: "Kerafiber Hair Building Product",
-			short: "Kerafiber Hair Building Product"
-		},
-		published_at: "2014-01-14T06:00:00Z",
-		urls: {
-			info: "http://www.groupon.com",
-			reviews: null,
-			purchase: "https://www.groupon.com"
-		},
-		model: null,
-		sku: null,
-		fine_print: "Limit 3 per person, may buy 2 more as gifts",
-		price: {
-			value: 12.99,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
-		manufacturer: {
-			name: "Kerafiber Hair Building Product",
-			url: ""
-		},
-		condition: "new"
+		}
 	}
 	
 ### service
@@ -283,10 +282,36 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 	{
 		id: "40a5a2a05f60013126cc60f8471fd7c2",
 		type: "service",
+		title: {
+			long: "One or Three Self-Service Dog-Washing Sessions",
+			short: "Up to 53% Off Self-Service Dog Washing"
+		},		
 		description: {
 			long: "Although some dogs earn accolades by saving their owners' lives, others earn them by leaving muddy tracks leading to their evil owners' lairs. Clean up the trail with this Groupon. Choose Between Two Options $8 for one self-service dog-washing session (up to $17 value) $24 for three Groupons.",
 			short: "Although some dogs earn accolades by saving their owners' lives, others earn them by leaving muddy tracks leading to their evil owners' lairs."
 		},
+		fine_print: "Limit 2 per person, may buy 1 additional as gift.",
+		price: {
+			value: 8,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		merchant: {
+			name: "Scrubbers Self-Serve Dog Wash & Grooming",
+			phone_number: "723-345-2345",
+			url: "http://www.scrubbersdogwash.com/"
+		}
+
+		urls: {
+			info: "http://www.groupon.com",
+			reviews: "http://www.yelp.com",
+			purchase: "https://www.groupon.com"
+		},
+		
+		published_at: "2014-01-12T05:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://jhsdf89y4.jpg",
@@ -339,30 +364,6 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		title: {
-			long: "One or Three Self-Service Dog-Washing Sessions",
-			short: "Up to 53% Off Self-Service Dog Washing"
-		},
-		published_at: "2014-01-12T05:00:00Z",
-		urls: {
-			info: "http://www.groupon.com",
-			reviews: "http://www.yelp.com",
-			purchase: "https://www.groupon.com"
-		},
-		fine_print: "Limit 2 per person, may buy 1 additional as gift.",
-		price: {
-			value: 8,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
-		merchant: {
-			name: "Scrubbers Self-Serve Dog Wash & Grooming",
-			phone_number: "723-345-2345",
-			url: "http://www.scrubbersdogwash.com/"
 		}
 	}
 	
@@ -371,10 +372,33 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 	{
 		id: "sdfhjwiuqery23jsdhf",
 		type: "hotel",
+		title: {
+			long: "1-Night Stay with Dining Credit at The Capri Hotel in Ojai, CA",
+			short: "Retro-Chic Hotel amid SoCal Mountains"
+		},
 		description: {
 			long: "<h4>Top Reasons to Stay at The Capri Hotel</h4> <ul> <li>The chic hotel resides in the Ojai Valley, amid views of the Topa Topa Mountains and a short drive from the Pacific Ocean. </li> <li>From the retro sign outside to the lobby’s button-back white sofas, this boutique hotel exudes vintage style. But its recently overhauled <a href="http://www.hotelojai.com/gues_rooms.php">guest rooms</a> still have plenty of modern comforts, including 42-inch plasma TVs and iPod docking stations. Each room has a patio or balcony with expansive vistas of the mountains or the landscaped garden. </li> <li>Guests can access The Capri’s extensive DVD library of more than 400 titles. </li> <li>With this getaway, you get a $15 credit to use toward a meal at the nearby <a href="http://hotelojai.com/index.php/dining">Deer Lodge</a>, an Ojai standby since 1932.</li> <li>For a bit of R & R, indulge in a hot-stone <a href="http://hotelojai.com/index.php/spa-services">massage</a> or, weather permitting, take a dip in the outdoor pool. </li> <li>Less than five minutes away, downtown Ojai is lined with teahouses, boutiques, and art galleries. <p></li> </ul>",
 			short: "The chic hotel resides in the Ojai Valley, amid views of the Topa Topa Mountains and a short drive from the Pacific Ocean."
 		},
+		fine_print: "Must book by 3/7/14 or promotional value expires. Must complete travel by 4/30/14.",
+		price: {
+			value: 79,
+			display_value: null,
+			comparison_value: null,
+			iso_code: null,
+			name: null,
+			symbol: null
+		},
+		merchant: {
+			name: "The Capri Hotel",
+			phone_number: "987-234-3456",
+			url: "http://www.hotelojai.com/"
+		}
+		urls: {
+			info: "http://www.groupon.com",
+			reviews: "http://www.expedia.com"
+		},
+		published_at: "2014-01-07T08:00:00Z",
 		images: {
 			thumbnail: {
 				url: "https://skjdhfas84.jpg",
@@ -424,28 +448,5 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 				width: "16",
 				height: "16"
 			}
-		},
-		title: {
-			long: "1-Night Stay with Dining Credit at The Capri Hotel in Ojai, CA",
-			short: "Retro-Chic Hotel amid SoCal Mountains"
-		},
-		published_at: "2014-01-07T08:00:00Z",
-		urls: {
-			info: "http://www.groupon.com",
-			reviews: "http://www.expedia.com"
-		},
-		fine_print: "Must book by 3/7/14 or promotional value expires. Must complete travel by 4/30/14.",
-		price: {
-			value: 79,
-			display_value: null,
-			comparison_value: null,
-			iso_code: null,
-			name: null,
-			symbol: null
-		},
-		merchant: {
-			name: "The Capri Hotel",
-			phone_number: "987-234-3456",
-			url: "http://www.hotelojai.com/"
 		}
 	}

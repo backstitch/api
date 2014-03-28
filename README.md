@@ -3,6 +3,70 @@
 ## Base url: api.backstit.ch
 
 
+### details
+	GET /v1/topic/details.json
+
+##### Parameters
+* * * 
+###### token
+_required_
+
+To obtain a token, you must first log into backstitch and from with inisde the topic editor set the topic to allow api calls.  This will generate a secure token to identify the topic.
+
+#### Detail Example
+	{
+		uid: 821,
+		name: "feed test",
+		description: null,
+		banner: {
+			url: "http://images-backstitch.s3.amazonaws.com/next/defaults/banner_3.jpg",
+			width: 650,
+			height: 240
+		},
+		api_token: "dsjhafjksahdfkjsadfshdfjs786",
+		filters: [
+			{
+				uid: 56,
+				phrase: "test"
+			}
+		],
+		feeds: [
+			{
+				uid: 13624,
+				name: "CNN",
+				icon: {
+					url: "http://images-backstitch.s3.amazonaws.com/next/service_catalog/cnn_icon.png",
+					width: "16",
+					height: "16"
+				},
+				banner: {
+					url: "http://images-backstitch.s3.amazonaws.com/next/service_catalog/cnn_banner.jpg",
+					width: "650",
+					height: "240"
+				},
+				service_name: "RSS",
+			},
+			{
+				uid: 13666,
+				name: "Tweets tagged test",
+				icon: {
+					url: "http://images-backstitch.s3.amazonaws.com/next/service_catalog/twitter_icon.png",
+					width: "16",
+					height: "16"
+				},
+				banner: {
+					url: "http://images-backstitch.s3.amazonaws.com/next/service_catalog/twitter_banner.jpg",
+					width: "650",
+					height: "240"
+				},
+				service_name: "Twitter",
+			}
+		]
+	}
+
+
+- - -
+
 ### fetch topic
 	GET /v1/topic/fetch.json
 
@@ -28,7 +92,7 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 - - -
 
 ### filter topic
-	GET /v1/topic/filter
+	GET /v1/topic/filter.json
 
 ##### Parameters
 * * * 

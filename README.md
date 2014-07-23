@@ -128,8 +128,9 @@ The number of results to skip per call, to be used for paging. Defaults to 0.
 		id: "sdjfhsakjdhfuewfbjdsf843857349857",
 		type: "article",
 		title: "Eidetic Helps You Remember Anything Through Repetition",
-		description: "iOS: Remembering random tidbits of information like a new phone number, a dictionary definition, or a quote is tough for a lot of us. Eidetic is an app that makes remembering a little easier by repeatedly sending notifications at specific intervals.",
-		full_text: "",
+		description: "iOS: Remembering random tidbits of information like a new phone number, a dictionary definition, or a quote is tough for a lot of us.",
+		full_text: "<p>iOS: Remembering random tidbits of information like a new phone number, a dictionary definition, or a quote is tough for a lot of us.</p> <p><a href='http://eideticapp.com/'>Eidetic</a> is an app that makes remembering a little easier by repeatedly sending notifications at specific intervals.</p>",
+                plain_text: "iOS: Remembering random tidbits of information like a new phone number, a dictionary definition, or a quote is tough for a lot of us. Eidetic is an app that makes remembering a little easier by repeatedly sending notifications at specific intervals.",
 		author: {
 			name: "Thorin Klosowski"
 		},

@@ -26,39 +26,62 @@ Currently access to our API is on a request basis for a small monthly charge.  T
 
 # Authentication
 
-> To authorize, use this code:
-
 ```ruby
-require 'kittn'
+require 'rest_client'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+# Modification requires both an organization's key and a topic's token
+RestClient.post 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source', {:key => '57DF8832C59E420E80B1DF4F9'}
+
+# Read-Only request only requires a topic's token
+response = RestClient.get 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'
 ```
 
 ```python
-import kittn
+import urllib
+import urllib2
 
-api = kittn.authorize('meowmeowmeow')
+# Modification requires both an organization's key and a topic's token
+url = 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'
+values = {'key': '57DF8832C59E420E80B1DF4F9'}
+data = urllib.urlencode(values)
+req = urllib2.Request(url, data)
+urllib2.urlopen(req)
+
+# Read-Only request only requires a topic's token
+response = urllib2.urlopen('https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source')
+html = response.read()
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# Modification requires both an organization's key and a topic's token
+# POST https://api.backstit.ch/v2/topic/{topic_token}/source?key={organization_key}
+curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source \
+  -d "key=57DF8832C59E420E80B1DF4F9"
+
+
+
+# Read-Only request only requires a topic's token
+# GET https://api.backstit.ch/v2/topic/{topic_token}/details
+curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/details
+
 ```
+> Make sure to replace `57DF8832C59E420E80B1DF4F9` with your organization's key and `9523280292F046269CD4C2F8C` with your topic's token.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+backstitch uses API keys and tokens to allow access to the API.  For all actions that create or modify topic pages
+the organization's key must be passed.  For reading results from a topic page only the topic's token is required.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+| Action | Organization Key | Topic Token|
+|---------|:-------:|:-----------:|
+CREATE | X | X* |
+READ   |  |  X  |
+UPDATE | X | X |
+DELETE | X | X |
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+<aside class="notice">*Unless a new topic is being created.</aside>
 
-`Authorization: meowmeowmeow`
+# API 2.0 Endpoints
 
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
+All API requests use the base url of `https://api.backstit.ch/v1/`
 
 ## Get All Kittens
 

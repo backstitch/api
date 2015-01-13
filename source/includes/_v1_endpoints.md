@@ -24,8 +24,7 @@ curl https://api.backstit.ch/v1/topic/details.json \
 ```
 > Make sure to replace `9523280292F046269CD4C2F8C` with your topic's token.
 
-All API 1.0 requests use the base url of `https://api.backstit.ch/v1/topic` and authenticate by passing the topic's token as
-a parameter.
+All API 1.0 requests use the base url of `https://api.backstit.ch/v1/topic` and authenticate by passing the topic's token as query a parameter.
 
 <aside class="success">
 Try upgrading to latest API 2.0 - now allows for building and maintaing topics through REST!

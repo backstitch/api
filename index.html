@@ -1,0 +1,1085 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell","ruby","python"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='mailto:team@backstit.ch?subject=Request for Developer Key'>Contact Us For A Developer Key</a></li>
+            <li><a href='http://backstit.ch'>Visit backstitch</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the backstitch API!  You can use our API to build and access backstitch topic pages to leverage our content curation engine for your app.</p>
+
+<p>Currently access to our API is on a request basis for a small monthly charge.  To request access you can email us at
+<a href="mailto:team@backstit.ch?subject=Request%20for%20Developer%20Key">team@backstit.ch</a>.</p>
+<h1 id='authentication'>Authentication</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="c1"># Modification requires both an organization's key and a topic's token</span>
+<span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'57DF8832C59E420E80B1DF4F9'</span><span class="p">}</span>
+
+<span class="c1"># Read-Only request only requires a topic's token</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="c"># Modification requires both an organization's key and a topic's token</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'57DF8832C59E420E80B1DF4F9'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+<span class="c"># Read-Only request only requires a topic's token</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell"><span class="c"># Modification requires both an organization's key and a topic's token</span>
+<span class="c"># POST https://api.backstit.ch/v2/topic/{topic_token}/source?key={organization_key}</span>
+curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source <span class="se">\</span>
+  -d <span class="s2">"key=57DF8832C59E420E80B1DF4F9"</span>
+
+<span class="c"># Read-Only request only requires a topic's token</span>
+<span class="c"># GET https://api.backstit.ch/v2/topic/{topic_token}/details</span>
+curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/details
+
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">57DF8832C59E420E80B1DF4F9</code> with your organization&rsquo;s key and <code class="prettyprint">9523280292F046269CD4C2F8C</code> with your topic&rsquo;s token.</p>
+</blockquote>
+
+<p>backstitch uses API keys and tokens to allow access to the API.  For all actions that create or modify topic pages
+the organization&rsquo;s key must be passed.  For reading results from a topic page only the topic&rsquo;s token is required.</p>
+
+<table><thead>
+<tr>
+<th>Action</th>
+<th style="text-align: center">Organization Key</th>
+<th style="text-align: center">Topic Token</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CREATE</td>
+<td style="text-align: center">X</td>
+<td style="text-align: center">X*</td>
+</tr>
+<tr>
+<td>READ</td>
+<td style="text-align: center"></td>
+<td style="text-align: center">X</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td style="text-align: center">X</td>
+<td style="text-align: center">X</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td style="text-align: center">X</td>
+<td style="text-align: center">X</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">*Unless a new topic is being created.</aside>
+<aside class="warning">
+If you&rsquo;re using API 1.0 consult the authentication documentation in that section or consider upgrading to API 2.0
+</aside></p>
+
+          <h1 id='api-1-0-endpoints'>API 1.0 Endpoints</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/details.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/details.json'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'token'</span><span class="p">:</span> <span class="s">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell"><span class="c"># GET https://api.backstit.ch/v1/topic/details.json?token={topic_token}</span>
+curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
+  -d <span class="s1">'token=9523280292F046269CD4C2F8C'</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">9523280292F046269CD4C2F8C</code> with your topic&rsquo;s token.</p>
+</blockquote>
+
+<p>All API 1.0 requests use the base url of <code class="prettyprint">https://api.backstit.ch/v1/topic</code> and authenticate by passing the topic&rsquo;s token as
+a parameter.</p>
+
+<p><aside class="success">
+Try upgrading to latest API 2.0 - now allows for building and maintaing topics through REST!
+</aside></p>
+<h2 id='get-topic-details'>Get Topic Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/details.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/details.json'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'token'</span><span class="p">:</span> <span class="s">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
+  -d <span class="s1">'token=9523280292F046269CD4C2F8C'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A topic with stories about Detroit."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://backstitch-user-uploads.s3.amazonaws.com/production/topic_banners/16427_1400578046.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="w"> </span><span class="p">:</span><span class="mi">240</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9523280292F046269CD4C2F8C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="mi">56</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phrase"</span><span class="p">:</span><span class="s2">"detroit"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"feeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13624</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CNN"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/cnn_icon.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/cnn_banner.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"650"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"240"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13666</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tweets tagged detroit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/twitter_icon.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/twitter_banner.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"650"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"240"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves details about a topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v1/topic/details.json</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">To obtain a token, you must first log into backstitch and from the topic editor include the API add-on.  This will generate a secure token to identify the topic.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the topic</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the topic</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional description of the topic</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded</td>
+</tr>
+<tr>
+<td>api_token</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The topic&rsquo;s api token</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters set on the topic</td>
+</tr>
+<tr>
+<td>feeds</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of included feeds</td>
+</tr>
+</tbody></table>
+<h2 id='fetch-topic-results'>Fetch Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/fetch.json'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'token'</span><span class="p">:</span> <span class="s">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
+  -d <span class="s2">"token=9523280292F046269CD4C2F8C"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;&lt;p&gt;[McIntosh Poris/Townhouse]  &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Townhouse&lt;/strong&gt; already &lt;a href=\"http://detroit.eater.com/2014/11/3/7148533/birminghams-townhouse-restaurant-is-headed-for-detroit\"&gt;announced&lt;/a&gt; plans for a new downtown Detroit location, but &lt;a href=\"http://detroit.eater.com/2015/1/8/7510471/townhouse-plans-greenhouse-style-dining-room-for-detroit-and-open-air\"&gt;Eater Detroit&lt;/a&gt; has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a &lt;strong&gt;greenhouse-like dining room&lt;/strong&gt; right next to One Detroit Center with seating for 120.&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plain_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a greenhouse-like dining room right next to One Detroit Center with seating for 120."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paul Beshouri"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-12T17:42:11Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/uploads/townhouse1-thumb.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curbed Detroit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/archives/2015/01/glassenclosed-restaurant-patio-planned-downtown.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://curbed.com/favicon.ico"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint fetches the latest results from the topic.  All results are in descending order by the date that the content was originally published.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v1/topic/fetch.json</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">To obtain a token, you must first log into backstitch and from the topic editor include the API add-on.  This will generate a secure token to identify the topic.</td>
+</tr>
+<tr>
+<td>count</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">20</td>
+<td style="text-align: left">The number of results to return per call, up to a maximum of 50.</td>
+</tr>
+<tr>
+<td>skip</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">0</td>
+<td style="text-align: left">The number of results to skip per call, to be used for paging.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+<h2 id='filter-topic-results'>Filter Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">,</span> <span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/fetch.json'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'token'</span><span class="p">:</span> <span class="s">'9523280292F046269CD4C2F8C'</span><span class="p">,</span> <span class="s">'term'</span><span class="p">:</span> <span class="s">'restaurants'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
+  -d <span class="s2">"token=9523280292F046269CD4C2F8C&amp;term=restaurants"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;&lt;p&gt;[McIntosh Poris/Townhouse]  &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Townhouse&lt;/strong&gt; already &lt;a href=\"http://detroit.eater.com/2014/11/3/7148533/birminghams-townhouse-restaurant-is-headed-for-detroit\"&gt;announced&lt;/a&gt; plans for a new downtown Detroit location, but &lt;a href=\"http://detroit.eater.com/2015/1/8/7510471/townhouse-plans-greenhouse-style-dining-room-for-detroit-and-open-air\"&gt;Eater Detroit&lt;/a&gt; has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a &lt;strong&gt;greenhouse-like dining room&lt;/strong&gt; right next to One Detroit Center with seating for 120.&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plain_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a greenhouse-like dining room right next to One Detroit Center with seating for 120."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paul Beshouri"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-12T17:42:11Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/uploads/townhouse1-thumb.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curbed Detroit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/archives/2015/01/glassenclosed-restaurant-patio-planned-downtown.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://curbed.com/favicon.ico"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint filters the results from the topic based on a passed term.  All results are in descending order with the most relevent match first. </p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v1/topic/filter.json</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">To obtain a token, you must first log into backstitch and from the topic editor include the API add-on.  This will generate a secure token to identify the topic.</td>
+</tr>
+<tr>
+<td>term</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that are most relevant to the passed term.</td>
+</tr>
+<tr>
+<td>count</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">20</td>
+<td style="text-align: left">The number of results to return per call, up to a maximum of 50.</td>
+</tr>
+<tr>
+<td>skip</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">0</td>
+<td style="text-align: left">The number of results to skip per call, to be used for paging.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+
+          <h1 id='result-type-dictionary'>Result Type Dictionary</h1>
+<p>Topic results follow a standard schema based on type regardless of the original source of the content.</p>
+<h2 id='article'>Article</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;&lt;p&gt;[McIntosh Poris/Townhouse]  &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Townhouse&lt;/strong&gt; already &lt;a href=\"http://detroit.eater.com/2014/11/3/7148533/birminghams-townhouse-restaurant-is-headed-for-detroit\"&gt;announced&lt;/a&gt; plans for a new downtown Detroit location, but &lt;a href=\"http://detroit.eater.com/2015/1/8/7510471/townhouse-plans-greenhouse-style-dining-room-for-detroit-and-open-air\"&gt;Eater Detroit&lt;/a&gt; has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a &lt;strong&gt;greenhouse-like dining room&lt;/strong&gt; right next to One Detroit Center with seating for 120.&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plain_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a greenhouse-like dining room right next to One Detroit Center with seating for 120."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paul Beshouri"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-12T17:42:11Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/uploads/townhouse1-thumb.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curbed Detroit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/archives/2015/01/glassenclosed-restaurant-patio-planned-downtown.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://curbed.com/favicon.ico"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>An article most likely from an RSS feed or posted on social media.  Contains the full content in both plain text and
+HTML formatted.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>title</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The article&rsquo;s title</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An article summary or lede paragraph which may end with an ellipsis</td>
+</tr>
+<tr>
+<td>full_text</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available the main contents of the article with HTML formatting and embedded media</td>
+</tr>
+<tr>
+<td>plain_text</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available the main contents of the article without any tags or media</td>
+</tr>
+<tr>
+<td>comments_url</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available a link to this article&rsquo;s comments</td>
+</tr>
+<tr>
+<td>author</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the name of the article&rsquo;s author</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that the article was originally published in UTC</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">If available the article&rsquo;s main images</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If the article came from social media this contains the information about the user that posted it</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that hosts this article</td>
+</tr>
+</tbody></table>
+<h2 id='status'>Status</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70f56ca07ccf01328e7156f4f15407e1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What are your plans for the New Year? #NYE2015"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-31-12T17:42:11Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lat_lon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"woeid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23213213"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitch"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://twitter.com/backstitch"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pbs.twimg.com/profile_images/488756158694318080/6BiMMFOf_400x400.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2423423"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://twitter.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/twitter_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>A short form user-generated message most likely posted on social media.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The contents of the status message</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that the status was originally posted in UTC</td>
+</tr>
+<tr>
+<td>location</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the geolocation of where the post was made</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the user that posted the message</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that the user posted on</td>
+</tr>
+</tbody></table>
+<h2 id='photo'>Photo</h2>
+<p>A photo most likely from a hosted service such as Flickr or posted to social media.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A description or caption of the photo</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that the photo was originally published in UTC</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Different sizes of the photo available</td>
+</tr>
+<tr>
+<td>location</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the geolocation of where the photo was published from</td>
+</tr>
+<tr>
+<td>comments_url</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available a link to this photo&rsquo;s comments</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available details about the user that posted the photo</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that hosts this photo</td>
+</tr>
+</tbody></table>
+<h2 id='video'>Video</h2>
+<p>A video most likely from a hosted service such as YouTube or posted to social media.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>title</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The title of the video</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A longer description of the video</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that the video was originally published in UTC</td>
+</tr>
+<tr>
+<td>url</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The direct url of the video</td>
+</tr>
+<tr>
+<td>embed_code</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">Code to directly embed this video</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">If available preview images for the video</td>
+</tr>
+<tr>
+<td>location</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the geolocation of where the video was published from</td>
+</tr>
+<tr>
+<td>comments_url</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available a link to this video&rsquo;s comments</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available details about the user that posted the video</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that hosts this video</td>
+</tr>
+</tbody></table>
+<h2 id='product'>Product</h2>
+<p>A physical product most likely from an ecommerce or daily deal site.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>title</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long product name</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long product description</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that the product was originally published in UTC</td>
+</tr>
+<tr>
+<td>urls</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Direct links to product information, reviews, and direct purchasing</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of product images</td>
+</tr>
+<tr>
+<td>price</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The cost of the product</td>
+</tr>
+<tr>
+<td>shipping_cost_</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the shipping cost of the product</td>
+</tr>
+<tr>
+<td>fine_print</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available any additional fine-print details</td>
+</tr>
+<tr>
+<td>model</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available the product model</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the name the manufacturer and the url of their website</td>
+</tr>
+<tr>
+<td>sku</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available the product&rsquo;s SKU</td>
+</tr>
+<tr>
+<td>condition</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available whether or not the product is new or used</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available details about the user that posted this product</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that is selling this product</td>
+</tr>
+</tbody></table>
+<h2 id='service'>Service</h2>
+<p>A professional service such as a restaurant.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>title</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long service name</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long service description</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that this service was originally published in UTC</td>
+</tr>
+<tr>
+<td>urls</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Direct links to service information, reviews, and direct purchasing</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of service images</td>
+</tr>
+<tr>
+<td>location</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the geolocation of where the service is available</td>
+</tr>
+<tr>
+<td>price</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The cost of the service</td>
+</tr>
+<tr>
+<td>fine_print</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available any additional fine-print details</td>
+</tr>
+<tr>
+<td>merchant</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the name the merchant, their phone number, and the url of their website</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available details about the user that posted this service</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that is selling this service</td>
+</tr>
+</tbody></table>
+<h2 id='hotel'>Hotel</h2>
+<p>A place that offers paid lodging.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">A unique identifier for the result</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The type of the result</td>
+</tr>
+<tr>
+<td>title</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long hotel name</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Contains both a short and long hotel description</td>
+</tr>
+<tr>
+<td>published_at</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The date that this hotel was originally published in UTC</td>
+</tr>
+<tr>
+<td>urls</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Direct links to hotel information, reviews, and direct purchasing</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of hotel images</td>
+</tr>
+<tr>
+<td>location</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the geolocation of where the hotel is available</td>
+</tr>
+<tr>
+<td>price</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The cost of the hotel</td>
+</tr>
+<tr>
+<td>fine_print</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">If available any additional fine-print details</td>
+</tr>
+<tr>
+<td>merchant</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available the name the hotel, their phone number, and the url of their website</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">If available details about the user that posted this hotel</td>
+</tr>
+<tr>
+<td>origin</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">Details about the website that is selling lodging at this hotel</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -339,6 +339,7 @@ This endpoint allows for including new sources into the topic.
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
 | data | yes| | An array of new sources to add to your topic. |
+| crawl_url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
 
 ### Data Child Parameters
 
@@ -350,35 +351,44 @@ This endpoint allows for including new sources into the topic.
 
 ### Available Services
 
-|Requires Linked Account*| Service | Value | Description
-|:---------:|---------|:-------|:-------|
-|X| app_dot_net_hashtag | phrase with no spaces | Retrieves public App.net Alpha posts by hashtag. |
-|| dealfind_deals | null or empty string | Retrieves the latest deals from Dealfind. |
+|Value Type| Example |
+|:---------|:---------|
+| empty | *null* or *""* |
+| phrase | *"Internet of Things"* |
+| tag | *"InternetOfThings"* |
+| username | *"backstitch"* |
+| location | *"Detroit, MI"* |
+| url | *"http://rss.cnn.com/rss/cnn_topstories.rss"* |
+
+|Requires Linked Account*| Service | Value Type | Description
+|:---------:|:---------|:-------:|:-------|
+|X| app_dot_net_hashtag | tag | Retrieves public App.net Alpha posts by hashtag. |
+|| dealfind_deals | nothing | Retrieves the latest deals from Dealfind. |
 |X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. |
-|X| facebook_hashtag | phrase with no spaces | Retrieves public Facebook posts by hashtag. |
+|X| facebook_hashtag | tag | Retrieves public Facebook posts by hashtag. |
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
 |X| flickr_user | username | Retrieves public Flickr photos published by a user. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
 |X| google_plus_user | username | Retrieves public Google+ posts made by a user. |
 || groupon_deals | location | Retrieves Groupon deals for a location. |
-|X| instagram_popular | null or empty string | Retrieves the most popular photos currently on Instagram. |
+|X| instagram_popular | nothing | Retrieves the most popular photos currently on Instagram. |
 |X| instagram_hashtag | phrase | Retrieves public Instagram photos by hashtag. |
 |X| instagram_user | username | Retrieves public Instagram photos published by a user. |
 |X| instagram_area | location | Retrieves public Instagram photos posted around a location. |
 |X| linkedin_user | username | Retrieves public LinkedIn posts by a user. |
-|| living_social_deals | null or empty string | Retrieves the latest Living Social deals. |
-|| one_sale_a_day_deals | null or empty string | Retrieves the latest 1SaleADay deals. |
-|| price_plunge_deals | null or empty string | Retrieves the latest Price Plunge deals. |
-|| subreddit | phrase with no spaces | Retrieves Reddit submissions made to a public /r subreddit. |
+|| living_social_deals | nothing | Retrieves the latest Living Social deals. |
+|| one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. |
+|| price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. |
+|| subreddit | tag | Retrieves Reddit submissions made to a public /r subreddit. |
 || rss | url | Retrieves articles from an RSS feed. |
-|| tanga_deals | null or empty string | Retrieves the latest deals from Tanga. |
-|| tee_fury_deals | null or empty string | Retrieves the latest deals from Tee Fury. |
-|X| tumblr_tagged | phrase with no spaces | Retrieves public Tumblr posts by tag. |
+|| tanga_deals | nothing | Retrieves the latest deals from Tanga. |
+|| tee_fury_deals | nothing | Retrieves the latest deals from Tee Fury. |
+|X| tumblr_tagged | tag | Retrieves public Tumblr posts by tag. |
 |X| twitter_mention | phrase | Retrieves public Tweets that contain a phrase. |
-|X| twitter_hashtag | phrase with no spaces | Retrieves public Tweets by hashtag. |
+|X| twitter_hashtag | tag | Retrieves public Tweets by hashtag. |
 |X| twitter_user | username | Retrieves public Tweets made by a user. |
-|| woot_daily_deals | null or no value | Retrieves the latest Woot deals. |
-|| woot_plus_deals | null or no value | Retrieves the latest Woot Plus deals. |
+|| woot_daily_deals | nothing | Retrieves the latest Woot deals. |
+|| woot_plus_deals | nothing | Retrieves the latest Woot Plus deals. |
 |X| youtube_user | username | Retrieves public videos posted by a YouTube user or account. |
 
 *These services require an associated account to be linked from the organization dashboard. 
@@ -395,7 +405,7 @@ This endpoint allows for including new sources into the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'Captain America'}]}
+response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters", :params => {:key => "70b5aa707ca6013231ce482a14180728", :data => [{:type => "include", :value => "Captain America"}]}
 ```
 
 ```python
@@ -497,19 +507,80 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 
 ```
 
-This endpoint enables cloning of a Topic's sources and filters into another Topic.
+This endpoint enables cloning of sources and filters from a list of other topics.  This is a great way to setup templates for your topics or to build user-specific streams.
+
+<aside class="success">
+  This action requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
+</aside>
 
 ### HTTP Request
 
 `POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/clone`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
 
 ### Query Parameters
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from.  |
 
 ### Returns
+
+## UnClone Topic
+
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+```
+
+This endpoint enables removing the sources and filters that were cloned from other topics.  This is a great way to maintain user-specific streams where subtopics can be unsubscribed.
+
+<aside class="warning">
+  This will remove any sources or filters that were added outside of the clone method.
+</aside>
+
+<aside class="success">
+  This action requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
+</aside>
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/unclone`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+| topic_tokens | yes | | An array of API tokens for the topics to **remove** sources and filters from.  |
+
+### Returns
+
 
 ## Delete Topic Sources
 

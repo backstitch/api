@@ -65,6 +65,195 @@ This endpoint retrieves basic details about an organization.
 | highlight_color | string | An optional theme color set for the organization. |
 | key | string | The organizations's api key. |
 
+## Get Organization Teams
+
+```ruby
+require 'rest_client'
+
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams'
+```
+
+```python
+import urllib2
+
+response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams')
+```
+
+```shell
+curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 118,
+        "name": "Awesome Rocket (all)",
+        "member_count": 5,
+        "team_members": [
+            {
+                "id": 129,
+                "is_verified": false,
+                "display_name": "John Doe",
+                "email": "test5@backstit.ch",
+                "last_login_at": "2015-01-06T20:09:19.793Z"
+            },
+            {
+                "id": 132,
+                "is_verified": true,
+                "display_name": "Jane Doe",
+                "email": "test2@backstit.ch",
+                "last_login_at": "2014-11-28T19:54:57.977Z"
+            },
+            {
+                "id": 133,
+                "is_verified": true,
+                "display_name": "Jess Smith",
+                "email": "test@backstit.ch",
+                "last_login_at": "2014-11-28T18:37:08.242Z"
+            },
+            {
+                "id": 134,
+                "is_verified": true,
+                "display_name": "Jordan Warzecha",
+                "email": "test3@backstit.ch",
+                "last_login_at": null
+            },
+            {
+                "id": 138,
+                "is_verified": true,
+                "display_name": "Tommy Bonderenka",
+                "email": "test4@backstit.ch",
+                "last_login_at": "2014-12-30T16:16:58.501Z"
+            }
+        ]
+    },
+    {
+        "id": 119,
+        "name": "Research & Development",
+        "member_count": 1,
+        "team_members": [
+            {
+                "id": 130,
+                "is_verified": false,
+                "display_name": "John Doe",
+                "email": "test5@backstit.ch",
+                "last_login_at": "2015-01-06T20:09:19.793Z"
+            }
+        ]
+    }
+]
+```
+
+This endpoint retrieves basic details about every team in an organization, including member information.
+
+### HTTP Request
+
+`GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/teams`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+
+### Returns
+
+| Field | Data Type | Description |
+|---------|:-------:|:-----------|
+| id | integer | A unique identifier for the organization. |
+| name | string | The name given to the organization. |
+| member\_count | integer | The total count of team\_members associated with the team. |
+| team\_members | array | Details on each team\_member associated with the team. |
+
+## Get Single Organization Team
+
+```ruby
+require 'rest_client'
+
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118'
+```
+
+```python
+import urllib2
+
+response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118')
+```
+
+```shell
+curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 118,
+    "name": "Awesome Rocket (all)",
+    "member_count": 5,
+    "team_members": [
+        {
+            "id": 129,
+            "is_verified": false,
+            "display_name": "John Doe",
+            "email": "admin@backstit.ch",
+            "last_login_at": "2015-01-06T20:09:19.793Z"
+        },
+        {
+            "id": 132,
+            "is_verified": true,
+            "display_name": "Jane Doe",
+            "email": "test2@backstit.ch",
+            "last_login_at": "2014-11-28T19:54:57.977Z"
+        },
+        {
+            "id": 133,
+            "is_verified": true,
+            "display_name": "Jess Smith",
+            "email": "test@backstit.ch",
+            "last_login_at": "2014-11-28T18:37:08.242Z"
+        },
+        {
+            "id": 134,
+            "is_verified": true,
+            "display_name": "test3",
+            "email": "test3@backstit.ch",
+            "last_login_at": null
+        },
+        {
+            "id": 138,
+            "is_verified": true,
+            "display_name": "Tommy Bonderenka",
+            "email": "tommy@backstit.ch",
+            "last_login_at": "2014-12-30T16:16:58.501Z"
+        }
+    ]
+}
+```
+
+This endpoint retrieves basic details about a specific team in an organization, including member information.
+
+### HTTP Request
+
+`GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/teams/{TEAM_ID}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+| TEAM_ID | yes | The ID of the team you want to obtain details for. |
+
+### Returns
+
+| Field | Data Type | Description |
+|---------|:-------:|:-----------|
+| id | integer | A unique identifier for the team. |
+| name | string | The name given to the team. |
+| member\_count | integer | The total count of team\_members associated with the team. |
+| team\_members | array | Details on each team\_member associated with the team. |
+
 ## Get Organization Topics
 
 ```ruby
@@ -225,6 +414,26 @@ curl https://api.backstit.ch/v2/topics \
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+    "errors": [
+        "A topic name is required."
+    ]
+}
+{
+    "errors": [
+        "Invalid organization API Key"
+    ]
+}
+{
+    "errors": [
+        "Invalid permission type: everyone"
+    ]
+}
+```
+
 This endpoint allows the creation of a new organization owned topic with the API add-on enabled.
 
 ### HTTP Request
@@ -253,6 +462,14 @@ This endpoint allows the creation of a new organization owned topic with the API
 | sources | array | A list of included sources. |
 | filters | array | A list of global keyword filters set on the topic. |
 | errors | array | A list of any errors that occured during topic creation. |
+
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| A topic name is required. | A topic name was not provided in the required name parameter. |
+| Invalid organization API key | The API key provided in the required key parameter was invalid, or wasn't provided. |
+| Invalid permission type: permission | The permission provided via the permission parameter was invalid (only private or public are supported). |
 
 ## Add Topic Sources
 
@@ -314,6 +531,29 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
       "service": "facebook_user"
     }
   ]
+}
+```
+
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+{
+            "message": "Source already added",
+            "service": "facebook_hashtag",
+            "value": "detroit"
+}
+{
+            "message": "Service not authorized: instagram_user",
+            "service": "instagram_user",
+            "value": "backstitch"
+}
+{
+            "message": "Invalid service: facebook_tag",
+            "service": "facebook_tag",
+            "value": "detroit"
 }
 ```
 
@@ -400,6 +640,16 @@ This endpoint allows for including new sources into the topic.
 | errors | array | A list of errors for sources that were unable to be included for some reason.  |
 | sources | array | A list of sources that were successfully added to the topic. |
 
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid.  |
+| Source already added | The topic already contains the returned source. |
+| Service not authorized: service | The service for the provided source has not been authenticated through the backstitch admin portal. |
+| Invalid service: service | The service provided is not a valid service. Refer to the Available Services above for reference. |
+
+
 ## Add Topic Filters
 
 ```ruby
@@ -437,6 +687,24 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
       "type": "include"
     }
   ]
+}
+```
+
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+{
+            "message": "Invalid filter-type: must-have",
+            "type": "must-have",
+            "value": "detroit"
+}
+{
+            "message": "Filter already added.",
+            "phrase": "detroit",
+            "type": "include"
 }
 ```
 
@@ -486,6 +754,14 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 |---------|:-------:|:-----------|
 | errors | array | A list of errors for filters that were unable to be set. |
 | filters | array | A list of filters that were successfully set on the topic. |
+
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid. |
+| Invalid filter-type: type | The filter-type provided was invalid. Refer to 'available filter types' above for reference. | 
+| Filter already added | The topic already contains the provided filter. |
 
 ## Clone Topic
 
@@ -636,6 +912,19 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+{
+            "message": "Invalid service: instagram_profile",
+            "service": "instagram_profile",
+            "value": "backstitch"
+}
+```
+
 This endpoint adds new sources to the topic.
 
 ### HTTP Request
@@ -669,6 +958,13 @@ This endpoint adds new sources to the topic.
 |---------|:-------:|:-----------|
 | errors | array | A list of errors for sources that were not removed |
 | sources | array | A list of sources that were removed |
+
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid. |
+| Invalid service: service | The service provided is not valid. Refer to 'available services' above for reference. |
 
 ## Delete Topic Filters
 
@@ -707,6 +1003,19 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+{
+        "message": "No such filter",
+        "type": "include",
+        "value": "detroit"
+}
+```
+
 This endpoint adds new sources to the topic.
 
 ### HTTP Request
@@ -742,6 +1051,13 @@ This endpoint adds new sources to the topic.
 | errors | array | A lits of error for filters that were not removed |
 | filters | array | A list of global keyword filters that were removed |
 
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid. |
+| No such filter | The filter provided for deletion does not exist for the topic. |
+
 ## Delete Topic
 
 ```ruby
@@ -776,6 +1092,14 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+```
+
 This endpoint adds new sources to the topic.
 
 ### HTTP Request
@@ -800,6 +1124,12 @@ This endpoint adds new sources to the topic.
 | token | string | The topic's api token |
 | filters | array | A list of global keyword filters set on the topic |
 | sources | array | A list of included sources |
+
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid. |
 
 ## Get Topic Details
 
@@ -866,6 +1196,18 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+        "message": "Invalid topic"
+}
+{
+        "message": "Add-on not activated",
+        "call-type": "widget"
+}
+```
+
 This endpoint retrieves details about a topic.
 
 ### HTTP Request
@@ -883,6 +1225,13 @@ This endpoint retrieves details about a topic.
 | token | string | The topic's api token |
 | filters | array | A list of global keyword filters set on the topic |
 | feeds | array | A list of included feeds |
+
+### Error Messages
+
+| Message | Description |
+|-------------|:----------|
+| Invalid topic | The topic token provided was not valid. |
+| Add-on not activated | The topic does not have the requested action activated (the widget or the API). |
 
 ## Retrieve Topic Results
 

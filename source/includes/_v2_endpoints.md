@@ -164,7 +164,7 @@ This endpoint retrieves a list of organization owned topics that have the API ad
 
 ### HTTP Request
 
-`GET https://api.backstit.ch/v2/organization/{ORGANIZATION_KEY}/topics`
+`GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/topics`
 
 ### URL Parameters
 
@@ -339,7 +339,7 @@ This endpoint allows for including new sources into the topic.
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
 | data | yes| | An array of new sources to add to your topic. |
-| crawl_url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
+| url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
 
 ### Data Child Parameters
 
@@ -376,7 +376,7 @@ This endpoint allows for including new sources into the topic.
 |X| instagram_user | username | Retrieves public Instagram photos published by a user. |
 |X| instagram_area | location | Retrieves public Instagram photos posted around a location. |
 |X| linkedin_user | username | Retrieves public LinkedIn posts by a user. |
-|| living_social_deals | nothing | Retrieves the latest Living Social deals. |
+|| living_social_deals | location | Retrieves the latest Living Social deals. |
 || one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. |
 || price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. |
 || subreddit | tag | Retrieves Reddit submissions made to a public /r subreddit. |

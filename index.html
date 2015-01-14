@@ -52,7 +52,7 @@
 
 <p>Currently access to our API is on a request basis for a small monthly charge.  To request access you can email us at
 <a href="mailto:team@backstit.ch?subject=Request%20for%20Developer%20Key">team@backstit.ch</a>.</p>
-<h1 id='authentication'>Authentication</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h1 id='authentication'>Authentication</h1><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="c1"># Modification requires both an organization's key and a topic's token</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'twitter_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitch'</span><span class="p">}]}</span>
@@ -60,7 +60,7 @@
 <span class="c1"># Read-Only request only requires a topic's token</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="c"># Modification requires both an organization's key and a topic's token</span>
@@ -73,7 +73,7 @@
 <span class="c"># Read-Only request only requires a topic's token</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell"><span class="c"># Modification requires both an organization's key and a topic's token</span>
+<pre class="highlight shell"><code><span class="c"># Modification requires both an organization's key and a topic's token</span>
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "twitter_user", "value": "backstitch"}]}'</span>
@@ -132,21 +132,21 @@ more consistent endpoint schema for working with topics.</p>
 <p><aside class="success">
   It is recommended to use API 2.0 as it will be the version to receive incremental updates.
 </aside></p>
-<h2 id='get-organization-details'>Get Organization Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='get-organization-details'>Get Organization Details</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1049</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Awesome Rocket Inc."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -210,21 +210,21 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">The organizations&rsquo;s api key.</td>
 </tr>
 </tbody></table>
-<h2 id='get-organization-topics'>Get Organization Topics</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='get-organization-topics'>Get Organization Topics</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10482</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple News"</span><span class="p">,</span><span class="w">
@@ -361,11 +361,11 @@ more consistent endpoint schema for working with topics.</p>
 </tbody></table>
 
 <p>For a more descriptive breakdown of the topic fields reference the <a href="/#get-topic-details">Get Topic Details</a> section.</p>
-<h2 id='create-topic'>Create Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='create-topic'>Create Topic</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Local Detroit News'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics'</span>
@@ -374,14 +374,14 @@ more consistent endpoint schema for working with topics.</p>
 <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics <span class="se">\</span>
   -d <span class="s2">"?key=70b5aa707ca6013231ce482a14180728&amp;name=Local%20Detroit%20News"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23942</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Local Detroit News"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -485,11 +485,11 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of any errors that occured during topic creation.</td>
 </tr>
 </tbody></table>
-<h2 id='add-topic-sources'>Add Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='add-topic-sources'>Add Topic Sources</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">,</span> <span class="ss">:filters</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'detroit'</span><span class="p">}]}]}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span>
@@ -498,7 +498,7 @@ more consistent endpoint schema for working with topics.</p>
 <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "facebook_user", "value": "backstitchapp", "filters": [{"type": "include", "value": "detroit"}]}]}'</span>
 </code></pre>
@@ -506,7 +506,7 @@ more consistent endpoint schema for working with topics.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">  
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -583,6 +583,12 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: center"></td>
 <td style="text-align: left">An array of new sources to add to your topic.</td>
 </tr>
+<tr>
+<td>crawl_url</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts.</td>
+</tr>
 </tbody></table>
 <h3 id='data-child-parameters'>Data Child Parameters</h3>
 <table><thead>
@@ -615,178 +621,210 @@ more consistent endpoint schema for working with topics.</p>
 <h3 id='available-services'>Available Services</h3>
 <table><thead>
 <tr>
+<th style="text-align: left">Value Type</th>
+<th style="text-align: left">Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">empty</td>
+<td style="text-align: left"><em>null</em> or <em>&ldquo;&rdquo;</em></td>
+</tr>
+<tr>
+<td style="text-align: left">phrase</td>
+<td style="text-align: left"><em>&ldquo;Internet of Things&rdquo;</em></td>
+</tr>
+<tr>
+<td style="text-align: left">tag</td>
+<td style="text-align: left"><em>&ldquo;InternetOfThings&rdquo;</em></td>
+</tr>
+<tr>
+<td style="text-align: left">username</td>
+<td style="text-align: left"><em>&ldquo;backstitch&rdquo;</em></td>
+</tr>
+<tr>
+<td style="text-align: left">location</td>
+<td style="text-align: left"><em>&ldquo;Detroit, MI&rdquo;</em></td>
+</tr>
+<tr>
+<td style="text-align: left">url</td>
+<td style="text-align: left"><em>&ldquo;http://rss.cnn.com/rss/cnn_topstories.rss&rdquo;</em></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
 <th style="text-align: center">Requires Linked Account*</th>
-<th>Service</th>
-<th style="text-align: left">Value</th>
+<th style="text-align: left">Service</th>
+<th style="text-align: center">Value Type</th>
 <th style="text-align: left">Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: center">X</td>
-<td>app_dot_net_hashtag</td>
-<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">app_dot_net_hashtag</td>
+<td style="text-align: center">tag</td>
 <td style="text-align: left">Retrieves public App.net Alpha posts by hashtag.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>dealfind_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">dealfind_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest deals from Dealfind.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>facebook_mention</td>
-<td style="text-align: left">phrase</td>
+<td style="text-align: left">facebook_mention</td>
+<td style="text-align: center">phrase</td>
 <td style="text-align: left">Retrieves public Facebook posts that mention a phrase.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>facebook_hashtag</td>
-<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">facebook_hashtag</td>
+<td style="text-align: center">tag</td>
 <td style="text-align: left">Retrieves public Facebook posts by hashtag.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>facebook_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">facebook_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public Facebook posts made by a user or a company page.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>flickr_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">flickr_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public Flickr photos published by a user.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>flickr_mention</td>
-<td style="text-align: left">phrase</td>
+<td style="text-align: left">flickr_mention</td>
+<td style="text-align: center">phrase</td>
 <td style="text-align: left">Retrieves public Flickr photos that mentions the phrase in its description.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>google_plus_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">google_plus_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public Google+ posts made by a user.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>groupon_deals</td>
-<td style="text-align: left">location</td>
+<td style="text-align: left">groupon_deals</td>
+<td style="text-align: center">location</td>
 <td style="text-align: left">Retrieves Groupon deals for a location.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>instagram_popular</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">instagram_popular</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the most popular photos currently on Instagram.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>instagram_hashtag</td>
-<td style="text-align: left">phrase</td>
+<td style="text-align: left">instagram_hashtag</td>
+<td style="text-align: center">phrase</td>
 <td style="text-align: left">Retrieves public Instagram photos by hashtag.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>instagram_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">instagram_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public Instagram photos published by a user.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>instagram_area</td>
-<td style="text-align: left">location</td>
+<td style="text-align: left">instagram_area</td>
+<td style="text-align: center">location</td>
 <td style="text-align: left">Retrieves public Instagram photos posted around a location.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>linkedin_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">linkedin_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public LinkedIn posts by a user.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>living_social_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">living_social_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest Living Social deals.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>one_sale_a_day_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">one_sale_a_day_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest 1SaleADay deals.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>price_plunge_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">price_plunge_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest Price Plunge deals.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>subreddit</td>
-<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">subreddit</td>
+<td style="text-align: center">tag</td>
 <td style="text-align: left">Retrieves Reddit submissions made to a public /r subreddit.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>rss</td>
-<td style="text-align: left">url</td>
+<td style="text-align: left">rss</td>
+<td style="text-align: center">url</td>
 <td style="text-align: left">Retrieves articles from an RSS feed.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>tanga_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">tanga_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest deals from Tanga.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>tee_fury_deals</td>
-<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">tee_fury_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest deals from Tee Fury.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>tumblr_tagged</td>
-<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">tumblr_tagged</td>
+<td style="text-align: center">tag</td>
 <td style="text-align: left">Retrieves public Tumblr posts by tag.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>twitter_mention</td>
-<td style="text-align: left">phrase</td>
+<td style="text-align: left">twitter_mention</td>
+<td style="text-align: center">phrase</td>
 <td style="text-align: left">Retrieves public Tweets that contain a phrase.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>twitter_hashtag</td>
-<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">twitter_hashtag</td>
+<td style="text-align: center">tag</td>
 <td style="text-align: left">Retrieves public Tweets by hashtag.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>twitter_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">twitter_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public Tweets made by a user.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>woot_daily_deals</td>
-<td style="text-align: left">null or no value</td>
+<td style="text-align: left">woot_daily_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest Woot deals.</td>
 </tr>
 <tr>
 <td style="text-align: center"></td>
-<td>woot_plus_deals</td>
-<td style="text-align: left">null or no value</td>
+<td style="text-align: left">woot_plus_deals</td>
+<td style="text-align: center">nothing</td>
 <td style="text-align: left">Retrieves the latest Woot Plus deals.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td>youtube_user</td>
-<td style="text-align: left">username</td>
+<td style="text-align: left">youtube_user</td>
+<td style="text-align: center">username</td>
 <td style="text-align: left">Retrieves public videos posted by a YouTube user or account.</td>
 </tr>
 </tbody></table>
@@ -811,11 +849,11 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of sources that were successfully added to the topic.</td>
 </tr>
 </tbody></table>
-<h2 id='add-topic-filters'>Add Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='add-topic-filters'>Add Topic Filters</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'Captain America'</span><span class="p">}]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters"</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">"70b5aa707ca6013231ce482a14180728"</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"include"</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s2">"Captain America"</span><span class="p">}]}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span>
@@ -824,7 +862,7 @@ more consistent endpoint schema for working with topics.</p>
 <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"]}}'</span>
 </code></pre>
@@ -832,7 +870,7 @@ more consistent endpoint schema for working with topics.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -951,22 +989,40 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of filters that were successfully set on the topic.</td>
 </tr>
 </tbody></table>
-<h2 id='clone-topic'>Clone Topic</h2><pre><code class="highlight ruby">
+<h2 id='clone-topic'>Clone Topic</h2><pre class="highlight ruby"><code>
 </code></pre>
-<pre><code class="highlight python">
+<pre class="highlight python"><code>
 </code></pre>
-<pre><code class="highlight shell">
+<pre class="highlight shell"><code>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="w">
+<pre class="highlight json"><code><span class="w">
 </span></code></pre>
 
-<p>This endpoint enables cloning of a Topic&rsquo;s sources and filters into another Topic.</p>
+<p>This endpoint enables cloning of sources and filters from a list of other topics.  This is a great way to setup templates for your topics or to build user-specific streams.</p>
+
+<p><aside class="success">
+  This action requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
+</aside></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/clone</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -982,20 +1038,86 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: center"></td>
 <td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
 </tr>
+<tr>
+<td>topic_tokens</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An array of API tokens for the topics to clone sources and filters from.</td>
+</tr>
 </tbody></table>
-<h3 id='returns'>Returns</h3><h2 id='delete-topic-sources'>Delete Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">}]}</span>
+<h3 id='returns'>Returns</h3><h2 id='unclone-topic'>UnClone Topic</h2><pre class="highlight ruby"><code>
 </code></pre>
-<pre><code class="highlight python">
+<pre class="highlight python"><code>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
+<pre class="highlight shell"><code>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<p>This endpoint enables removing the sources and filters that were cloned from other topics.  This is a great way to maintain user-specific streams where subtopics can be unsubscribed.</p>
+
+<p><aside class="warning">
+  This will remove any sources or filters that were added outside of the clone method.
+</aside></p>
+
+<p><aside class="success">
+  This action requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
+</aside></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/unclone</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+<tr>
+<td>topic_tokens</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An array of API tokens for the topics to <strong>remove</strong> sources and filters from.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3><h2 id='delete-topic-sources'>Delete Topic Sources</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">}]}</span>
+</code></pre>
+<pre class="highlight python"><code>
+</code></pre>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid service"</span><span class="p">,</span><span class="w">
@@ -1110,19 +1232,19 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of sources that were removed</td>
 </tr>
 </tbody></table>
-<h2 id='delete-topic-filters'>Delete Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='delete-topic-filters'>Delete Topic Filters</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'downtown'</span><span class="p">}]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'downtown'</span><span class="p">}]}</span>
 </code></pre>
-<pre><code class="highlight python">
+<pre class="highlight python"><code>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid type"</span><span class="p">,</span><span class="w">
@@ -1225,19 +1347,19 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of global keyword filters that were removed</td>
 </tr>
 </tbody></table>
-<h2 id='delete-topic'>Delete Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='delete-topic'>Delete Topic</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python">
+<pre class="highlight python"><code>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1315,21 +1437,21 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of included sources</td>
 </tr>
 </tbody></table>
-<h2 id='get-topic-details'>Get Topic Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='get-topic-details'>Get Topic Details</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1420,7 +1542,7 @@ more consistent endpoint schema for working with topics.</p>
 <td style="text-align: left">A list of included feeds</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-topic-results'>Retrieve Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='retrieve-topic-results'>Retrieve Topic Results</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="c1"># Retrieve latest results</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span>
@@ -1431,7 +1553,7 @@ more consistent endpoint schema for working with topics.</p>
 <span class="c1"># Search Results</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span> 
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span>
@@ -1451,7 +1573,7 @@ more consistent endpoint schema for working with topics.</p>
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell"><span class="c"># Retrieve latest results</span>
+<pre class="highlight shell"><code><span class="c"># Retrieve latest results</span>
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results
 
 <span class="c"># Retrieve second page of latest results</span>
@@ -1466,7 +1588,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
@@ -1549,11 +1671,11 @@ the query.</p>
 <h3 id='returns'>Returns</h3>
 <p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
 
-          <h1 id='api-1-0-endpoints'>API 1.0 Endpoints</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+          <h1 id='api-1-0-endpoints'>API 1.0 Endpoints</h1><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/details.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/details.json'</span>
@@ -1562,7 +1684,7 @@ the query.</p>
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell"><span class="c"># GET https://api.backstit.ch/v1/topic/details.json?token={topic_token}</span>
+<pre class="highlight shell"><code><span class="c"># GET https://api.backstit.ch/v1/topic/details.json?token={topic_token}</span>
 curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
   -d <span class="s1">'token=9523280292F046269CD4C2F8C'</span>
 </code></pre>
@@ -1576,11 +1698,11 @@ curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
 <p><aside class="success">
 Try upgrading to latest API 2.0 - now allows for building and maintaing topics through REST!
 </aside></p>
-<h2 id='get-topic-details'>Get Topic Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='get-topic-details'>Get Topic Details</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/details.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/details.json'</span>
@@ -1589,14 +1711,14 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
   -d <span class="s1">'token=9523280292F046269CD4C2F8C'</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A topic with stories about Detroit."</span><span class="p">,</span><span class="w">
@@ -1708,11 +1830,11 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 <td style="text-align: left">A list of included feeds</td>
 </tr>
 </tbody></table>
-<h2 id='fetch-topic-results'>Fetch Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='fetch-topic-results'>Fetch Topic Results</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/fetch.json'</span>
@@ -1721,14 +1843,14 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
   -d <span class="s2">"token=9523280292F046269CD4C2F8C"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
@@ -1809,11 +1931,11 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 </tbody></table>
 <h3 id='returns'>Returns</h3>
 <p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
-<h2 id='filter-topic-results'>Filter Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h2 id='filter-topic-results'>Filter Topic Results</h2><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">,</span> <span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v1/topic/fetch.json'</span>
@@ -1822,14 +1944,14 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 </code></pre>
-<pre><code class="highlight shell">curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.backstit.ch/v1/topic/fetch.json <span class="se">\</span>
   -d <span class="s2">"token=9523280292F046269CD4C2F8C&amp;term=restaurants"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
@@ -1919,7 +2041,7 @@ Try upgrading to latest API 2.0 - now allows for building and maintaing topics t
 
           <h1 id='result-type-dictionary'>Result Type Dictionary</h1>
 <p>Topic results follow a standard schema based on type regardless of the original source of the content.</p>
-<h2 id='article'>Article</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+<h2 id='article'>Article</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
@@ -2038,7 +2160,7 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that hosts this article</td>
 </tr>
 </tbody></table>
-<h2 id='status'>Status</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+<h2 id='status'>Status</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70f56ca07ccf01328e7156f4f15407e1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What are your plans for the New Year? #NYE2015"</span><span class="p">,</span><span class="w">

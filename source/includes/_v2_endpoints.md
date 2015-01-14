@@ -191,14 +191,14 @@ For a more descriptive breakdown of the topic fields reference the [Get Topic De
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topic', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News'}
+response = RestClient.post 'https://api.backstit.ch/v2/topics', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News'}
 ```
 
 ```python
 import urllib
 import urllib2
 
-endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'
+endpoint = 'https://api.backstit.ch/v2/topics'
 params = {'key': '70b5aa707ca6013231ce482a14180728', 'name': 'Local Detroit News'}
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
@@ -206,7 +206,7 @@ response = urllib2.urlopen(request)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic \
+curl https://api.backstit.ch/v2/topics \
   -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News"
 ```
 
@@ -229,7 +229,7 @@ This endpoint allows the creation of a new organization owned topic with the API
 
 ### HTTP Request
 
-`POST https://api.backstit.ch/v2/topic`
+`POST https://api.backstit.ch/v2/topics`
 
 ### Query Parameters
 
@@ -259,216 +259,272 @@ This endpoint allows the creation of a new organization owned topic with the API
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
-
-response = RestClient.post 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'facebook_user', :value => 'backstitchapp', :filters => [{:type => 'include_term', :value => 'detroit'}]}]}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'facebook_user', :value => 'backstitchapp', :filters => [{:type => 'include', :value => 'detroit'}]}]}
 ```
 
 ```python
 import urllib
 import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
+endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'service': 'facebook_user', 'value': 'backstitchapp', 'filters': [{'type': 'include', 'value': 'detroit'}]}]}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/organization/{TOPIC_TOKEN}/sources
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
+  -H "Content-Type: application/json" \
+  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "facebook_user", "value": "backstitchapp", "filters": [{"type": "include", "value": "detroit"}]}]}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "errors":[
+{  
+  "errors": [],
+  "sources": [
     {
-      "message": "Invalid service",
-      "service": "facebook",
-      "value": "backstitchapp"
-    }
-  ],
-  "sources":[
-    {
-      "filters":[],
-      "uid": 76,
+      "id": 76,
       "name": "Facebook Posts from backstitchapp",
-      "icon":{
-        "url": "http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png",
-        "width": 64,
-        "height": 64
+      "icon": {
+        "url": "http://graph.facebook.com/373050736086342/picture",
+        "width": 50,
+        "height": 50
       },
-      "banner":{
+      "banner": {
         "url": "http://images-backstitch.s3.amazonaws.com/next/service_catalog/facebook_banner.jpg",
         "width": 650,
         "height": 240
       },
-      "params":{
-        "user":{
+      "params": {
+        "user": {
           "type": "search_term",
           "value": "backstitchapp"
         }
       },
-      "service_name": "facebook_user"
+      "filters": [
+        {
+          "id": 13414,
+          "value": "detroit",
+          "type": "include"
+        }
+      ],
+      "service": "facebook_user"
     }
   ]
 }
 ```
 
-This endpoint adds new sources to the topic.
+This endpoint allows for including new sources into the topic.
+
+<aside class="success">
+  Including new sources requires the Topic to be reindexed and may take up to **1 minute** for new results to appear.
+</aside>
 
 ### HTTP Request
 
-`POST https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/sources`
+`POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/sources`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
 
 ### Query Parameters
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| key | yes | | Your organization's api key obtained from the organization dashboard. |
-| data | yes| | An Array of source to add to your topic. |
+| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+| data | yes| | An array of new sources to add to your topic. |
 
 ### Data Child Parameters
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| service | yes | | The name of the source service to add. |
-| value | yes | | The value of the service. |
-| filters | no | | Optional filters. |
-
-### Filters Child Parameters
-
-| Parameter | Required | Default | Description |
-|---------|:-------:|:-------:|:-----------|
-| type | yes | | The filter type. |
-| value | yes | | The value of the filter. |
+| service | yes | | The name of the new source's service. |
+| value | yes | | The parameter for the new source as required by the service. |
+| filters | no | | An array of filters to be set on the source.  [Detailed Documentation](/#add-topic-filters) |
 
 ### Available Services
 
-| Service | Value | Description
-|---------|:-------:|:-------:|
-| rss | url | An rss feed's url |
+|Requires Linked Account*| Service | Value | Description
+|:---------:|---------|:-------|:-------|
+|X| app_dot_net_hashtag | phrase with no spaces | Retrieves public App.net Alpha posts by hashtag. |
+|| dealfind_deals | null or empty string | Retrieves the latest deals from Dealfind. |
+|X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. |
+|X| facebook_hashtag | phrase with no spaces | Retrieves public Facebook posts by hashtag. |
+|X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
+|X| flickr_user | username | Retrieves public Flickr photos published by a user. |
+|X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
+|X| google_plus_user | username | Retrieves public Google+ posts made by a user. |
+|| groupon_deals | location | Retrieves Groupon deals for a location. |
+|X| instagram_popular | null or empty string | Retrieves the most popular photos currently on Instagram. |
+|X| instagram_hashtag | phrase | Retrieves public Instagram photos by hashtag. |
+|X| instagram_user | username | Retrieves public Instagram photos published by a user. |
+|X| instagram_area | location | Retrieves public Instagram photos posted around a location. |
+|X| linkedin_user | username | Retrieves public LinkedIn posts by a user. |
+|| living_social_deals | null or empty string | Retrieves the latest Living Social deals. |
+|| one_sale_a_day_deals | null or empty string | Retrieves the latest 1SaleADay deals. |
+|| price_plunge_deals | null or empty string | Retrieves the latest Price Plunge deals. |
+|| subreddit | phrase with no spaces | Retrieves Reddit submissions made to a public /r subreddit. |
+|| rss | url | Retrieves articles from an RSS feed. |
+|| tanga_deals | null or empty string | Retrieves the latest deals from Tanga. |
+|| tee_fury_deals | null or empty string | Retrieves the latest deals from Tee Fury. |
+|X| tumblr_tagged | phrase with no spaces | Retrieves public Tumblr posts by tag. |
+|X| twitter_mention | phrase | Retrieves public Tweets that contain a phrase. |
+|X| twitter_hashtag | phrase with no spaces | Retrieves public Tweets by hashtag. |
+|X| twitter_user | username | Retrieves public Tweets made by a user. |
+|| woot_daily_deals | null or no value | Retrieves the latest Woot deals. |
+|| woot_plus_deals | null or no value | Retrieves the latest Woot Plus deals. |
+|X| youtube_user | username | Retrieves public videos posted by a YouTube user or account. |
 
-### Available Filters
-
-| Type | Value | Description
-|---------|:-------:|:-------:|
-| include | phrase | Keywords that have to icluded in the feed |
-| exclude | phrase | Keywords that have to excluded from the feed |
-
+*These services require an associated account to be linked from the organization dashboard. 
 
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| errors | array | A list of errors for sources that were not added  |
-| sources | array | A list of sources added |
+| errors | array | A list of errors for sources that were unable to be included for some reason.  |
+| sources | array | A list of sources that were successfully added to the topic. |
 
 ## Add Topic Filters
 
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'downtown'}]}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'Captain America'}]}
 ```
 
 ```python
 import urllib
 import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
+endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include', 'value': 'Captain America'}]}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/filters
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
+  -H "Content-Type: application/json" \
+  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"]}}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "errors":[
-    {
-      "message": "Invalid type",
-      "type": "included",
-      "value": "downtown"
-    }
-  ],
+  "errors":[],
   "filters":[
     {
-      "uid": 345,
-      "phrase": "downtown",
+      "id": 3242,
+      "phrase": "Captain America",
       "type": "include"
     }
   ]
 }
 ```
 
-This endpoint adds new sources to the topic.
+This endpoint sets a new global filter on the topic.  All filters are chained using an _OR_ expression and are evaluated based on variations of the phrase's contents. _(example: restaurant also matches restaurants)_
+
+Filters are applied to all [Result Type](/#result-type-dictionary) fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.
+
+<aside class="success">
+  Setting new filters requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
+</aside>
 
 ### HTTP Request
 
-`POST https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/filters`
+`POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
 
 ### Query Parameters
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| key | yes | | Your organization's api key obtained from the organization dashboard. |
-| data | yes | | The array of filters to add |
+| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+| data | yes| | An array of new filters to set on the topic. |
 
 ### Data Child Parameters
 
-| Parameter | Required | Default | Description |
-|---------|:-------:|:-------:|:-----------|
-| type | yes | | The filter type. |
-| value | yes | | The value of the filter. |
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| type | yes | The type of filter to set. |
+| value | yes | The value required by the specific filter type. |
 
-### Available Filters
+### Available Filters Types
 
-| Type | Value | Description
-|---------|:-------:|:-------:|
-| include | phrase | Keywords that have to icluded in the feed |
-| exclude | phrase | Keywords that have to excluded from the feed |
-
+| Type | Value | Description |
+|---------|:-------:|:-------|
+| include | phrase | Phrase that **must be** included somewhere in the results. |
+| exclude | phrase | Phrase that **must not** be included somewhere in the results. |
+| nsfw | phrase | Automatically adds a list of Not Safe For Work terms as exclude filters. |
 
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| errors | array | A list of error for sources that were not added |
-| filters | array | A list of global keyword filters added |
+| errors | array | A list of errors for filters that were unable to be set. |
+| filters | array | A list of filters that were successfully set on the topic. |
+
+## Clone Topic
+
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+```
+
+This endpoint enables cloning of a Topic's sources and filters into another Topic.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/clone`
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+
+### Returns
 
 ## Delete Topic Sources
 
 ```ruby
 require 'rest_client'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
+response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
 ```
 
 ```python
-import urllib
-import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/sources
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
 ```
 
 > The above command returns JSON structured like this:
@@ -513,7 +569,7 @@ This endpoint adds new sources to the topic.
 
 ### HTTP Request
 
-`DELETE https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/sources`
+`DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/sources`
 
 ### Query Parameters
 
@@ -548,23 +604,15 @@ This endpoint adds new sources to the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'downtown'}]}
+response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'downtown'}]}
 ```
 
 ```python
-import urllib
-import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/filters
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
 ```
 
 > The above command returns JSON structured like this:
@@ -592,7 +640,7 @@ This endpoint adds new sources to the topic.
 
 ### HTTP Request
 
-`DELETE https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/filters`
+`DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters`
 
 ### Query Parameters
 
@@ -628,23 +676,15 @@ This endpoint adds new sources to the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728', :params => {:key => '70b5aa707ca6013231ce482a14180728'}
+response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728', :params => {:key => '70b5aa707ca6013231ce482a14180728'}
 ```
 
 ```python
-import urllib
-import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 ```
 
 > The above command returns JSON structured like this:
@@ -669,7 +709,7 @@ This endpoint adds new sources to the topic.
 
 ### HTTP Request
 
-`DELETE https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}`
+`DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}`
 
 ### Query Parameters
 
@@ -695,17 +735,17 @@ This endpoint adds new sources to the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/details'
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'
 ```
 
 ```python
 import urllib2
 
-response = urllib2.urlopen('https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/details')
+response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728')
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/details
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 ```
 
 > The above command returns JSON structured like this:
@@ -759,7 +799,7 @@ This endpoint retrieves details about a topic.
 
 ### HTTP Request
 
-`GET https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/details`
+`GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}`
 
 ### Returns
 
@@ -779,20 +819,20 @@ This endpoint retrieves details about a topic.
 require 'rest_client'
 
 # Retrieve latest results
-response = RestClient.get 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results'
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'
 
 # Retrieve second page of latest results
-response = RestClient.get 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20} 
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20} 
 
 # Search Results
-response = RestClient.get 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results', :params => {:query => 'restaurants'} 
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:query => 'restaurants'} 
 ```
 
 ```python
 import urllib
 import urllib2
 
-endpoint = 'https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results'
+endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'
 
 # Retrieve latest results
 response = urllib2.urlopen(endpoint)
@@ -812,14 +852,14 @@ response = urllib2.urlopen(req)
 
 ```shell
 # Retrieve latest results
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results
 
 # Retrieve second page of latest results
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results \
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results \
   -d "skip=20"
   
 # Search Results
-curl https://api.backstit.ch/v2/topic/9b5d30a07d4001325ede482a14180728/results \
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results \
   -d "query=restaurants"
 ```
 
@@ -879,7 +919,7 @@ the query.
 
 ### HTTP Request
 
-`GET https://api.backstit.ch/v2/topic/{TOPIC_TOKEN}/results`
+`GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/results`
 
 ### Query Parameters
 

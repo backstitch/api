@@ -1,10 +1,9 @@
 # API 2.0 Endpoints
 
 The backstitch API 2.0 includes the ability to build and manage topic pages from a RESTful interface along with a
-more consistent endpoint schema for consuming content from topics.
+more consistent endpoint schema for working with topics.
 
-All API 2.0 requests use the base url of `https://api.backstit.ch/v2` and authenticate by passing the topic's token as
-a url parameter and the organization's key as a query parameter.
+All API 2.0 requests use the base url of `https://api.backstit.ch/v2` and most authenticate by passing the topic's token as a url parameter and the organization's key as a query parameter.
 
 <aside class="success">
   It is recommended to use API 2.0 as it will be the version to receive incremental updates.
@@ -15,25 +14,25 @@ a url parameter and the organization's key as a query parameter.
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/details'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'
 ```
 
 ```python
 import urllib2
 
-response = urllib2.urlopen('https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/details')
+response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728')
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/details
+curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 123,
-  "name": "Awesome Rocket",
+  "id": 1049,
+  "name": "Awesome Rocket Inc.",
   "logo": {
     "url": "http://backstitch-user-uploads.s3.amazonaws.com/production/organization_logos/awesome_rocket_logo.png",
     "width": 181,
@@ -44,46 +43,44 @@ curl https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/de
 }
 ```
 
-This endpoint retrieves details about an organization.
+This endpoint retrieves basic details about an organization.
 
 ### HTTP Request
 
-`GET https://api.backstit.ch/v2/organization/{ORGANIZATION_KEY}/details`
+`GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
 
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the organization |
-| name | string | The name given to the organization |
-| logo | object | An optional logo given to the organization |
-| highlight_color | string | An optional highlight given to the organization |
-| key | string | The organizations's api key |
-
-| Field | Data Type | Description |
-|---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the organization |
-| name | string | The name given to the organization |
-| logo | object | An optional logo given to the organization |
-| highlight_color | string | An optional highlight given to the organization |
-| key | string | The organizations's api key |
+| id | integer | A unique identifier for the organization. |
+| name | string | The name given to the organization. |
+| logo | object | An optional logo uploaded for the organization. |
+| highlight_color | string | An optional theme color set for the organization. |
+| key | string | The organizations's api key. |
 
 ## Get Organization Topics
 
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/topics'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'
 ```
 
 ```python
 import urllib2
 
-response = urllib2.urlopen('https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/topics')
+response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics')
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/topics
+curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics
 ```
 
 > The above command returns JSON structured like this:
@@ -91,118 +88,144 @@ curl https://api.backstit.ch/v2/organization/70b5aa707ca6013231ce482a14180728/to
 ```json
 [
   {
-    "uid": 12,
-    "name": "Apple",
-    "description": "All about Apple",
+    "id": 10482,
+    "name": "Apple News",
+    "description": "The latest news around Apple",
     "banner": {
-      "url": "http://images-backstitch.s3.amazonzws.com/next/logos/backstitch_purple_icon.png",
-      "width": 300,
-      "height": 300
+      "url": "http://backstitch-user-uploads.s3.amazonaws.com/production/topic_banners/18155_1421233959.jpg",
+      "width": 912,
+      "height": 384
     },
     "token": "700cc690776001326156482a14180728",
     "filters": [
       {
-        "uid": 23,
-        "phrase": "mac",
+        "id": 20101,
+        "value": "Apple",
         "type": "include"
       }
     ],
     "sources":[
       {
-        "filters":[
-          {
-            "uid": 234,
-            "phrase": "imac",
-            "type": "exclude"
+        "id": 782,
+        "name": "MacRumors",
+        "icon": {
+          "url": "http://images-backstitch.s3.amazonaws.com/next/service_catalog/macrumors_icon.png",
+          "width": "16",
+          "height": "16"
+        },
+        "banner": {
+          "url": "http://images-backstitch.s3.amazonaws.com/next/service_catalog/macrumors_banner.jpg",
+          "width": "650",
+          "height": "240"
+        },
+        "params": {
+          "feed_url": {
+            "type": "url",
+            "value": "http://feeds.macrumors.com/MacRumors-All"
           }
-        ],
-        "uid": 345,
-        "name": "Apple Hot News",
+        },
+        "filters": [],
+        "service": "rss"
+      },
+      {
+        "id": 345,
+        "name": "Technology news - CNNMoney.com",
         "icon":{
-          "url": "http://apple.com/favicon.ico",
-          "width": null,
-          "height": null
+          "url": "http://cnn.com/favicon.ie9.ico",
+          "width": 32,
+          "height": 32
         },
         "banner":{
-          "url": "http://images.apple.com/hotnews/promos/images/promo_ipad_air_2.jpg",
+          "url": "http://i2.cdn.turner.com/money/dam/assets/150113142501-3doodler-thumbnail-620x348.jpg",
           "width": null,
           "height": null
         },
         "params":{
           "feed_url":{
             "type": "url",
-            "value": "https://www.apple.com/main/rss/hotnews/hotnews.rss"
+            "value": "http://rss.cnn.com/rss/money_technology.rss"
           }
         },
-        "service_name": "rss"
+        "filters":[
+          {
+            "uid": 20102,
+            "value": "Android",
+            "type": "exclude"
+          }
+        ],
+        "service": "rss"
       }
     ]
   }
 ]
 ```
 
-This endpoint retrieves a list of organization owned topics.
+This endpoint retrieves a list of organization owned topics that have the API add-on enabled.
 
 ### HTTP Request
 
 `GET https://api.backstit.ch/v2/organization/{ORGANIZATION_KEY}/topics`
 
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the topic |
-| name | string | The name given to the topic |
-| description | string | An optional description of the topic |
-| banner | object | The topic's displayed banner image if one was uploaded |
-| token | string | The topic's api token |
-| filters | array | A list of global keyword filters set on the topic |
-| sources | array | A list of included sources |
+| id | integer | A unique identifier for the topic. |
+| name | string | The name given to the topic. |
+| description | string | An optional description of the topic. |
+| banner | object | The topic's displayed banner image if one was uploaded. |
+| token | string | The topic's api token. |
+| filters | array | A list of global keyword filters set on the topic. |
+| sources | array | A list of sources included in the topic. |
+
+For a more descriptive breakdown of the topic fields reference the [Get Topic Details](/#get-topic-details) section.
 
 ## Create Topic
 
 ```ruby
 require 'rest_client'
 
-# Create a new topic called 'News Around Detroit'
-response = RestClient.post 'https://api.backstit.ch/v2/topic', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'News around Detroit'}
+response = RestClient.post 'https://api.backstit.ch/v2/topic', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News'}
 ```
 
 ```python
 import urllib
 import urllib2
 
-url = 'https://api.backstit.ch/v2/topic/'
-response = urllib2.urlopen(endpoint)
-params = {'skip': 20}
-data = urllib.urlencode(params)
-req = urllib2.Request(endpoint, data)
-response = urllib2.urlopen(req)
+endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'name': 'Local Detroit News'}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 ```
 
 ```shell
-curl https://api.backstit.ch/v2/topic?key=70b5aa707ca6013231ce482a14180728&name=Detroit
+curl https://api.backstit.ch/v2/topic \
+  -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "uid": 13,
-  "name": "Detroit",
-  "description": "",
-  "banner": {
-    "url": "http://images-backstitch.s3.amazonzws.com/next/logos/backstitch_purple_icon.png",
-    "width": 300,
-    "height": 300
-  },
+  "id": 23942,
+  "name": "Local Detroit News",
+  "description": null,
+  "banner": null,
   "token": "9b5d30a07d4001325ede482a14180728",
+  "sources": [],  
   "filters": [],
-  "sources":[]
+  "errors": null
 }
 ```
 
-This endpoint allows the creation of a new organization owned topic that has API support.
+This endpoint allows the creation of a new organization owned topic with the API add-on enabled.
 
 ### HTTP Request
 
@@ -212,23 +235,24 @@ This endpoint allows the creation of a new organization owned topic that has API
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| key | yes | | Your organization's api key obtained from the organization dashboard. |
+| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
 | name | yes | | The name of your topic. |
-| team | no | all user team | The name of the team this topic belongs to. |
-| sources | no | | Add source to your topic at the time of creation.  Use the same structure as adding sources to a topic. |
-| filters | no | | Add filters to your topic at the time of creation.  Use the same structure as adding filters to a topic. |
+| team | no | Organization (all) | The name of the team that this topic should belong to. |
+| sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
+| filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|
 
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the topic |
-| name | string | The name given to the topic |
-| description | string | An optional description of the topic |
-| banner | object | The topic's displayed banner image if one was uploaded |
-| token | string | The topic's api token |
-| filters | array | A list of global keyword filters set on the topic |
-| sources | array | A list of included sources |
+| id | integer | A unique identifier for the topic. |
+| name | string | The name given to the topic. |
+| description | string | An optional description of the topic. |
+| banner | object | The topic's displayed banner image if one was uploaded. |
+| token | string | The topic's api token. |
+| sources | array | A list of included sources. |
+| filters | array | A list of global keyword filters set on the topic. |
+| errors | array | A list of any errors that occured during topic creation. |
 
 ## Add Topic Sources
 

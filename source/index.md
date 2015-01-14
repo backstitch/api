@@ -32,10 +32,10 @@ Currently access to our API is on a request basis for a small monthly charge.  T
 require 'rest_client'
 
 # Modification requires both an organization's key and a topic's token
-RestClient.post 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source', :params => {:key => '57DF8832C59E420E80B1DF4F9'}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'twitter_user', :value => 'backstitch'}]}
 
 # Read-Only request only requires a topic's token
-response = RestClient.get 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'
 ```
 
 ```python
@@ -43,28 +43,26 @@ import urllib
 import urllib2
 
 # Modification requires both an organization's key and a topic's token
-url = 'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'
-values = {'key': '57DF8832C59E420E80B1DF4F9'}
-data = urllib.urlencode(values)
-req = urllib2.Request(url, data)
-urllib2.urlopen(req)
+endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'service': 'twitter_user', 'value': 'backstitch'}]}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 
 # Read-Only request only requires a topic's token
-response = urllib2.urlopen('https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source')
+response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728')
 ```
 
 ```shell
 # Modification requires both an organization's key and a topic's token
-# POST https://api.backstit.ch/v2/topic/{topic_token}/source?key={organization_key}
-curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source \
-  -d "key=57DF8832C59E420E80B1DF4F9"
-
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
+  -H "Content-Type: application/json" \
+  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "twitter_user", "value": "backstitch"}]}'
+  
 # Read-Only request only requires a topic's token
-# GET https://api.backstit.ch/v2/topic/{topic_token}/details
-curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/details
-
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 ```
-> Make sure to replace `57DF8832C59E420E80B1DF4F9` with your organization's key and `9523280292F046269CD4C2F8C` with your topic's token.
+> Make sure to replace `70b5aa707ca6013231ce482a14180728` with your organization's key and `9b5d30a07d4001325ede482a14180728` with your topic's token.
 
 backstitch uses API keys and tokens to allow access to the API.  For all actions that create or modify topic pages
 the organization's key must be passed.  For reading results from a topic page only the topic's token is required.

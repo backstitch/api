@@ -55,37 +55,35 @@
 <h1 id='authentication'>Authentication</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="c1"># Modification requires both an organization's key and a topic's token</span>
-<span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'57DF8832C59E420E80B1DF4F9'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'twitter_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitch'</span><span class="p">}]}</span>
 
 <span class="c1"># Read-Only request only requires a topic's token</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span>
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 
 <span class="c"># Modification requires both an organization's key and a topic's token</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'57DF8832C59E420E80B1DF4F9'</span><span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s">'data'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'service'</span><span class="p">:</span> <span class="s">'twitter_user'</span><span class="p">,</span> <span class="s">'value'</span><span class="p">:</span> <span class="s">'backstitch'</span><span class="p">}]}</span>
+<span class="n">encoded_params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 
 <span class="c"># Read-Only request only requires a topic's token</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source'</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">)</span>
 </code></pre>
 <pre><code class="highlight shell"><span class="c"># Modification requires both an organization's key and a topic's token</span>
-<span class="c"># POST https://api.backstit.ch/v2/topic/{topic_token}/source?key={organization_key}</span>
-curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/source <span class="se">\</span>
-  -d <span class="s2">"key=57DF8832C59E420E80B1DF4F9"</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "twitter_user", "value": "backstitch"}]}'</span>
 
 <span class="c"># Read-Only request only requires a topic's token</span>
-<span class="c"># GET https://api.backstit.ch/v2/topic/{topic_token}/details</span>
-curl https://api.backstit.ch/v2/topic/9523280292F046269CD4C2F8C/details
-
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">57DF8832C59E420E80B1DF4F9</code> with your organization&rsquo;s key and <code class="prettyprint">9523280292F046269CD4C2F8C</code> with your topic&rsquo;s token.</p>
+<p>Make sure to replace <code class="prettyprint">70b5aa707ca6013231ce482a14180728</code> with your organization&rsquo;s key and <code class="prettyprint">9b5d30a07d4001325ede482a14180728</code> with your topic&rsquo;s token.</p>
 </blockquote>
 
 <p>backstitch uses API keys and tokens to allow access to the API.  For all actions that create or modify topic pages
@@ -125,6 +123,1432 @@ the organization&rsquo;s key must be passed.  For reading results from a topic p
 If you&rsquo;re using API 1.0 consult the authentication documentation in that section or consider upgrading to API 2.0
 </aside></p>
 
+          <h1 id='api-2-0-endpoints'>API 2.0 Endpoints</h1>
+<p>The backstitch API 2.0 includes the ability to build and manage topic pages from a RESTful interface along with a
+more consistent endpoint schema for working with topics.</p>
+
+<p>All API 2.0 requests use the base url of <code class="prettyprint">https://api.backstit.ch/v2</code> and most authenticate by passing the topic&rsquo;s token as a url parameter and the organization&rsquo;s key as a query parameter.</p>
+
+<p><aside class="success">
+  It is recommended to use API 2.0 as it will be the version to receive incremental updates.
+</aside></p>
+<h2 id='get-organization-details'>Get Organization Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1049</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Awesome Rocket Inc."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://backstitch-user-uploads.s3.amazonaws.com/production/organization_logos/awesome_rocket_logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"highlight_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#1ba5ca"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70b5aa707ca6013231ce482a14180728"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves basic details about an organization.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ORGANIZATION_KEY</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the organization.</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the organization.</td>
+</tr>
+<tr>
+<td>logo</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">An optional logo uploaded for the organization.</td>
+</tr>
+<tr>
+<td>highlight_color</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional theme color set for the organization.</td>
+</tr>
+<tr>
+<td>key</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The organizations&rsquo;s api key.</td>
+</tr>
+</tbody></table>
+<h2 id='get-organization-topics'>Get Organization Topics</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10482</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple News"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The latest news around Apple"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://backstitch-user-uploads.s3.amazonaws.com/production/topic_banners/18155_1421233959.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">912</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">384</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700cc690776001326156482a14180728"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20101</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"sources"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">782</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MacRumors"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/macrumors_icon.png"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/macrumors_banner.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"650"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"240"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"feed_url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://feeds.macrumors.com/MacRumors-All"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rss"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology news - CNNMoney.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://cnn.com/favicon.ie9.ico"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"banner"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://i2.cdn.turner.com/money/dam/assets/150113142501-3doodler-thumbnail-620x348.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"params"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"feed_url"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://rss.cnn.com/rss/money_technology.rss"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">20102</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exclude"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rss"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a list of organization owned topics that have the API add-on enabled.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v2/organization/{ORGANIZATION_KEY}/topics</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ORGANIZATION_KEY</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the topic.</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the topic.</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional description of the topic.</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded.</td>
+</tr>
+<tr>
+<td>token</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The topic&rsquo;s api token.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters set on the topic.</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of sources included in the topic.</td>
+</tr>
+</tbody></table>
+
+<p>For a more descriptive breakdown of the topic fields reference the <a href="/#get-topic-details">Get Topic Details</a> section.</p>
+<h2 id='create-topic'>Create Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Local Detroit News'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Local Detroit News'</span><span class="p">}</span>
+<span class="n">encoded_params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics <span class="se">\</span>
+  -d <span class="s2">"?key=70b5aa707ca6013231ce482a14180728&amp;name=Local%20Detroit%20News"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23942</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Local Detroit News"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9b5d30a07d4001325ede482a14180728"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">  
+  </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows the creation of a new organization owned topic with the API add-on enabled.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST https://api.backstit.ch/v2/topics</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The name of your topic.</td>
+</tr>
+<tr>
+<td>team</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">Organization (all)</td>
+<td style="text-align: left">The name of the team that this topic should belong to.</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">A list of sources to include in your topic at the time of creation.  <a href="/#add-topic-sources">Detailed Documentation</a></td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">A list of global filters to set on your topic at the time of creation. <a href="/#add-topic-filters">Detailed Documentation</a></td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the topic.</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the topic.</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional description of the topic.</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded.</td>
+</tr>
+<tr>
+<td>token</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The topic&rsquo;s api token.</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of included sources.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters set on the topic.</td>
+</tr>
+<tr>
+<td>errors</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of any errors that occured during topic creation.</td>
+</tr>
+</tbody></table>
+<h2 id='add-topic-sources'>Add Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">,</span> <span class="ss">:filters</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'detroit'</span><span class="p">}]}]}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s">'data'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'service'</span><span class="p">:</span> <span class="s">'facebook_user'</span><span class="p">,</span> <span class="s">'value'</span><span class="p">:</span> <span class="s">'backstitchapp'</span><span class="p">,</span> <span class="s">'filters'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'include'</span><span class="p">,</span> <span class="s">'value'</span><span class="p">:</span> <span class="s">'detroit'</span><span class="p">}]}]}</span>
+<span class="n">encoded_params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "facebook_user", "value": "backstitchapp", "filters": [{"type": "include", "value": "detroit"}]}]}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">  
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Posts from backstitchapp"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://graph.facebook.com/373050736086342/picture"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/facebook_banner.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13414</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detroit"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_user"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows for including new sources into the topic.</p>
+
+<p><aside class="success">
+  Including new sources requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for new results to appear.
+</aside></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/sources</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+<tr>
+<td>data</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An array of new sources to add to your topic.</td>
+</tr>
+</tbody></table>
+<h3 id='data-child-parameters'>Data Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>service</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The name of the new source&rsquo;s service.</td>
+</tr>
+<tr>
+<td>value</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The parameter for the new source as required by the service.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An array of filters to be set on the source.  <a href="/#add-topic-filters">Detailed Documentation</a></td>
+</tr>
+</tbody></table>
+<h3 id='available-services'>Available Services</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">Requires Linked Account*</th>
+<th>Service</th>
+<th style="text-align: left">Value</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">X</td>
+<td>app_dot_net_hashtag</td>
+<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">Retrieves public App.net Alpha posts by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>dealfind_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest deals from Dealfind.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>facebook_mention</td>
+<td style="text-align: left">phrase</td>
+<td style="text-align: left">Retrieves public Facebook posts that mention a phrase.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>facebook_hashtag</td>
+<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">Retrieves public Facebook posts by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>facebook_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public Facebook posts made by a user or a company page.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>flickr_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public Flickr photos published by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>flickr_mention</td>
+<td style="text-align: left">phrase</td>
+<td style="text-align: left">Retrieves public Flickr photos that mentions the phrase in its description.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>google_plus_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public Google+ posts made by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>groupon_deals</td>
+<td style="text-align: left">location</td>
+<td style="text-align: left">Retrieves Groupon deals for a location.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>instagram_popular</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the most popular photos currently on Instagram.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>instagram_hashtag</td>
+<td style="text-align: left">phrase</td>
+<td style="text-align: left">Retrieves public Instagram photos by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>instagram_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public Instagram photos published by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>instagram_area</td>
+<td style="text-align: left">location</td>
+<td style="text-align: left">Retrieves public Instagram photos posted around a location.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>linkedin_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public LinkedIn posts by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>living_social_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest Living Social deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>one_sale_a_day_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest 1SaleADay deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>price_plunge_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest Price Plunge deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>subreddit</td>
+<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">Retrieves Reddit submissions made to a public /r subreddit.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>rss</td>
+<td style="text-align: left">url</td>
+<td style="text-align: left">Retrieves articles from an RSS feed.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>tanga_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest deals from Tanga.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>tee_fury_deals</td>
+<td style="text-align: left">null or empty string</td>
+<td style="text-align: left">Retrieves the latest deals from Tee Fury.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>tumblr_tagged</td>
+<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">Retrieves public Tumblr posts by tag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>twitter_mention</td>
+<td style="text-align: left">phrase</td>
+<td style="text-align: left">Retrieves public Tweets that contain a phrase.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>twitter_hashtag</td>
+<td style="text-align: left">phrase with no spaces</td>
+<td style="text-align: left">Retrieves public Tweets by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>twitter_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public Tweets made by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>woot_daily_deals</td>
+<td style="text-align: left">null or no value</td>
+<td style="text-align: left">Retrieves the latest Woot deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td>woot_plus_deals</td>
+<td style="text-align: left">null or no value</td>
+<td style="text-align: left">Retrieves the latest Woot Plus deals.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td>youtube_user</td>
+<td style="text-align: left">username</td>
+<td style="text-align: left">Retrieves public videos posted by a YouTube user or account.</td>
+</tr>
+</tbody></table>
+
+<p>*These services require an associated account to be linked from the organization dashboard. </p>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errors</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of errors for sources that were unable to be included for some reason.</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of sources that were successfully added to the topic.</td>
+</tr>
+</tbody></table>
+<h2 id='add-topic-filters'>Add Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'Captain America'</span><span class="p">}]}</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'key'</span><span class="p">:</span> <span class="s">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s">'data'</span><span class="p">:</span> <span class="p">[{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'include'</span><span class="p">,</span> <span class="s">'value'</span><span class="p">:</span> <span class="s">'Captain America'</span><span class="p">}]}</span>
+<span class="n">encoded_params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">encoded_params</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"]}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:[],</span><span class="w">
+  </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3242</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Captain America"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint sets a new global filter on the topic.  All filters are chained using an <em>OR</em> expression and are evaluated based on variations of the phrase&rsquo;s contents. <em>(example: restaurant also matches restaurants)</em></p>
+
+<p>Filters are applied to all <a href="/#result-type-dictionary">Result Type</a> fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.</p>
+
+<p><aside class="success">
+  Setting new filters requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
+</aside></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+<tr>
+<td>data</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An array of new filters to set on the topic.</td>
+</tr>
+</tbody></table>
+<h3 id='data-child-parameters'>Data Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The type of filter to set.</td>
+</tr>
+<tr>
+<td>value</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The value required by the specific filter type.</td>
+</tr>
+</tbody></table>
+<h3 id='available-filters-types'>Available Filters Types</h3>
+<table><thead>
+<tr>
+<th>Type</th>
+<th style="text-align: center">Value</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Phrase that <strong>must be</strong> included somewhere in the results.</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Phrase that <strong>must not</strong> be included somewhere in the results.</td>
+</tr>
+<tr>
+<td>nsfw</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Automatically adds a list of Not Safe For Work terms as exclude filters.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errors</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of errors for filters that were unable to be set.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of filters that were successfully set on the topic.</td>
+</tr>
+</tbody></table>
+<h2 id='clone-topic'>Clone Topic</h2><pre><code class="highlight ruby">
+</code></pre>
+<pre><code class="highlight python">
+</code></pre>
+<pre><code class="highlight shell">
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="w">
+</span></code></pre>
+
+<p>This endpoint enables cloning of a Topic&rsquo;s sources and filters into another Topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/clone</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3><h2 id='delete-topic-sources'>Delete Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">}]}</span>
+</code></pre>
+<pre><code class="highlight python">
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid service"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"filters"</span><span class="p">:[],</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Posts from backstitchapp"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/facebook_banner.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"params"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_user"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint adds new sources to the topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/sources</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key obtained from the organization dashboard.</td>
+</tr>
+<tr>
+<td>data</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An Array of source to add to your topic.</td>
+</tr>
+</tbody></table>
+<h3 id='data-child-parameters'>Data Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>service</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The name of the source service to add.</td>
+</tr>
+<tr>
+<td>value</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The value of the service.</td>
+</tr>
+</tbody></table>
+<h3 id='available-services'>Available Services</h3>
+<table><thead>
+<tr>
+<th>Service</th>
+<th style="text-align: center">Value</th>
+<th style="text-align: center">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rss</td>
+<td style="text-align: center">url</td>
+<td style="text-align: center">An rss feed&rsquo;s url</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errors</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of errors for sources that were not removed</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of sources that were removed</td>
+</tr>
+</tbody></table>
+<h2 id='delete-topic-filters'>Delete Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'downtown'</span><span class="p">}]}</span>
+</code></pre>
+<pre><code class="highlight python">
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid type"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"included"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint adds new sources to the topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key obtained from the organization dashboard.</td>
+</tr>
+<tr>
+<td>data</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The array of filters to add</td>
+</tr>
+</tbody></table>
+<h3 id='data-child-parameters'>Data Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The filter type.</td>
+</tr>
+<tr>
+<td>value</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The value of the filter.</td>
+</tr>
+</tbody></table>
+<h3 id='available-filters'>Available Filters</h3>
+<table><thead>
+<tr>
+<th>Type</th>
+<th style="text-align: center">Value</th>
+<th style="text-align: center">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: center">Keywords that have to icluded in the feed</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: center">Keywords that have to excluded from the feed</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errors</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A lits of error for filters that were not removed</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters that were removed</td>
+</tr>
+</tbody></table>
+<h2 id='delete-topic'>Delete Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">delete</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">}</span>
+</code></pre>
+<pre><code class="highlight python">
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonzws.com/next/logos/backstitch_purple_icon.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9b5d30a07d4001325ede482a14180728"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint adds new sources to the topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">Your organization&rsquo;s api key obtained from the organization dashboard.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the topic</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the topic</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional description of the topic</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded</td>
+</tr>
+<tr>
+<td>token</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The topic&rsquo;s api token</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters set on the topic</td>
+</tr>
+<tr>
+<td>sources</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of included sources</td>
+</tr>
+</tbody></table>
+<h2 id='get-topic-details'>Get Topic Details</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonzws.com/next/logos/backstitch_purple_icon.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9b5d30a07d4001325ede482a14180728"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"filters"</span><span class="p">:[],</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Posts from backstitchapp"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/facebook_banner.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"params"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_user"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves details about a topic.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}</code></p>
+<h3 id='returns'>Returns</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th style="text-align: center">Data Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: left">A unique identifier for the topic</td>
+</tr>
+<tr>
+<td>name</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The name given to the topic</td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">An optional description of the topic</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">object</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded</td>
+</tr>
+<tr>
+<td>token</td>
+<td style="text-align: center">string</td>
+<td style="text-align: left">The topic&rsquo;s api token</td>
+</tr>
+<tr>
+<td>filters</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of global keyword filters set on the topic</td>
+</tr>
+<tr>
+<td>feeds</td>
+<td style="text-align: center">array</td>
+<td style="text-align: left">A list of included feeds</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-topic-results'>Retrieve Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+
+<span class="c1"># Retrieve latest results</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span>
+
+<span class="c1"># Retrieve second page of latest results</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:skip</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">}</span> 
+
+<span class="c1"># Search Results</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span> 
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span>
+
+<span class="c"># Retrieve latest results</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+
+<span class="c"># Retrieve second page of latest results</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'skip'</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+<span class="c"># Search Results</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'query'</span><span class="p">:</span> <span class="s">'restaurants'</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell"><span class="c"># Retrieve latest results</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results
+
+<span class="c"># Retrieve second page of latest results</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results <span class="se">\</span>
+  -d <span class="s2">"skip=20"</span>
+
+<span class="c"># Search Results</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results <span class="se">\</span>
+  -d <span class="s2">"query=restaurants"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Renderings Revealed: Glass-Enclosed Restaurant &amp; Patio Planned Downtown"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;&lt;p&gt;[McIntosh Poris/Townhouse]  &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Townhouse&lt;/strong&gt; already &lt;a href=\"http://detroit.eater.com/2014/11/3/7148533/birminghams-townhouse-restaurant-is-headed-for-detroit\"&gt;announced&lt;/a&gt; plans for a new downtown Detroit location, but &lt;a href=\"http://detroit.eater.com/2015/1/8/7510471/townhouse-plans-greenhouse-style-dining-room-for-detroit-and-open-air\"&gt;Eater Detroit&lt;/a&gt; has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a &lt;strong&gt;greenhouse-like dining room&lt;/strong&gt; right next to One Detroit Center with seating for 120.&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plain_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Townhouse already announced plans for a new downtown Detroit location, but Eater Detroit has revealed that the Birmingham-based restaurant aspires to go beyond simply filling an empty storefront. Complete with a retractable roof, Townhouse Detroit plans to build a greenhouse-like dining room right next to One Detroit Center with seating for 120."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paul Beshouri"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-12T17:42:11Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/uploads/townhouse1-thumb.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curbed Detroit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://detroit.curbed.com/archives/2015/01/glassenclosed-restaurant-patio-planned-downtown.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://curbed.com/favicon.ico"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves results from the topic.  By default all results are returned in descending order by the date that the content was originally published.  If a query is passed then the order is based on the most relevent match to
+the query.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/results</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">20</td>
+<td style="text-align: left">The number of results to return per call, up to a maximum of 50.</td>
+</tr>
+<tr>
+<td>skip</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">0</td>
+<td style="text-align: left">The number of results to skip per call, to be used for paging.</td>
+</tr>
+<tr>
+<td>query</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that are most relevant to the passed term.</td>
+</tr>
+</tbody></table>
+<h3 id='returns'>Returns</h3>
+<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+
           <h1 id='api-1-0-endpoints'>API 1.0 Endpoints</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/details.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">}</span>
@@ -147,8 +1571,7 @@ curl https://api.backstit.ch/v1/topic/details.json <span class="se">\</span>
 <p>Make sure to replace <code class="prettyprint">9523280292F046269CD4C2F8C</code> with your topic&rsquo;s token.</p>
 </blockquote>
 
-<p>All API 1.0 requests use the base url of <code class="prettyprint">https://api.backstit.ch/v1/topic</code> and authenticate by passing the topic&rsquo;s token as
-a parameter.</p>
+<p>All API 1.0 requests use the base url of <code class="prettyprint">https://api.backstit.ch/v1/topic</code> and authenticate by passing the topic&rsquo;s token as query a parameter.</p>
 
 <p><aside class="success">
 Try upgrading to latest API 2.0 - now allows for building and maintaing topics through REST!

@@ -418,11 +418,13 @@ curl https://api.backstit.ch/v2/topics \
 
 ```json
 {
-  "errors": [
-    "A topic name is required.",
-    "Invalid organization API Key",
-    "Invalid permission type: everyone"
-  ]
+  "message": "A topic name is required."
+}
+{
+  "message": "Invalid organization API Key"
+}
+{
+  "message": "Invalid permission type: everyone"
 }
 ```
 
@@ -544,9 +546,9 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
   "value": "backstitch"
 }
 {
-    "message": "Invalid service: facebook_tag",
-    "service": "facebook_tag",
-    "value": "detroit"
+  "message": "Invalid service: facebook_tag",
+  "service": "facebook_tag",
+  "value": "detroit"
 }
 ```
 
@@ -984,12 +986,12 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 {
-            "message": "Invalid service: instagram_profile",
-            "service": "instagram_profile",
-            "value": "backstitch"
+  "message": "Invalid service: instagram_profile",
+  "service": "instagram_profile",
+  "value": "backstitch"
 }
 ```
 
@@ -1081,12 +1083,12 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 {
-        "message": "No such filter",
-        "type": "include",
-        "value": "detroit"
+  "message": "No such filter",
+  "type": "include",
+  "value": "detroit"
 }
 ```
 
@@ -1286,11 +1288,11 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 {
-        "message": "Add-on not activated",
-        "call-type": "widget"
+  "message": "Add-on not activated",
+  "call-type": "widget"
 }
 ```
 

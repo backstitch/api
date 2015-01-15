@@ -17,11 +17,11 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'
 ```
 
-```python
+<!-- ```python
 import urllib2
 
 response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728')
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728
@@ -73,11 +73,11 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams'
 ```
 
-```python
+<!-- ```python
 import urllib2
 
 response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams')
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams
@@ -175,11 +175,11 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118'
 ```
 
-```python
+<!-- ```python
 import urllib2
 
 response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118')
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118
@@ -262,11 +262,11 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'
 ```
 
-```python
+<!-- ```python
 import urllib2
 
 response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics')
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics
@@ -383,7 +383,7 @@ require 'rest_client'
 response = RestClient.post 'https://api.backstit.ch/v2/topics', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News'}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -392,7 +392,7 @@ params = {'key': '70b5aa707ca6013231ce482a14180728', 'name': 'Local Detroit News
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics \
@@ -474,7 +474,7 @@ require 'rest_client'
 response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'facebook_user', :value => 'backstitchapp', :filters => [{:type => 'include', :value => 'detroit'}]}]}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -483,7 +483,7 @@ params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'service': 'faceb
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
@@ -653,7 +653,7 @@ require 'rest_client'
 response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters", :params => {:key => "70b5aa707ca6013231ce482a14180728", :data => [{:type => "include", :value => "Captain America"}]}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -662,7 +662,7 @@ params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include'
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
@@ -766,7 +766,7 @@ require 'rest_client'
 response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -775,7 +775,7 @@ params = {'key': '70b5aa707ca6013231ce482a14180728', 'topic_tokens': ['9b5d30a07
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone \
@@ -866,7 +866,7 @@ require 'rest_client'
 response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -875,7 +875,7 @@ params = {'key': '70b5aa707ca6013231ce482a14180728', 'topic_tokens': ['9b5d30a07
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone \
@@ -936,9 +936,9 @@ require 'rest_client'
 response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
 ```
 
-```python
+<!-- ```python
 
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
@@ -1050,9 +1050,9 @@ require 'rest_client'
 response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'downtown'}]}
 ```
 
-```python
+<!-- ```python
 
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
@@ -1148,9 +1148,9 @@ require 'rest_client'
 response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728', :params => {:key => '70b5aa707ca6013231ce482a14180728'}
 ```
 
-```python
+<!-- ```python
 
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
@@ -1227,11 +1227,11 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'
 ```
 
-```python
+<!-- ```python
 import urllib2
 
 response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728')
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
@@ -1336,7 +1336,7 @@ response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ed
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:query => 'restaurants'} 
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -1356,7 +1356,7 @@ params = {'query': 'restaurants'}
 data = urllib.urlencode(params)
 req = urllib2.Request(endpoint, data)
 response = urllib2.urlopen(req)
-```
+``` -->
 
 ```shell
 # Retrieve latest results

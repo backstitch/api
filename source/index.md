@@ -4,7 +4,6 @@ title: API Reference
 language_tabs:
   - shell: cURL
   - ruby
-  - python
 
 toc_footers:
   - <a href='mailto:team@backstit.ch?subject=Request for Developer Key'>Contact Us For A Developer Key</a>
@@ -38,7 +37,7 @@ response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -51,7 +50,7 @@ response = urllib2.urlopen(request)
 
 # Read-Only request only requires a topic's token
 response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728')
-```
+``` -->
 
 ```shell
 # Modification requires both an organization's key and a topic's token

@@ -189,46 +189,46 @@ curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/t
 
 ```json
 {
-    "id": 118,
-    "name": "Awesome Rocket (all)",
-    "member_count": 5,
-    "team_members": [
-        {
-            "id": 129,
-            "is_verified": false,
-            "display_name": "John Doe",
-            "email": "admin@backstit.ch",
-            "last_login_at": "2015-01-06T20:09:19.793Z"
-        },
-        {
-            "id": 132,
-            "is_verified": true,
-            "display_name": "Jane Doe",
-            "email": "test2@backstit.ch",
-            "last_login_at": "2014-11-28T19:54:57.977Z"
-        },
-        {
-            "id": 133,
-            "is_verified": true,
-            "display_name": "Jess Smith",
-            "email": "test@backstit.ch",
-            "last_login_at": "2014-11-28T18:37:08.242Z"
-        },
-        {
-            "id": 134,
-            "is_verified": true,
-            "display_name": "test3",
-            "email": "test3@backstit.ch",
-            "last_login_at": null
-        },
-        {
-            "id": 138,
-            "is_verified": true,
-            "display_name": "Tommy Bonderenka",
-            "email": "tommy@backstit.ch",
-            "last_login_at": "2014-12-30T16:16:58.501Z"
-        }
-    ]
+  "id": 118,
+  "name": "Awesome Rocket (all)",
+  "member_count": 5,
+  "team_members": [
+      {
+          "id": 129,
+          "is_verified": false,
+          "display_name": "John Doe",
+          "email": "admin@backstit.ch",
+          "last_login_at": "2015-01-06T20:09:19.793Z"
+      },
+      {
+          "id": 132,
+          "is_verified": true,
+          "display_name": "Jane Doe",
+          "email": "test2@backstit.ch",
+          "last_login_at": "2014-11-28T19:54:57.977Z"
+      },
+      {
+          "id": 133,
+          "is_verified": true,
+          "display_name": "Jess Smith",
+          "email": "test@backstit.ch",
+          "last_login_at": "2014-11-28T18:37:08.242Z"
+      },
+      {
+          "id": 134,
+          "is_verified": true,
+          "display_name": "test3",
+          "email": "test3@backstit.ch",
+          "last_login_at": null
+      },
+      {
+          "id": 138,
+          "is_verified": true,
+          "display_name": "Tommy Bonderenka",
+          "email": "tommy@backstit.ch",
+          "last_login_at": "2014-12-30T16:16:58.501Z"
+      }
+  ]
 }
 ```
 
@@ -418,19 +418,11 @@ curl https://api.backstit.ch/v2/topics \
 
 ```json
 {
-    "errors": [
-        "A topic name is required."
-    ]
-}
-{
-    "errors": [
-        "Invalid organization API Key"
-    ]
-}
-{
-    "errors": [
-        "Invalid permission type: everyone"
-    ]
+  "errors": [
+    "A topic name is required.",
+    "Invalid organization API Key",
+    "Invalid permission type: everyone"
+  ]
 }
 ```
 
@@ -449,6 +441,7 @@ This endpoint allows the creation of a new organization owned topic with the API
 | team | no | Organization (all) | The name of the team that this topic should belong to. |
 | sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
 | filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|
+| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from. |
 
 ### Returns
 
@@ -538,22 +531,22 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 {
-            "message": "Source already added",
-            "service": "facebook_hashtag",
-            "value": "detroit"
+  "message": "Source already added",
+  "service": "facebook_hashtag",
+  "value": "detroit"
 }
 {
-            "message": "Service not authorized: instagram_user",
-            "service": "instagram_user",
-            "value": "backstitch"
+  "message": "Service not authorized: instagram_user",
+  "service": "instagram_user",
+  "value": "backstitch"
 }
 {
-            "message": "Invalid service: facebook_tag",
-            "service": "facebook_tag",
-            "value": "detroit"
+    "message": "Invalid service: facebook_tag",
+    "service": "facebook_tag",
+    "value": "detroit"
 }
 ```
 
@@ -672,7 +665,7 @@ response = urllib2.urlopen(request)
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
   -H "Content-Type: application/json" \
-  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"]}}'
+  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"}]}'
 ```
 
 > The above command returns JSON structured like this:
@@ -694,17 +687,17 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 {
-            "message": "Invalid filter-type: must-have",
-            "type": "must-have",
-            "value": "detroit"
+  "message": "Invalid filter-type: must-have",
+  "type": "must-have",
+  "value": "detroit"
 }
 {
-            "message": "Filter already added.",
-            "phrase": "detroit",
-            "type": "include"
+  "message": "Filter already added.",
+  "phrase": "detroit",
+  "type": "include"
 }
 ```
 
@@ -766,21 +759,76 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 ## Clone Topic
 
 ```ruby
+require 'rest_client'
 
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
 ```python
+import urllib
+import urllib2
 
+endpoint = 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'topic_tokens': ['9b5d30a07d4001325ede482a14180728']}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 ```
 
 ```shell
-
+curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone \
+-H "Content-Type: application/json" \
+-d '{"key": "70b5aa707ca6013231ce482a14180728", "topic_tokens": ["9b5d30a07d4001325ede482a14180728"]}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-
+{
+  "id": 23949,
+  "name": "Local Detroit News clone",
+  "description": null,
+  "banner": null,
+  "token": "868892907e0d01327760482a14180728",
+  "sources": [
+    {
+      "id": 78,
+      "name": "Facebook Posts from backstitchapp",
+      "icon": {
+        "url": "http://graph.facebook.com/373050736086342/picture",
+        "width": 50,
+        "height": 50
+      },
+      "banner": {
+        "url": "http://images-backstitch.s3.amazonaws.com/next/service_catalog/facebook_banner.jpg",
+        "width": 650,
+        "height": 240
+      },
+      "params": {
+        "user": {
+          "type": "search_term",
+          "value": "backstitchapp"
+        }
+      },
+      "filters": [
+        {
+          "id": 13419,
+          "value": "detroit",
+          "type": "include"
+        }
+      ],
+      "service": "facebook_user"
+    }
+  ],  
+  "filters": [
+    {
+      "id": 3244,
+      "phrase": "Captain America",
+      "type": "include"
+    }
+  ],
+  "errors": []
+}
 ```
 
 This endpoint enables cloning of sources and filters from a list of other topics.  This is a great way to setup templates for your topics or to build user-specific streams.
@@ -804,28 +852,48 @@ This endpoint enables cloning of sources and filters from a list of other topics
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
-| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from.  |
+| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from. |
 
 ### Returns
 
 ## UnClone Topic
 
 ```ruby
+require 'rest_client'
 
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
 ```python
+import urllib
+import urllib2
 
+endpoint = 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone'
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'topic_tokens': ['9b5d30a07d4001325ede482a14180728']}
+encoded_params = urllib.urlencode(params)
+request = urllib2.Request(endpoint, encoded_params)
+response = urllib2.urlopen(request)
 ```
 
 ```shell
-
+curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone \
+-H "Content-Type: application/json" \
+-d '{"key": "70b5aa707ca6013231ce482a14180728", "topic_tokens": ["9b5d30a07d4001325ede482a14180728"]}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-
+{
+  "id": 23949,
+  "name": "Local Detroit News clone",
+  "description": null,
+  "banner": null,
+  "token": "868892907e0d01327760482a14180728",
+  "sources": [],  
+  "filters": [],
+  "errors": []
+}
 ```
 
 This endpoint enables removing the sources and filters that were cloned from other topics.  This is a great way to maintain user-specific streams where subtopics can be unsubscribed.
@@ -1108,7 +1176,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 
 ```json
 {
-        "message": "Invalid topic"
+  "message": "Invalid topic"
 }
 ```
 

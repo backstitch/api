@@ -1028,6 +1028,12 @@ This endpoint adds new sources to the topic.
 
 `DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters`
 
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+
 ### Query Parameters
 
 | Parameter | Required | Default | Description |
@@ -1111,6 +1117,12 @@ This endpoint adds new sources to the topic.
 ### HTTP Request
 
 `DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
 
 ### Query Parameters
 

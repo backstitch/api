@@ -6,7 +6,7 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v1/topic/details.json', :params => {:token => '9523280292F046269CD4C2F8C'}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -15,7 +15,7 @@ params = {'token': '9523280292F046269CD4C2F8C'}
 data = urllib.urlencode(params)
 req = urllib2.Request(url, data)
 urllib2.urlopen(req)
-```
+``` -->
 
 ```shell
 # GET https://api.backstit.ch/v1/topic/details.json?token={topic_token}
@@ -38,7 +38,7 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v1/topic/details.json', :params => {:token => '9523280292F046269CD4C2F8C'}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -47,7 +47,7 @@ params = {'token': '9523280292F046269CD4C2F8C'}
 data = urllib.urlencode(params)
 req = urllib2.Request(url, data)
 urllib2.urlopen(req)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v1/topic/details.json \
@@ -140,7 +140,7 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v1/topic/fetch.json', :params => {:token => '9523280292F046269CD4C2F8C'}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -149,7 +149,7 @@ params = {'token': '9523280292F046269CD4C2F8C'}
 data = urllib.urlencode(params)
 req = urllib2.Request(url, data)
 urllib2.urlopen(req)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v1/topic/fetch.json \
@@ -233,7 +233,7 @@ require 'rest_client'
 response = RestClient.get 'https://api.backstit.ch/v1/topic/fetch.json', :params => {:token => '9523280292F046269CD4C2F8C', :term => 'restaurants'}
 ```
 
-```python
+<!-- ```python
 import urllib
 import urllib2
 
@@ -242,7 +242,7 @@ params = {'token': '9523280292F046269CD4C2F8C', 'term': 'restaurants'}
 data = urllib.urlencode(params)
 req = urllib2.Request(url, data)
 urllib2.urlopen(req)
-```
+``` -->
 
 ```shell
 curl https://api.backstit.ch/v1/topic/fetch.json \

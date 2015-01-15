@@ -14,7 +14,7 @@ All API 2.0 requests use the base url of `https://api.backstit.ch/v2` and most a
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728.json'
 ```
 
 <!-- ```python
@@ -70,7 +70,7 @@ This endpoint retrieves basic details about an organization.
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams.json'
 ```
 
 <!-- ```python
@@ -172,7 +172,7 @@ This endpoint retrieves basic details about every team in an organization, inclu
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118.json'
 ```
 
 <!-- ```python
@@ -259,7 +259,7 @@ This endpoint retrieves basic details about a specific team in an organization, 
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/topics.json'
 ```
 
 <!-- ```python
@@ -380,7 +380,7 @@ For a more descriptive breakdown of the topic fields reference the [Get Topic De
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics', :params => {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News'}
+response = RestClient.post 'https://api.backstit.ch/v2/topics.json', {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News', 'services[]' => [{:service => 'twitter_user', :value => 'backstitch'}]}
 ```
 
 <!-- ```python
@@ -395,8 +395,7 @@ response = urllib2.urlopen(request)
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics \
-  -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News"
+curl -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News https://api.backstit.ch/v2/topics"
 ```
 
 > The above command returns JSON structured like this:
@@ -471,7 +470,7 @@ This endpoint allows the creation of a new organization owned topic with the API
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:service => 'facebook_user', :value => 'backstitchapp', :filters => [{:type => 'include', :value => 'detroit'}]}]}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources.json', {:key => '70b5aa707ca6013231ce482a14180728', 'data[]' => [{:service => 'facebook_user', :value => 'backstitchapp', 'filters[]' => [{:type => 'include', :value => 'detroit'}]}]}
 ```
 
 <!-- ```python
@@ -487,8 +486,7 @@ response = urllib2.urlopen(request)
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
-  -H "Content-Type: application/json" \
-  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "facebook_user", "value": "backstitchapp", "filters": [{"type": "include", "value": "detroit"}]}]}'
+  -d 'key=c7f6e1707f090132fe5a50e140978a72&data[][service]=facebook_user&data[][value]=backstitchapp&data[][filters][][type]=include&data[][filters][][phrase]=detroit}]}]}&data[][service]=twitter_user&data[][value]=backstitch'
 ```
 
 > The above command returns JSON structured like this:
@@ -650,7 +648,7 @@ This endpoint allows for including new sources into the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters", :params => {:key => "70b5aa707ca6013231ce482a14180728", :data => [{:type => "include", :value => "Captain America"}]}
+response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json", {:key => "70b5aa707ca6013231ce482a14180728", 'data[]' => [{:type => "include", :value => "Captain America"}]}
 ```
 
 <!-- ```python
@@ -665,9 +663,8 @@ response = urllib2.urlopen(request)
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
-  -H "Content-Type: application/json" \
-  -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"type": "include", "value": "Captain America"}]}'
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters \
+  -d 'key=c7f6e1707f090132fe5a50e140978a72&data[][type]=include&data[][phrase]=detroit'
 ```
 
 > The above command returns JSON structured like this:
@@ -763,7 +760,7 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
 <!-- ```python
@@ -779,8 +776,7 @@ response = urllib2.urlopen(request)
 
 ```shell
 curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone \
--H "Content-Type: application/json" \
--d '{"key": "70b5aa707ca6013231ce482a14180728", "topic_tokens": ["9b5d30a07d4001325ede482a14180728"]}'
+  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[]=9b5d30a07d4001325ede482a1418072'
 ```
 
 > The above command returns JSON structured like this:
@@ -863,7 +859,7 @@ This endpoint enables cloning of sources and filters from a list of other topics
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone', :params => {:key => '70b5aa707ca6013231ce482a14180728', :topic_tokens => ['9b5d30a07d4001325ede482a14180728']}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => ['9b5d30a07d4001325ede482a14180728']}
 ```
 
 <!-- ```python
@@ -878,9 +874,8 @@ response = urllib2.urlopen(request)
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone \
--H "Content-Type: application/json" \
--d '{"key": "70b5aa707ca6013231ce482a14180728", "topic_tokens": ["9b5d30a07d4001325ede482a14180728"]}'
+curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone \ 
+  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[]=9b5d30a07d4001325ede482a14180728'
 ```
 
 > The above command returns JSON structured like this:
@@ -932,8 +927,15 @@ This endpoint enables removing the sources and filters that were cloned from oth
 
 ```ruby
 require 'rest_client'
+require 'active_support'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
+params = {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:service => 'facebook_user', :value => 'backstitchapp'}]}
+
+params_string = params.to_query
+
+url = "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources.json?#{params_string}"
+
+response = RestClient.delete url
 ```
 
 <!-- ```python
@@ -941,7 +943,8 @@ response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d400132
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources
+curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
+  -d 'key=70b5aa707ca6013231ce482a14180728&data[][service]=facebook_user&data[][value]=backstitchapp'
 ```
 
 > The above command returns JSON structured like this:
@@ -1046,8 +1049,15 @@ This endpoint adds new sources to the topic.
 
 ```ruby
 require 'rest_client'
+require 'active_support'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters', :params => {:key => '70b5aa707ca6013231ce482a14180728' :data => [{:type => 'include', :value => 'downtown'}]}
+params = {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:type => 'include', :value => 'downtown'}]}
+
+params_string = params.to_query
+
+url = "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json?#{params_string}"
+
+response = RestClient.delete url
 ```
 
 <!-- ```python
@@ -1055,7 +1065,8 @@ response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d400132
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters
+curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters \
+  -d 'key=c7f6e1707f090132fe5a50e140978a72&data[][type]=include&data[][phrase]=detroit'
 ```
 
 > The above command returns JSON structured like this:
@@ -1145,7 +1156,7 @@ This endpoint adds new sources to the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728', :params => {:key => '70b5aa707ca6013231ce482a14180728'}
+response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728.json?key=70b5aa707ca6013231ce482a14180728'
 ```
 
 <!-- ```python
@@ -1153,7 +1164,8 @@ response = RestClient.delete 'https://api.backstit.ch/v2/topics/9b5d30a07d400132
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
+curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728 /
+  -d 'key=70b5aa707ca6013231ce482a14180728'
 ```
 
 > The above command returns JSON structured like this:
@@ -1224,7 +1236,7 @@ This endpoint adds new sources to the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728'
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728.json'
 ```
 
 <!-- ```python

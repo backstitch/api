@@ -520,11 +520,6 @@ This endpoint allows for including new sources into the topic.
 |:---------:|:---------|:-------:|:-------|
 |X| app_dot_net_hashtag | tag | Retrieves public App.net Alpha posts by hashtag. |
 || dealfind_deals | nothing | Retrieves the latest deals from Dealfind. |
-<!-- |X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. |
-|X| facebook_hashtag | tag | Retrieves public Facebook posts by hashtag. | 
-
-Removed Facebook public searching for now because it is going to be nixed eventually from their API
--->
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
 |X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
@@ -536,8 +531,6 @@ Removed Facebook public searching for now because it is going to be nixed eventu
 |X| instagram_area | location | Retrieves public Instagram photos posted around a location. |
 |X| linkedin_user | username | Retrieves public LinkedIn posts by a user. |
 || living_social_deals | location | Retrieves the latest Living Social deals. |
-<!-- || one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. | -->
-<!-- || price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. | -->
 || subreddit | tag | Retrieves Reddit submissions made to a public /r subreddit. |
 || rss | url | Retrieves articles from an RSS feed. |
 || tanga_deals | nothing | Retrieves the latest deals from Tanga. |
@@ -551,6 +544,12 @@ Removed Facebook public searching for now because it is going to be nixed eventu
 |X| youtube_user | username | Retrieves public videos posted by a YouTube user or account. |
 
 *These services require an associated account to be linked from the organization dashboard. 
+
+<!-- |X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. | -->
+<!-- |X| facebook_hashtag | tag | Retrieves public Facebook posts by hashtag. | -->
+
+<!-- || one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. | -->
+<!-- || price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. | -->
 
 ### Returns
 

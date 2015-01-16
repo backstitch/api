@@ -503,7 +503,7 @@ This endpoint allows for including new sources into the topic.
 | value | yes | | The parameter for the new source as required by the service. |
 | filters | no | | An array of filters to be set on the source.  [Detailed Documentation](/#add-topic-filters) |
 
-### Available Services
+### Possible Value Types 
 
 |Value Type| Example |
 |:---------|:---------|
@@ -513,6 +513,8 @@ This endpoint allows for including new sources into the topic.
 | username | *"backstitch"* |
 | location | *"Detroit, MI"* |
 | url | *"http://rss.cnn.com/rss/cnn_topstories.rss"* |
+
+### Available Services
 
 |Requires Linked Account*| Service | Value Type | Description
 |:---------:|:---------|:-------:|:-------|

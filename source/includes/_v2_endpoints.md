@@ -172,7 +172,7 @@ This endpoint retrieves basic details about every team in an organization, inclu
 ```ruby
 require 'rest_client'
 
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118.json'
+response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/team.json', {:params => {:name => 'Research & Development'}}
 ```
 
 <!-- ```python
@@ -182,7 +182,8 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118
+curl -X GET https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/team \
+  -d 'name=Research+%26+Development'
 ```
 
 > The above command returns JSON structured like this:

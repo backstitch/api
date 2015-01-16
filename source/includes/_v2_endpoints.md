@@ -158,6 +158,13 @@ This endpoint retrieves basic details about every team in an organization, inclu
 |---------|:-------:|:-----------|
 | ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
 
+### Query Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| Team | no | If provided, will only return teams that have names that match the provided name.  |
+
+
 ### Returns
 
 | Field | Data Type | Description |
@@ -167,93 +174,6 @@ This endpoint retrieves basic details about every team in an organization, inclu
 | member\_count | integer | The total count of team\_members associated with the team. |
 | team\_members | array | Details on each team\_member associated with the team. |
 
-## Get Single Organization Team
-
-```ruby
-require 'rest_client'
-
-response = RestClient.get 'https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/team.json', {:params => {:name => 'Research & Development'}}
-```
-
-<!-- ```python
-import urllib2
-
-response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/teams/118')
-``` -->
-
-```shell
-curl -X GET https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/team \
-  -d 'name=Research+%26+Development'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 118,
-  "name": "Awesome Rocket (all)",
-  "member_count": 5,
-  "team_members": [
-      {
-          "id": 129,
-          "is_verified": false,
-          "display_name": "John Doe",
-          "email": "admin@backstit.ch",
-          "last_login_at": "2015-01-06T20:09:19.793Z"
-      },
-      {
-          "id": 132,
-          "is_verified": true,
-          "display_name": "Jane Doe",
-          "email": "test2@backstit.ch",
-          "last_login_at": "2014-11-28T19:54:57.977Z"
-      },
-      {
-          "id": 133,
-          "is_verified": true,
-          "display_name": "Jess Smith",
-          "email": "test@backstit.ch",
-          "last_login_at": "2014-11-28T18:37:08.242Z"
-      },
-      {
-          "id": 134,
-          "is_verified": true,
-          "display_name": "test3",
-          "email": "test3@backstit.ch",
-          "last_login_at": null
-      },
-      {
-          "id": 138,
-          "is_verified": true,
-          "display_name": "Tommy Bonderenka",
-          "email": "tommy@backstit.ch",
-          "last_login_at": "2014-12-30T16:16:58.501Z"
-      }
-  ]
-}
-```
-
-This endpoint retrieves basic details about a specific team in an organization, including member information.
-
-### HTTP Request
-
-`GET https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/teams/{TEAM_ID}`
-
-### URL Parameters
-
-| Parameter | Required | Description |
-|---------|:-------:|:-----------|
-| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
-| TEAM_ID | yes | The ID of the team you want to obtain details for. |
-
-### Returns
-
-| Field | Data Type | Description |
-|---------|:-------:|:-----------|
-| id | integer | A unique identifier for the team. |
-| name | string | The name given to the team. |
-| member\_count | integer | The total count of team\_members associated with the team. |
-| team\_members | array | Details on each team\_member associated with the team. |
 
 ## Get Organization Topics
 
@@ -573,7 +493,7 @@ This endpoint allows for including new sources into the topic.
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
 | data | yes| | An array of new sources to add to your topic. |
-| url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
+| crawl_url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
 
 ### Data Child Parameters
 

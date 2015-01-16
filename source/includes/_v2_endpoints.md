@@ -523,7 +523,7 @@ This endpoint allows for including new sources into the topic.
 |X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. |
 |X| facebook_hashtag | tag | Retrieves public Facebook posts by hashtag. |
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
-|X| flickr_user | username | Retrieves public Flickr photos published by a user. |
+|X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
 |X| google_plus_user | username | Retrieves public Google+ posts made by a user. |
 || groupon_deals | location | Retrieves Groupon deals for a location. |

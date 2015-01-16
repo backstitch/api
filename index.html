@@ -899,47 +899,148 @@ response = urllib2.urlopen(request)
 <td style="text-align: left">Retrieves the latest deals from Dealfind.</td>
 </tr>
 <tr>
-<td style="text-align: center">&lt;!&ndash;</td>
-<td style="text-align: left">X</td>
-<td style="text-align: center">facebook_mention</td>
-<td style="text-align: left">phrase</td>
+<td style="text-align: center">X</td>
+<td style="text-align: left">facebook_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public Facebook posts made by a user or a company page.</td>
 </tr>
 <tr>
 <td style="text-align: center">X</td>
-<td style="text-align: left">facebook_hashtag</td>
+<td style="text-align: left">flickr_group</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public Flickr photos published to a Flickr group.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">flickr_mention</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Retrieves public Flickr photos that mentions the phrase in its description.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">google_plus_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public Google+ posts made by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">groupon_deals</td>
+<td style="text-align: center">location</td>
+<td style="text-align: left">Retrieves Groupon deals for a location.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">instagram_popular</td>
+<td style="text-align: center">nothing</td>
+<td style="text-align: left">Retrieves the most popular photos currently on Instagram.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">instagram_hashtag</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Retrieves public Instagram photos by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">instagram_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public Instagram photos published by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">instagram_area</td>
+<td style="text-align: center">location</td>
+<td style="text-align: left">Retrieves public Instagram photos posted around a location.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">linkedin_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public LinkedIn posts by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">living_social_deals</td>
+<td style="text-align: center">location</td>
+<td style="text-align: left">Retrieves the latest Living Social deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">subreddit</td>
 <td style="text-align: center">tag</td>
-<td style="text-align: left">Retrieves public Facebook posts by hashtag.</td>
+<td style="text-align: left">Retrieves Reddit submissions made to a public /r subreddit.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">rss</td>
+<td style="text-align: center">url</td>
+<td style="text-align: left">Retrieves articles from an RSS feed.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">tanga_deals</td>
+<td style="text-align: center">nothing</td>
+<td style="text-align: left">Retrieves the latest deals from Tanga.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">tee_fury_deals</td>
+<td style="text-align: center">nothing</td>
+<td style="text-align: left">Retrieves the latest deals from Tee Fury.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">tumblr_tagged</td>
+<td style="text-align: center">tag</td>
+<td style="text-align: left">Retrieves public Tumblr posts by tag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">twitter_mention</td>
+<td style="text-align: center">phrase</td>
+<td style="text-align: left">Retrieves public Tweets that contain a phrase.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">twitter_hashtag</td>
+<td style="text-align: center">tag</td>
+<td style="text-align: left">Retrieves public Tweets by hashtag.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">twitter_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public Tweets made by a user.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">woot_daily_deals</td>
+<td style="text-align: center">nothing</td>
+<td style="text-align: left">Retrieves the latest Woot deals.</td>
+</tr>
+<tr>
+<td style="text-align: center"></td>
+<td style="text-align: left">woot_plus_deals</td>
+<td style="text-align: center">nothing</td>
+<td style="text-align: left">Retrieves the latest Woot Plus deals.</td>
+</tr>
+<tr>
+<td style="text-align: center">X</td>
+<td style="text-align: left">youtube_user</td>
+<td style="text-align: center">username</td>
+<td style="text-align: left">Retrieves public videos posted by a YouTube user or account.</td>
 </tr>
 </tbody></table>
 
-<p>Removed Facebook public searching for now because it is going to be nixed eventually from their API
-&ndash;&gt;
-|X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
-|X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
-|X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
-|X| google_plus_user | username | Retrieves public Google+ posts made by a user. |
-|| groupon_deals | location | Retrieves Groupon deals for a location. |
-|X| instagram_popular | nothing | Retrieves the most popular photos currently on Instagram. |
-|X| instagram_hashtag | phrase | Retrieves public Instagram photos by hashtag. |
-|X| instagram_user | username | Retrieves public Instagram photos published by a user. |
-|X| instagram_area | location | Retrieves public Instagram photos posted around a location. |
-|X| linkedin_user | username | Retrieves public LinkedIn posts by a user. |
-|| living_social_deals | location | Retrieves the latest Living Social deals. |
-&lt;!&ndash; || one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. | &ndash;&gt;
-&lt;!&ndash; || price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. | &ndash;&gt;
-|| subreddit | tag | Retrieves Reddit submissions made to a public /r subreddit. |
-|| rss | url | Retrieves articles from an RSS feed. |
-|| tanga_deals | nothing | Retrieves the latest deals from Tanga. |
-|| tee_fury_deals | nothing | Retrieves the latest deals from Tee Fury. |
-|X| tumblr_tagged | tag | Retrieves public Tumblr posts by tag. |
-|X| twitter_mention | phrase | Retrieves public Tweets that contain a phrase. |
-|X| twitter_hashtag | tag | Retrieves public Tweets by hashtag. |
-|X| twitter_user | username | Retrieves public Tweets made by a user. |
-|| woot_daily_deals | nothing | Retrieves the latest Woot deals. |
-|| woot_plus_deals | nothing | Retrieves the latest Woot Plus deals. |
-|X| youtube_user | username | Retrieves public videos posted by a YouTube user or account. |</p>
-
 <p>*These services require an associated account to be linked from the organization dashboard. </p>
+
+<!-- |X| facebook_mention | phrase | Retrieves public Facebook posts that mention a phrase. | -->
+
+<!-- |X| facebook_hashtag | tag | Retrieves public Facebook posts by hashtag. | -->
+
+<!-- || one_sale_a_day_deals | nothing | Retrieves the latest 1SaleADay deals. | -->
+
+<!-- || price_plunge_deals | nothing | Retrieves the latest Price Plunge deals. | -->
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>

@@ -162,7 +162,7 @@ This endpoint retrieves basic details about every team in an organization, inclu
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| Team | no | If provided, will only return teams that have names that match the provided name.  |
+| team | no | If provided, will only return teams that have names that match the provided name.  |
 
 
 ### Returns

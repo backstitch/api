@@ -11,6 +11,7 @@ toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - widget
   - v2_endpoints
   - v1_endpoints
   - result_type_dictionary
@@ -77,19 +78,5 @@ DELETE | X | X |
 <aside class="warning">
 If you're using API 1.0 consult the authentication documentation in that section or consider upgrading to API 2.0
 </aside>
-
-# Widget 
-
-The backstitch widget allows you to easily embed content on your blog or website. Using our lightweight widget, your topic content can be displayed responsively anywhere that JavaScript is embeddable. 
-
-## Using the Widget
-
-### Widget Parameters
-
-| Parameter | Required | Description |
-|---------|:-------:|:-----------|
-| Count | Yes | Dictates how many results are going to be displayed in your embedded widget.  |
-| Token | Yes | The API token for your topic. Required for authentication. |
-
 
 

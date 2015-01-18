@@ -162,7 +162,7 @@ This endpoint retrieves basic details about every team in an organization, inclu
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| Team | no | If provided, will only return teams that have names that match the provided name.  |
+| team | no | If provided, will only return teams that have names that match the provided name.  |
 
 
 ### Returns
@@ -1239,6 +1239,12 @@ This endpoint retrieves details about a topic.
 
 `GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}`
 
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+
 ### Returns
 
 | Field | Data Type | Description |
@@ -1365,6 +1371,12 @@ the query.
 ### HTTP Request
 
 `GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/results`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
 
 ### Query Parameters
 

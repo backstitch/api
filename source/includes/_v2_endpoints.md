@@ -169,9 +169,9 @@ This endpoint retrieves basic details about every team in an organization, inclu
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| id | integer | A unique identifier for the organization. |
-| name | string | The name given to the organization. |
-| member\_count | integer | The total count of team\_members associated with the team. |
+| id | integer | A unique identifier for the team. |
+| name | string | The name given to the team. |
+| member\_count | integer | The total number of team\_members associated with the team. |
 | team\_members | array | Details on each team\_member associated with the team. |
 
 
@@ -316,7 +316,8 @@ response = urllib2.urlopen(request)
 ``` -->
 
 ```shell
-curl -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News https://api.backstit.ch/v2/topics"
+curl https://api.backstit.ch/v2/topics \
+  -d "key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News"
 ```
 
 > The above command returns JSON structured like this:
@@ -348,7 +349,7 @@ curl -d "?key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News https
 }
 ```
 
-This endpoint allows the creation of a new organization owned topic with the API add-on enabled.
+This endpoint creates a new organization owned topic with the API add-on enabled.
 
 ### HTTP Request
 
@@ -358,8 +359,11 @@ This endpoint allows the creation of a new organization owned topic with the API
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
+| key | yes | | Your organization's api key that is obtained from the organization dashboard under settings. |
 | name | yes | | The name of your topic. |
+| banner | no | | The url of an image to upload as the topic's banner.  **Must include http or https and be a png, jpg, or gif.** |
+| description | no | | An optional description of the topic. |
+| permission | no | private | Whether or not the topic is publicaly viewable through backstitch.  Options are **private** (only organization members may view the topic) or **public** (anyone can view the topic including search engines).
 | team | no | Organization (all) | The name of the team that this topic should belong to. |
 | sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
 | filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|

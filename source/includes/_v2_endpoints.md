@@ -577,7 +577,7 @@ This endpoint allows for including new sources into the topic.
 ```ruby
 require 'rest_client'
 
-response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json", {:key => "70b5aa707ca6013231ce482a14180728", 'data[]' => [{:type => "include", :value => "Captain America"}]}
+response = RestClient.post "https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json", {:key => "70b5aa707ca6013231ce482a14180728", 'data[]' => [{:type => "include", :phrase => "Captain America"}]}
 ```
 
 <!-- ```python
@@ -585,7 +585,7 @@ import urllib
 import urllib2
 
 endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'
-params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include', 'value': 'Captain America'}]}
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include', 'phrase': 'Captain America'}]}
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
@@ -620,7 +620,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters 
 {
   "message": "Invalid filter-type: must-have",
   "type": "must-have",
-  "value": "detroit"
+  "phrase": "detroit"
 }
 {
   "message": "Filter already added.",
@@ -659,7 +659,7 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
 | type | yes | The type of filter to set. |
-| value | yes | The value required by the specific filter type. |
+| phrase | yes | The value required by the specific filter type. |
 
 ### Available Filters Types
 
@@ -980,7 +980,7 @@ This endpoint adds new sources to the topic.
 require 'rest_client'
 require 'active_support'
 
-params = {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:type => 'include', :value => 'downtown'}]}
+params = {:key => '70b5aa707ca6013231ce482a14180728', :data => [{:type => 'include', :phrase => 'downtown'}]}
 
 params_string = params.to_query
 
@@ -1006,7 +1006,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
     {
       "message": "Invalid type",
       "type": "included",
-      "value": "downtown"
+      "phrase": "downtown"
     }
   ],
   "filters":[
@@ -1028,7 +1028,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 {
   "message": "No such filter",
   "type": "include",
-  "value": "detroit"
+  "phrase": "detroit"
 }
 ```
 
@@ -1056,7 +1056,7 @@ This endpoint adds new sources to the topic.
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | type | yes | | The filter type. |
-| value | yes | | The value of the filter. |
+| phrase | yes | | The value of the filter. |
 
 ### Available Filters
 

@@ -26,7 +26,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <a href="http://backstit.ch", target="_blank">
+      <a href="http://docs.backstit.ch/api">
         <img src="images/logo.png" />
       </a>
         <div class="lang-selector">
@@ -551,7 +551,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
 </tr>
 </tbody></table>
 
-<p>For a more descriptive breakdown of the topic fields reference the <a href="/#get-topic-details">Get Topic Details</a> section.</p>
+<p>For a more descriptive breakdown of the topic fields reference the <a href="/api/#get-topic-details">Get Topic Details</a> section.</p>
 <h2 id='create-topic'>Create Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Local Detroit News'</span><span class="p">,</span> <span class="s1">'sources[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'twitter_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitch'</span><span class="p">}]}</span>
@@ -652,19 +652,19 @@ response = urllib2.urlopen(request)
 <td>sources</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">A list of sources to include in your topic at the time of creation.  <a href="/#add-topic-sources">Detailed Documentation</a></td>
+<td style="text-align: left">A list of sources to include in your topic at the time of creation.  <a href="/api/#add-topic-sources">Detailed Documentation</a></td>
 </tr>
 <tr>
 <td>filters</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">A list of global filters to set on your topic at the time of creation. <a href="/#add-topic-filters">Detailed Documentation</a></td>
+<td style="text-align: left">A list of global filters to set on your topic at the time of creation. <a href="/api/#add-topic-filters">Detailed Documentation</a></td>
 </tr>
 <tr>
 <td>topic_tokens</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">A list of API tokens for the topics to copy sources and filters from. <a href="/#clone-topic">Detailed Documentation</a></td>
+<td style="text-align: left">A list of API tokens for the topics to copy sources and filters from. <a href="/api/#clone-topic">Detailed Documentation</a></td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
@@ -829,7 +829,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -885,7 +885,7 @@ response = urllib2.urlopen(request)
 <td>filters</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">An array of filters to be set on the source.  <a href="/#add-topic-filters">Detailed Documentation</a></td>
+<td style="text-align: left">An array of filters to be set on the source.  <a href="/api/#add-topic-filters">Detailed Documentation</a></td>
 </tr>
 </tbody></table>
 <h3 id='possible-value-types'>Possible Value Types</h3>
@@ -1181,7 +1181,7 @@ response = urllib2.urlopen(request)
 
 <p>This endpoint sets a new global filter on the topic.  All filters are chained using an <em>OR</em> expression and are evaluated based on variations of the phrase&rsquo;s contents. <em>(example: restaurant also matches restaurants)</em></p>
 
-<p>Filters are applied to all <a href="/#result-type-dictionary">Result Type</a> fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.</p>
+<p>Filters are applied to all <a href="/api/#result-type-dictionary">Result Type</a> fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.</p>
 
 <p><aside class="success">
   Setting new filters requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
@@ -1199,7 +1199,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1393,7 +1393,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1490,7 +1490,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1609,7 +1609,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1657,7 +1657,7 @@ response = urllib2.urlopen(request)
 </tr>
 </tbody></table>
 <h3 id='available-services'>Available Services</h3>
-<p>Reference the list of available services under the <a href="/#add-topic-sources">Add Topic Sources</a> section.</p>
+<p>Reference the list of available services under the <a href="/api/#add-topic-sources">Add Topic Sources</a> section.</p>
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>
@@ -1759,7 +1759,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -1807,7 +1807,7 @@ response = urllib2.urlopen(request)
 </tr>
 </tbody></table>
 <h3 id='available-filters'>Available Filters</h3>
-<p>Reference the list of available services under the <a href="/#add-topic-filters">Add Topic Filters</a> section.</p>
+<p>Reference the list of available services under the <a href="/api/#add-topic-filters">Add Topic Filters</a> section.</p>
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>
@@ -1895,7 +1895,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -2054,7 +2054,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
@@ -2228,7 +2228,7 @@ the query.</p>
 <tr>
 <td>TOPIC_TOKEN</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/api/#create-topic">Create Topic</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -2260,7 +2260,7 @@ the query.</p>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
-<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+<p>An array of results.  Consult the <a href="/api/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
 
           <h1 id='api-1-0-endpoints'>API 1.0 Endpoints</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
@@ -2527,7 +2527,7 @@ urllib2.urlopen(req)
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
-<p>An array of results.  Consult the <a href="#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+<p>An array of results.  Consult the <a href="/api/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
 <h2 id='filter-topic-results'>Filter Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">,</span> <span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span>
@@ -2636,7 +2636,7 @@ urllib2.urlopen(req)
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
-<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+<p>An array of results.  Consult the <a href="/api/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
 
           <h1 id='result-type-dictionary'>Result Type Dictionary</h1>
 <p>Topic results follow a standard schema based on type regardless of the original source of the content.</p>

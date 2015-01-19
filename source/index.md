@@ -6,9 +6,9 @@ language_tabs:
   - ruby
 
 toc_footers:
-  - <a href='mailto:team@backstit.ch?subject=Request for Developer Key'>Contact Us For A Developer Key</a>
-  - <a href='http://backstit.ch'>Visit backstitch</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://backstit.ch', target="_blank">Visit backstitch</a>
+  - <a href='mailto:team@backstit.ch?subject=Request for Developer Key', target="_blank">Contact Us For A Developer Key</a>
+  - <a href='http://github.com/tripit/slate', target="_blank">Documentation Powered by Slate</a>
 
 includes:
   - widget

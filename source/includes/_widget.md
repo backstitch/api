@@ -4,6 +4,10 @@ The backstitch widget allows you to easily embed content on your blog or website
 
 Since the widget is responsive it will fit to the width of its container (and will expand from one column to two or three).
 
+<div class="widget-example">
+  <script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget.js?count=6&token=70c75bc0f4230131de3e5e8fe3ade264&ref=encodeURIComponent(window.location.href)'></script>
+</div>
+
 <aside class="notice">The widget is built on top of the API 1.0 spec and each page view will count as a single API call according to your subscription plan.</aside>
 
 ## Using the Widget

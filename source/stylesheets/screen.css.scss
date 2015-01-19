@@ -630,3 +630,18 @@ html, body {
     margin-top: $main-padding;
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM
+////////////////////////////////////////////////////////////////////////////////
+// These are the styles for things such as the widget that we added
+
+.widget-example { 
+  width: 50%;
+}
+
+@media (max-width: $phone-width) {
+  .widget-example {
+    width: 100%;
+  }
+}

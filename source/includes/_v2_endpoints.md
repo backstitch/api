@@ -433,12 +433,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
         "width": 650,
         "height": 240
       },
-      "params": {
-        "user": {
-          "type": "search_term",
-          "value": "backstitchapp"
-        }
-      },
+      "value": "backstitchapp",
       "filters": [
         {
           "id": 13414,

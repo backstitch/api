@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>backstitch API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -26,7 +26,9 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <a href="http://backstit.ch", target="_blank">
+        <img src="images/logo.png" />
+      </a>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="ruby">ruby</a>
@@ -38,9 +40,9 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='mailto:team@backstit.ch?subject=Request for Developer Key'>Contact Us For A Developer Key</a></li>
-            <li><a href='http://backstit.ch'>Visit backstitch</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://backstit.ch', target="_blank">Visit backstitch</a></li>
+            <li><a href='mailto:team@backstit.ch?subject=Request for Developer Key', target="_blank">Contact Us For A Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate', target="_blank">Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -123,9 +125,26 @@ the organization&rsquo;s key must be passed.  For reading results from a topic p
 <aside class="warning">
 If you&rsquo;re using API 1.0 consult the authentication documentation in that section or consider upgrading to API 2.0
 </aside></p>
-<h1 id='widget'>Widget</h1>
-<p>The backstitch widget allows you to easily embed content on your blog or website. Using our lightweight widget, your topic content can be displayed responsively anywhere that JavaScript is embeddable. </p>
-<h2 id='using-the-widget'>Using the Widget</h2><h3 id='widget-parameters'>Widget Parameters</h3>
+
+          <h1 id='widget'>Widget</h1>
+<p>The backstitch widget allows you to easily embed content on your blog or website. Using our lightweight widget, your topic&rsquo;s results can be displayed responsively anywhere that JavaScript is embeddable.  </p>
+
+<p>Since the widget is responsive it will fit to the width of its container (and will expand from one column to two or three).</p>
+
+<div class="widget-example">
+  <script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget.js?count=6&token=70c75bc0f4230131de3e5e8fe3ade264&ref=encodeURIComponent(window.location.href)'></script>
+</div>
+
+<p><aside class="notice">The widget is built on top of the API 1.0 spec and each page view will count as a single API call according to your subscription plan.</aside></p>
+<h2 id='using-the-widget'>Using the Widget</h2>
+<p>To use simply paste the following code wherever your want your widget to appear.  </p>
+
+<p><code class="prettyprint">&lt;script async type=&quot;text/javascript&quot; src=&quot;https://api.backstit.ch/v1/topic/widget.js?count=10&amp;token={TOPIC_TOKEN}&amp;ref=encodeURIComponent(window.location.href)&quot;&gt;&lt;/script&gt;</code></p>
+
+<p>If you prefer to place the script tag in your page&rsquo;s <code class="prettyprint">HEAD</code> section or if you are building the widget dynamically and appending to the DOM using Javscript reference the <code class="prettyprint">container_id</code> parameter in the table below.</p>
+
+<p><aside class="success">This code works as a bootstrapper so it won&rsquo;t conflict with the loading of the rest of your page and will always load the latest version of the 1.0 widget.</aside></p>
+<h3 id='widget-url-parameters'>Widget URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -134,14 +153,24 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 </tr>
 </thead><tbody>
 <tr>
-<td>Count</td>
+<td>token</td>
 <td style="text-align: center">Yes</td>
-<td style="text-align: left">Dictates how many results are going to be displayed in your embedded widget.</td>
+<td style="text-align: left">The topic’s api token.</td>
 </tr>
 <tr>
-<td>Token</td>
+<td>count</td>
 <td style="text-align: center">Yes</td>
-<td style="text-align: left">The API token for your topic. Required for authentication.</td>
+<td style="text-align: left">How many topic results to desplay.</td>
+</tr>
+<tr>
+<td>ref</td>
+<td style="text-align: center">Yes</td>
+<td style="text-align: left">The url of the page loading the widget.  This is used so backstitch can provide you metrics on user engagement.</td>
+</tr>
+<tr>
+<td>container_id</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">The id of the container to load the widget.  If not provided the widget will render wherever you place the bootstrap script.</td>
 </tr>
 </tbody></table>
 
@@ -336,7 +365,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
 </tr>
 </thead><tbody>
 <tr>
-<td>Team</td>
+<td>team</td>
 <td style="text-align: center">no</td>
 <td style="text-align: left">If provided, will only return teams that have names that match the provided name.</td>
 </tr>
@@ -352,17 +381,17 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
 <tr>
 <td>id</td>
 <td style="text-align: center">integer</td>
-<td style="text-align: left">A unique identifier for the organization.</td>
+<td style="text-align: left">A unique identifier for the team.</td>
 </tr>
 <tr>
 <td>name</td>
 <td style="text-align: center">string</td>
-<td style="text-align: left">The name given to the organization.</td>
+<td style="text-align: left">The name given to the team.</td>
 </tr>
 <tr>
 <td>member_count</td>
 <td style="text-align: center">integer</td>
-<td style="text-align: left">The total count of team_members associated with the team.</td>
+<td style="text-align: left">The total number of team_members associated with the team.</td>
 </tr>
 <tr>
 <td>team_members</td>
@@ -448,7 +477,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">20102</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20102</span><span class="p">,</span><span class="w">
             </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Android"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exclude"</span><span class="w">
           </span><span class="p">}</span><span class="w">
@@ -525,7 +554,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/organizations/70b5aa707ca
 <p>For a more descriptive breakdown of the topic fields reference the <a href="/#get-topic-details">Get Topic Details</a> section.</p>
 <h2 id='create-topic'>Create Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Local Detroit News'</span><span class="p">,</span> <span class="s1">'services[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'twitter_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitch'</span><span class="p">}]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">'Local Detroit News'</span><span class="p">,</span> <span class="s1">'sources[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'twitter_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitch'</span><span class="p">}]}</span>
 </code></pre>
 
 <!-- ```python
@@ -538,7 +567,8 @@ encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
 ``` -->
-<pre><code class="highlight shell">curl -d <span class="s2">"?key=70b5aa707ca6013231ce482a14180728&amp;name=Local%20Detroit%20News https://api.backstit.ch/v2/topics"</span>
+<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics <span class="se">\</span>
+  -d <span class="s2">"key=70b5aa707ca6013231ce482a14180728&amp;name=Local%20Detroit%20News"</span>
 </code></pre>
 
 <blockquote>
@@ -570,7 +600,7 @@ response = urllib2.urlopen(request)
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows the creation of a new organization owned topic with the API add-on enabled.</p>
+<p>This endpoint creates a new organization owned topic with the API add-on enabled.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">POST https://api.backstit.ch/v2/topics</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -586,13 +616,31 @@ response = urllib2.urlopen(request)
 <td>key</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">Your organization&rsquo;s api key is obtained from the organization dashboard under settings.</td>
+<td style="text-align: left">Your organization&rsquo;s api key that is obtained from the organization dashboard under settings.</td>
 </tr>
 <tr>
 <td>name</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
 <td style="text-align: left">The name of your topic.</td>
+</tr>
+<tr>
+<td>banner</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The url of an image to upload as the topic&rsquo;s banner.  <strong>Must include http or https and be a png, jpg, or gif.</strong></td>
+</tr>
+<tr>
+<td>description</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">An optional description of the topic.</td>
+</tr>
+<tr>
+<td>permission</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">private</td>
+<td style="text-align: left">Whether or not the topic is publicaly viewable through backstitch.  Options are <strong>private</strong> (only organization members may view the topic) or <strong>public</strong> (anyone can view the topic including search engines).</td>
 </tr>
 <tr>
 <td>team</td>
@@ -614,9 +662,9 @@ response = urllib2.urlopen(request)
 </tr>
 <tr>
 <td>topic_tokens</td>
-<td style="text-align: center">yes</td>
+<td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">An array of API tokens for the topics to clone sources and filters from.</td>
+<td style="text-align: left">A list of API tokens for the topics to copy sources and filters from. <a href="/#clone-topic">Detailed Documentation</a></td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
@@ -726,12 +774,7 @@ response = urllib2.urlopen(request)
         </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
         </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13414</span><span class="p">,</span><span class="w">
@@ -768,7 +811,7 @@ response = urllib2.urlopen(request)
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows for including new sources into the topic.</p>
+<p>This endpoint is for including new sources into the topic.</p>
 
 <p><aside class="success">
   Including new sources requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for new results to appear.
@@ -814,7 +857,7 @@ response = urllib2.urlopen(request)
 <td>crawl_url</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts.</td>
+<td style="text-align: left">This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. Example: http://www.cnn.com (Must contain http:// prefix)</td>
 </tr>
 </tbody></table>
 <h3 id='data-child-parameters'>Data Child Parameters</h3>
@@ -1086,7 +1129,7 @@ response = urllib2.urlopen(request)
 </tbody></table>
 <h2 id='add-topic-filters'>Add Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json"</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">"70b5aa707ca6013231ce482a14180728"</span><span class="p">,</span> <span class="s1">'data[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"include"</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s2">"Captain America"</span><span class="p">}]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters.json"</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">"70b5aa707ca6013231ce482a14180728"</span><span class="p">,</span> <span class="s1">'data[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"include"</span><span class="p">,</span> <span class="ss">:phrase</span> <span class="o">=&gt;</span> <span class="s2">"Captain America"</span><span class="p">}]}</span>
 </code></pre>
 
 <!-- ```python
@@ -1094,13 +1137,13 @@ import urllib
 import urllib2
 
 endpoint = 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters'
-params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include', 'value': 'Captain America'}]}
+params = {'key': '70b5aa707ca6013231ce482a14180728', 'data': [{'type': 'include', 'phrase': 'Captain America'}]}
 encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
 ``` -->
 <pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters <span class="se">\</span>
-  -d <span class="s1">'key=c7f6e1707f090132fe5a50e140978a72&amp;data[][type]=include&amp;data[][phrase]=detroit'</span>
+  -d <span class="s1">'key=c7f6e1707f090132fe5a50e140978a72&amp;data[][type]=include&amp;data[][phrase]=Captain%20America'</span>
 </code></pre>
 
 <blockquote>
@@ -1127,7 +1170,7 @@ response = urllib2.urlopen(request)
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid filter-type: must-have"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"must-have"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detroit"</span><span class="w">
+  </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detroit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Filter already added."</span><span class="p">,</span><span class="w">
@@ -1195,7 +1238,7 @@ response = urllib2.urlopen(request)
 <td style="text-align: left">The type of filter to set.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>phrase</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: left">The value required by the specific filter type.</td>
 </tr>
@@ -1221,7 +1264,7 @@ response = urllib2.urlopen(request)
 <tr>
 <td>nsfw</td>
 <td style="text-align: center">phrase</td>
-<td style="text-align: left">Automatically adds a list of Not Safe For Work terms as exclude filters.</td>
+<td style="text-align: left">Automatically adds a list of Not Safe For Work terms as exclude filters.  <strong>Phrase should be passed as null or empty string.</strong></td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
@@ -1265,7 +1308,7 @@ response = urllib2.urlopen(request)
 </tbody></table>
 <h2 id='clone-topic'>Clone Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s1">'topic_tokens[]'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'9b5d30a07d4001325ede482a14180728'</span><span class="p">]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s1">'topic_tokens[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9b5d30a07d4001325ede482a14180728'</span><span class="p">}]}</span>
 </code></pre>
 
 <!-- ```python
@@ -1279,7 +1322,7 @@ request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
 ``` -->
 <pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone <span class="se">\</span>
-  -d <span class="s1">'key=70b5aa707ca6013231ce482a14180728&amp;topic_tokens[]=9b5d30a07d4001325ede482a1418072'</span>
+  -d <span class="s1">'key=70b5aa707ca6013231ce482a14180728&amp;topic_tokens[][token]=9b5d30a07d4001325ede482a1418072'</span>
 </code></pre>
 
 <blockquote>
@@ -1372,12 +1415,28 @@ response = urllib2.urlopen(request)
 <td>topic_tokens</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">An array of API tokens for the topics to clone sources and filters from.</td>
+<td style="text-align: left">A list of API tokens for the topics to copy sources and filters from.</td>
 </tr>
 </tbody></table>
-<h3 id='returns'>Returns</h3><h2 id='unclone-topic'>UnClone Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h3 id='topic-token-child-parameters'>Topic Token Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The API token of the topic to be copied.</td>
+</tr>
+</tbody></table>
+<h2 id='unclone-topic'>UnClone Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s1">'topic_tokens[]'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'9b5d30a07d4001325ede482a14180728'</span><span class="p">]}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">post</span> <span class="s1">'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone.json'</span><span class="p">,</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="s1">'topic_tokens[]'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9b5d30a07d4001325ede482a14180728'</span><span class="p">}]}</span>
 </code></pre>
 
 <!-- ```python
@@ -1391,7 +1450,7 @@ request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
 ``` -->
 <pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone <span class="se">\ </span>
-  -d <span class="s1">'key=70b5aa707ca6013231ce482a14180728&amp;topic_tokens[]=9b5d30a07d4001325ede482a14180728'</span>
+  -d <span class="s1">'key=70b5aa707ca6013231ce482a14180728&amp;topic_tokens[][token]=9b5d30a07d4001325ede482a14180728'</span>
 </code></pre>
 
 <blockquote>
@@ -1453,10 +1512,26 @@ response = urllib2.urlopen(request)
 <td>topic_tokens</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">An array of API tokens for the topics to <strong>remove</strong> sources and filters from.</td>
+<td style="text-align: left">A list of API tokens for the topics to <strong>remove</strong> included sources and filters from this topic.</td>
 </tr>
 </tbody></table>
-<h3 id='returns'>Returns</h3><h2 id='delete-topic-sources'>Delete Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
+<h3 id='topic-token-child-parameters'>Topic Token Child Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">Default</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">The API token of the topic to be <strong>removed</strong>.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-topic-sources'>Delete Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 <span class="nb">require</span> <span class="s1">'active_support'</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span> <span class="p">:</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:service</span> <span class="o">=&gt;</span> <span class="s1">'facebook_user'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'backstitchapp'</span><span class="p">}]}</span>
@@ -1479,17 +1554,11 @@ response = urllib2.urlopen(request)
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid service"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"sources"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"filters"</span><span class="p">:[],</span><span class="w">
-      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Posts from backstitchapp"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"icon"</span><span class="p">:{</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png"</span><span class="p">,</span><span class="w">
@@ -1501,12 +1570,7 @@ response = urllib2.urlopen(request)
         </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
         </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"params"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"user"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_user"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1519,6 +1583,7 @@ response = urllib2.urlopen(request)
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid service: instagram_profile"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram_profile"</span><span class="p">,</span><span class="w">
@@ -1526,7 +1591,11 @@ response = urllib2.urlopen(request)
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint adds new sources to the topic.</p>
+<p>This endpoint removes sources from the topic.</p>
+
+<p><aside class="success">
+  This action requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
+</aside></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/sources</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -1562,7 +1631,7 @@ response = urllib2.urlopen(request)
 <td>data</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">An Array of source to add to your topic.</td>
+<td style="text-align: left">An array of sources to remove from your topic.</td>
 </tr>
 </tbody></table>
 <h3 id='data-child-parameters'>Data Child Parameters</h3>
@@ -1578,29 +1647,17 @@ response = urllib2.urlopen(request)
 <td>service</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">The name of the source service to add.</td>
+<td style="text-align: left">The name of the source to remove&rsquo;s service.</td>
 </tr>
 <tr>
 <td>value</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">The value of the service.</td>
+<td style="text-align: left">The value of the source to remove&rsquo;s service.</td>
 </tr>
 </tbody></table>
 <h3 id='available-services'>Available Services</h3>
-<table><thead>
-<tr>
-<th>Service</th>
-<th style="text-align: center">Value</th>
-<th style="text-align: center">Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>rss</td>
-<td style="text-align: center">url</td>
-<td style="text-align: center">An rss feed&rsquo;s url</td>
-</tr>
-</tbody></table>
+<p>Reference the list of available services under the <a href="/#add-topic-sources">Add Topic Sources</a> section.</p>
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>
@@ -1639,7 +1696,7 @@ response = urllib2.urlopen(request)
 <h2 id='delete-topic-filters'>Delete Topic Filters</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 <span class="nb">require</span> <span class="s1">'active_support'</span>
 
-<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="s1">'downtown'</span><span class="p">}]}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'70b5aa707ca6013231ce482a14180728'</span><span class="p">,</span> <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s1">'include'</span><span class="p">,</span> <span class="ss">:phrase</span> <span class="o">=&gt;</span> <span class="s1">'downtown'</span><span class="p">}]}</span>
 
 <span class="n">params_string</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="nf">to_query</span>
 
@@ -1659,16 +1716,10 @@ response = urllib2.urlopen(request)
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid type"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"included"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"filters"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1682,14 +1733,19 @@ response = urllib2.urlopen(request)
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No such filter"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detroit"</span><span class="w">
+  </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"detroit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint adds new sources to the topic.</p>
+<p>This endpoint removes global filters from the topic.</p>
+
+<p><aside class="success">
+  This action requires the Topic to be reindexed and may take up to <strong>1 minute</strong> for accurate results to appear.
+</aside></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/filters</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -1725,7 +1781,7 @@ response = urllib2.urlopen(request)
 <td>data</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
-<td style="text-align: left">The array of filters to add</td>
+<td style="text-align: left">An array of filters to remove.</td>
 </tr>
 </tbody></table>
 <h3 id='data-child-parameters'>Data Child Parameters</h3>
@@ -1744,31 +1800,14 @@ response = urllib2.urlopen(request)
 <td style="text-align: left">The filter type.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>phrase</td>
 <td style="text-align: center">yes</td>
 <td style="text-align: center"></td>
 <td style="text-align: left">The value of the filter.</td>
 </tr>
 </tbody></table>
 <h3 id='available-filters'>Available Filters</h3>
-<table><thead>
-<tr>
-<th>Type</th>
-<th style="text-align: center">Value</th>
-<th style="text-align: center">Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include</td>
-<td style="text-align: center">phrase</td>
-<td style="text-align: center">Keywords that have to icluded in the feed</td>
-</tr>
-<tr>
-<td>exclude</td>
-<td style="text-align: center">phrase</td>
-<td style="text-align: center">Keywords that have to excluded from the feed</td>
-</tr>
-</tbody></table>
+<p>Reference the list of available services under the <a href="/#add-topic-filters">Add Topic Filters</a> section.</p>
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>
@@ -1780,12 +1819,12 @@ response = urllib2.urlopen(request)
 <tr>
 <td>errors</td>
 <td style="text-align: center">array</td>
-<td style="text-align: left">A lits of error for filters that were not removed</td>
+<td style="text-align: left">A lits of errors for why certain filters were unable to be removed.</td>
 </tr>
 <tr>
 <td>filters</td>
 <td style="text-align: center">array</td>
-<td style="text-align: left">A list of global keyword filters that were removed</td>
+<td style="text-align: left">A list of global keyword that were removed.</td>
 </tr>
 </tbody></table>
 <h3 id='error-messages'>Error Messages</h3>
@@ -1797,11 +1836,11 @@ response = urllib2.urlopen(request)
 </thead><tbody>
 <tr>
 <td>Invalid topic</td>
-<td style="text-align: left">The topic token provided was not valid.</td>
+<td style="text-align: left">The topic token provided was invalid.</td>
 </tr>
 <tr>
 <td>No such filter</td>
-<td style="text-align: left">The filter provided for deletion does not exist for the topic.</td>
+<td style="text-align: left">The filter provided for removal does not exist for the topic.</td>
 </tr>
 </tbody></table>
 <h2 id='delete-topic'>Delete Topic</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
@@ -1820,7 +1859,7 @@ response = urllib2.urlopen(request)
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1842,7 +1881,7 @@ response = urllib2.urlopen(request)
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint adds new sources to the topic.</p>
+<p>This endpoint deletes the topic.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">DELETE https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -1876,6 +1915,8 @@ response = urllib2.urlopen(request)
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
+<p>Returns details about the now deleted topic.  This is done for your app&rsquo;s reference (such as for updating your UI once a topic has been deleted).</p>
+
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1884,7 +1925,7 @@ response = urllib2.urlopen(request)
 </tr>
 </thead><tbody>
 <tr>
-<td>uid</td>
+<td>id</td>
 <td style="text-align: center">integer</td>
 <td style="text-align: left">A unique identifier for the topic</td>
 </tr>
@@ -1948,7 +1989,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1959,7 +2000,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9b5d30a07d4001325ede482a14180728"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"downtown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"include"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1967,7 +2008,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
   </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"filters"</span><span class="p">:[],</span><span class="w">
-      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Posts from backstitchapp"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"icon"</span><span class="p">:{</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png"</span><span class="p">,</span><span class="w">
@@ -1979,12 +2020,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
         </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
         </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"params"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"user"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search_term"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitchapp"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"service_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_user"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -1997,6 +2033,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Add-on not activated"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"call-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"widget"</span><span class="w">
@@ -2006,6 +2043,20 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 <p>This endpoint retrieves details about a topic.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
 <h3 id='returns'>Returns</h3>
 <table><thead>
 <tr>
@@ -2015,39 +2066,39 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 </tr>
 </thead><tbody>
 <tr>
-<td>uid</td>
+<td>id</td>
 <td style="text-align: center">integer</td>
-<td style="text-align: left">A unique identifier for the topic</td>
+<td style="text-align: left">A unique identifier for the topic.</td>
 </tr>
 <tr>
 <td>name</td>
 <td style="text-align: center">string</td>
-<td style="text-align: left">The name given to the topic</td>
+<td style="text-align: left">The name given to the topic.</td>
 </tr>
 <tr>
 <td>description</td>
 <td style="text-align: center">string</td>
-<td style="text-align: left">An optional description of the topic</td>
+<td style="text-align: left">An optional description of the topic,</td>
 </tr>
 <tr>
 <td>banner</td>
 <td style="text-align: center">object</td>
-<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded</td>
+<td style="text-align: left">The topic&rsquo;s displayed banner image if one was uploaded.</td>
 </tr>
 <tr>
 <td>token</td>
 <td style="text-align: center">string</td>
-<td style="text-align: left">The topic&rsquo;s api token</td>
+<td style="text-align: left">The topic&rsquo;s api token.</td>
 </tr>
 <tr>
 <td>filters</td>
 <td style="text-align: center">array</td>
-<td style="text-align: left">A list of global keyword filters set on the topic</td>
+<td style="text-align: left">A list of global filters set on the topic.</td>
 </tr>
 <tr>
-<td>feeds</td>
+<td>sources</td>
 <td style="text-align: center">array</td>
-<td style="text-align: left">A list of included feeds</td>
+<td style="text-align: left">A list of included sources.</td>
 </tr>
 </tbody></table>
 <h3 id='error-messages'>Error Messages</h3>
@@ -2063,7 +2114,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 </tr>
 <tr>
 <td>Add-on not activated</td>
-<td style="text-align: left">The topic does not have the requested action activated (the widget or the API).</td>
+<td style="text-align: left">The topic does not have either the API or Widget add-ons enabled.</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-topic-results'>Retrieve Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
@@ -2166,6 +2217,20 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results 
 the query.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="prettyprint">GET https://api.backstit.ch/v2/topics/{TOPIC_TOKEN}/results</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TOPIC_TOKEN</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: left">The topic&rsquo;s token generated from adding the API add-on from the topic editor or returned by the <a href="/#create-topic">Create Topic</a> endpoint.</td>
+</tr>
+</tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2575,6 +2640,10 @@ urllib2.urlopen(req)
 
           <h1 id='result-type-dictionary'>Result Type Dictionary</h1>
 <p>Topic results follow a standard schema based on type regardless of the original source of the content.</p>
+
+<p><aside class="warning">
+  API 2.0 changed the unique identifier to <strong>id</strong> from <strong>uid</strong> in API 1.0
+</aside></p>
 <h2 id='article'>Article</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ee995b07cb201323db11aa32735a1a3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">

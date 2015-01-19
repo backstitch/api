@@ -367,7 +367,7 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | team | no | Organization (all) | The name of the team that this topic should belong to. |
 | sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
 | filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|
-| topic_tokens | no | | An array of API tokens for the topics to clone sources and filters from. |
+| topic_tokens | no | | A list of API tokens for the topics to copy sources and filters from. [Detailed Documentation](/#clone-topic)| |
 
 ### Returns
 
@@ -684,7 +684,7 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => ['9b5d30a07d4001325ede482a14180728']}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => [{:token => '9b5d30a07d4001325ede482a14180728'}]}
 ```
 
 <!-- ```python
@@ -700,7 +700,7 @@ response = urllib2.urlopen(request)
 
 ```shell
 curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone \
-  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[]=9b5d30a07d4001325ede482a1418072'
+  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[][token]=9b5d30a07d4001325ede482a1418072'
 ```
 
 > The above command returns JSON structured like this:
@@ -774,14 +774,20 @@ This endpoint enables cloning of sources and filters from a list of other topics
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
-| topic_tokens | yes | | An array of API tokens for the topics to copy sources and filters from. |
+| topic_tokens | yes | | A list of API tokens for the topics to copy sources and filters from. |
+
+### Topic Token Child Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| token | yes | | The API token of the topic to be copied. |
 
 ## UnClone Topic
 
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => ['9b5d30a07d4001325ede482a14180728']}
+response = RestClient.post 'https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone.json', {:key => '70b5aa707ca6013231ce482a14180728', 'topic_tokens[]' => [{:token => '9b5d30a07d4001325ede482a14180728'}]}
 ```
 
 <!-- ```python
@@ -797,7 +803,7 @@ response = urllib2.urlopen(request)
 
 ```shell
 curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone \ 
-  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[]=9b5d30a07d4001325ede482a14180728'
+  -d 'key=70b5aa707ca6013231ce482a14180728&topic_tokens[][token]=9b5d30a07d4001325ede482a14180728'
 ```
 
 > The above command returns JSON structured like this:
@@ -840,7 +846,13 @@ This endpoint enables removing the sources and filters that were cloned from oth
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
-| topic_tokens | yes | | An array of API tokens for the topics to **remove** included sources and filters from this topic. |
+| topic_tokens | yes | | A list of API tokens for the topics to **remove** included sources and filters from this topic. |
+
+### Topic Token Child Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| token | yes | | The API token of the topic to be **removed**. |
 
 ## Delete Topic Sources
 

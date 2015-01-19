@@ -493,7 +493,7 @@ This endpoint allows for including new sources into the topic.
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
 | data | yes| | An array of new sources to add to your topic. |
-| crawl_url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. |
+| crawl_url | no | | This will crawl the specified url and add any sources found on the website.  This includes available RSS feeds and listed social media accounts. Example: http://www.cnn.com (Must contain http:// prefix) |
 
 ### Data Child Parameters
 

@@ -301,7 +301,7 @@ For a more descriptive breakdown of the topic fields reference the [Get Topic De
 ```ruby
 require 'rest_client'
 
-response = RestClient.post 'https://api.backstit.ch/v2/topics.json', {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News', 'services[]' => [{:service => 'twitter_user', :value => 'backstitch'}]}
+response = RestClient.post 'https://api.backstit.ch/v2/topics.json', {:key => '70b5aa707ca6013231ce482a14180728', :name => 'Local Detroit News', 'sources[]' => [{:service => 'twitter_user', :value => 'backstitch'}]}
 ```
 
 <!-- ```python
@@ -367,7 +367,7 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | team | no | Organization (all) | The name of the team that this topic should belong to. |
 | sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
 | filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|
-| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from. |
+| topic_tokens | no | | An array of API tokens for the topics to clone sources and filters from. |
 
 ### Returns
 
@@ -475,7 +475,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources 
 }
 ```
 
-This endpoint allows for including new sources into the topic.
+This endpoint is for including new sources into the topic.
 
 <aside class="success">
   Including new sources requires the Topic to be reindexed and may take up to **1 minute** for new results to appear.

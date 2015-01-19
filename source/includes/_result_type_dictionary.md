@@ -2,6 +2,11 @@
 
 Topic results follow a standard schema based on type regardless of the original source of the content.
 
+<aside class="warning">
+  API 2.0 changed the unique identifier to **id** from **uid** in API 1.0
+</aside>
+
+
 ## Article
 
 ```json

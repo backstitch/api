@@ -258,7 +258,7 @@ curl https://api.backstit.ch/v2/organizations/70b5aa707ca6013231ce482a14180728/t
         },
         "filters":[
           {
-            "uid": 20102,
+            "id": 20102,
             "value": "Android",
             "type": "exclude"
           }
@@ -593,7 +593,7 @@ response = urllib2.urlopen(request)
 
 ```shell
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters \
-  -d 'key=c7f6e1707f090132fe5a50e140978a72&data[][type]=include&data[][phrase]=detroit'
+  -d 'key=c7f6e1707f090132fe5a50e140978a72&data[][type]=include&data[][phrase]=Captain%20America'
 ```
 
 > The above command returns JSON structured like this:
@@ -667,7 +667,7 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 |---------|:-------:|:-------|
 | include | phrase | Phrase that **must be** included somewhere in the results. |
 | exclude | phrase | Phrase that **must not** be included somewhere in the results. |
-| nsfw | phrase | Automatically adds a list of Not Safe For Work terms as exclude filters. |
+| nsfw | phrase | Automatically adds a list of Not Safe For Work terms as exclude filters.  **Phrase should be passed as null or empty string.** |
 
 ### Returns
 
@@ -779,9 +779,7 @@ This endpoint enables cloning of sources and filters from a list of other topics
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
-| topic_tokens | yes | | An array of API tokens for the topics to clone sources and filters from. |
-
-### Returns
+| topic_tokens | yes | | An array of API tokens for the topics to copy sources and filters from. |
 
 ## UnClone Topic
 
@@ -847,10 +845,7 @@ This endpoint enables removing the sources and filters that were cloned from oth
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key is obtained from the organization dashboard under settings. |
-| topic_tokens | yes | | An array of API tokens for the topics to **remove** sources and filters from.  |
-
-### Returns
-
+| topic_tokens | yes | | An array of API tokens for the topics to **remove** included sources and filters from this topic. |
 
 ## Delete Topic Sources
 
@@ -880,17 +875,11 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 
 ```json
 {
-  "errors":[
-    {
-      "message": "Invalid service",
-      "service": "facebook",
-      "value": "backstitchapp"
-    }
-  ],
+  "errors":[],
   "sources":[
     {
       "filters":[],
-      "uid": 76,
+      "id": 76,
       "name": "Facebook Posts from backstitchapp",
       "icon":{
         "url": "http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png",
@@ -902,12 +891,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
         "width": 650,
         "height": 240
       },
-      "params":{
-        "user":{
-          "type": "search_term",
-          "value": "backstitchapp"
-        }
-      },
+      "value": "backstitchapp",
       "service_name": "facebook_user"
     }
   ]
@@ -920,6 +904,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 {
   "message": "Invalid topic"
 }
+
 {
   "message": "Invalid service: instagram_profile",
   "service": "instagram_profile",
@@ -927,7 +912,11 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 }
 ```
 
-This endpoint adds new sources to the topic.
+This endpoint removes sources from the topic.
+
+<aside class="success">
+  This action requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
+</aside>
 
 ### HTTP Request
 
@@ -944,21 +933,18 @@ This endpoint adds new sources to the topic.
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key obtained from the organization dashboard. |
-| data | yes| | An Array of source to add to your topic. |
+| data | yes| | An array of sources to remove from your topic. |
 
 ### Data Child Parameters
 
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
-| service | yes | | The name of the source service to add. |
-| value | yes | | The value of the service. |
+| service | yes | | The name of the source to remove's service. |
+| value | yes | | The value of the source to remove's service. |
 
 ### Available Services
 
-| Service | Value | Description
-|---------|:-------:|:-------:|
-| rss | url | An rss feed's url |
-
+Reference the list of available services under the [Add Topic Sources](/#add-topic-sources) section.
 
 ### Returns
 
@@ -1002,16 +988,10 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 
 ```json
 {
-  "errors":[
-    {
-      "message": "Invalid type",
-      "type": "included",
-      "phrase": "downtown"
-    }
-  ],
+  "errors":[],
   "filters":[
     {
-      "uid": 345,
+      "id": 345,
       "phrase": "downtown",
       "type": "include"
     }
@@ -1025,6 +1005,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 {
   "message": "Invalid topic"
 }
+
 {
   "message": "No such filter",
   "type": "include",
@@ -1032,7 +1013,11 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 }
 ```
 
-This endpoint adds new sources to the topic.
+This endpoint removes global filters from the topic.
+
+<aside class="success">
+  This action requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
+</aside>
 
 ### HTTP Request
 
@@ -1049,7 +1034,7 @@ This endpoint adds new sources to the topic.
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key obtained from the organization dashboard. |
-| data | yes | | The array of filters to add |
+| data | yes | | An array of filters to remove. |
 
 ### Data Child Parameters
 
@@ -1060,25 +1045,21 @@ This endpoint adds new sources to the topic.
 
 ### Available Filters
 
-| Type | Value | Description
-|---------|:-------:|:-------:|
-| include | phrase | Keywords that have to icluded in the feed |
-| exclude | phrase | Keywords that have to excluded from the feed |
-
+Reference the list of available services under the [Add Topic Filters](/#add-topic-filters) section.
 
 ### Returns
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| errors | array | A lits of error for filters that were not removed |
-| filters | array | A list of global keyword filters that were removed |
+| errors | array | A lits of errors for why certain filters were unable to be removed. |
+| filters | array | A list of global keyword that were removed. |
 
 ### Error Messages
 
 | Message | Description |
 |-------------|:----------|
-| Invalid topic | The topic token provided was not valid. |
-| No such filter | The filter provided for deletion does not exist for the topic. |
+| Invalid topic | The topic token provided was invalid. |
+| No such filter | The filter provided for removal does not exist for the topic. |
 
 ## Delete Topic
 
@@ -1101,7 +1082,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 
 ```json
 {
-  "uid": 13,
+  "id": 13,
   "name": "Detroit",
   "description": "",
   "banner": {
@@ -1123,7 +1104,7 @@ curl -X DELETE https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a1418072
 }
 ```
 
-This endpoint adds new sources to the topic.
+This endpoint deletes the topic.
 
 ### HTTP Request
 
@@ -1141,12 +1122,13 @@ This endpoint adds new sources to the topic.
 |---------|:-------:|:-------:|:-----------|
 | key | yes | | Your organization's api key obtained from the organization dashboard. |
 
-
 ### Returns
+
+Returns details about the now deleted topic.  This is done for your app's reference (such as for updating your UI once a topic has been deleted).
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the topic |
+| id | integer | A unique identifier for the topic |
 | name | string | The name given to the topic |
 | description | string | An optional description of the topic |
 | banner | object | The topic's displayed banner image if one was uploaded |
@@ -1182,7 +1164,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 
 ```json
 {
-  "uid": 13,
+  "id": 13,
   "name": "Detroit",
   "description": "",
   "banner": {
@@ -1193,7 +1175,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
   "token": "9b5d30a07d4001325ede482a14180728",
   "filters": [
     {
-      "uid": 345,
+      "id": 345,
       "phrase": "downtown",
       "type": "include"
     }
@@ -1201,7 +1183,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
   "sources": [
     {
       "filters":[],
-      "uid": 76,
+      "id": 76,
       "name": "Facebook Posts from backstitchapp",
       "icon":{
         "url": "http://images-backstitch.s3.amazonaws.com/services/icons/facebook.png",
@@ -1213,12 +1195,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
         "width": 650,
         "height": 240
       },
-      "params":{
-        "user":{
-          "type": "search_term",
-          "value": "backstitchapp"
-        }
-      },
+      "value": "backstitchapp",
       "service_name": "facebook_user"
     }
   ]
@@ -1231,6 +1208,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 {
   "message": "Invalid topic"
 }
+
 {
   "message": "Add-on not activated",
   "call-type": "widget"
@@ -1253,20 +1231,20 @@ This endpoint retrieves details about a topic.
 
 | Field | Data Type | Description |
 |---------|:-------:|:-----------|
-| uid | integer | A unique identifier for the topic |
-| name | string | The name given to the topic |
-| description | string | An optional description of the topic |
-| banner | object | The topic's displayed banner image if one was uploaded |
-| token | string | The topic's api token |
-| filters | array | A list of global keyword filters set on the topic |
-| feeds | array | A list of included feeds |
+| id | integer | A unique identifier for the topic. |
+| name | string | The name given to the topic. |
+| description | string | An optional description of the topic, |
+| banner | object | The topic's displayed banner image if one was uploaded. |
+| token | string | The topic's api token. |
+| filters | array | A list of global filters set on the topic. |
+| sources | array | A list of included sources. |
 
 ### Error Messages
 
 | Message | Description |
 |-------------|:----------|
 | Invalid topic | The topic token provided was not valid. |
-| Add-on not activated | The topic does not have the requested action activated (the widget or the API). |
+| Add-on not activated | The topic does not have either the API or Widget add-ons enabled. |
 
 ## Retrieve Topic Results
 

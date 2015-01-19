@@ -753,6 +753,18 @@ curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/clone \
 }
 ```
 
+> Possible error messages: 
+
+```json
+{
+  "message": "Invalid topic",
+}
+{
+  "message": "Invalid topic",
+  "token": '868892907e0d01327760482a14180728',
+}
+```
+
 This endpoint enables cloning of sources and filters from a list of other topics.  This is a great way to setup templates for your topics or to build user-specific streams.
 
 <aside class="success">
@@ -818,6 +830,18 @@ curl https://api.backstit.ch/v2/topics/868892907e0d01327760482a14180728/unclone 
   "sources": [],  
   "filters": [],
   "errors": []
+}
+```
+
+> Possible error messages: 
+
+```json
+{
+  "message": "Invalid topic",
+}
+{
+  "message": "Invalid topic",
+  "token": '868892907e0d01327760482a14180728',
 }
 ```
 

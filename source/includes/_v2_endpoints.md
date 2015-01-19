@@ -294,7 +294,7 @@ This endpoint retrieves a list of organization owned topics that have the API ad
 | filters | array | A list of global keyword filters set on the topic. |
 | sources | array | A list of sources included in the topic. |
 
-For a more descriptive breakdown of the topic fields reference the [Get Topic Details](/#get-topic-details) section.
+For a more descriptive breakdown of the topic fields reference the [Get Topic Details](/api/#get-topic-details) section.
 
 ## Create Topic
 
@@ -365,9 +365,9 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | description | no | | An optional description of the topic. |
 | permission | no | private | Whether or not the topic is publicaly viewable through backstitch.  Options are **private** (only organization members may view the topic) or **public** (anyone can view the topic including search engines).
 | team | no | Organization (all) | The name of the team that this topic should belong to. |
-| sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/#add-topic-sources) |
-| filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/#add-topic-filters)|
-| topic_tokens | no | | A list of API tokens for the topics to copy sources and filters from. [Detailed Documentation](/#clone-topic)| |
+| sources | no | | A list of sources to include in your topic at the time of creation.  [Detailed Documentation](/api/#add-topic-sources) |
+| filters | no | | A list of global filters to set on your topic at the time of creation. [Detailed Documentation](/api/#add-topic-filters)|
+| topic_tokens | no | | A list of API tokens for the topics to copy sources and filters from. [Detailed Documentation](/api/#clone-topic)| |
 
 ### Returns
 
@@ -484,7 +484,7 @@ This endpoint is for including new sources into the topic.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -500,7 +500,7 @@ This endpoint is for including new sources into the topic.
 |---------|:-------:|:-------:|:-----------|
 | service | yes | | The name of the new source's service. |
 | value | yes | | The parameter for the new source as required by the service. |
-| filters | no | | An array of filters to be set on the source.  [Detailed Documentation](/#add-topic-filters) |
+| filters | no | | An array of filters to be set on the source.  [Detailed Documentation](/api/#add-topic-filters) |
 
 ### Possible Value Types 
 
@@ -626,7 +626,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/filters 
 
 This endpoint sets a new global filter on the topic.  All filters are chained using an _OR_ expression and are evaluated based on variations of the phrase's contents. _(example: restaurant also matches restaurants)_
 
-Filters are applied to all [Result Type](/#result-type-dictionary) fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.
+Filters are applied to all [Result Type](/api/#result-type-dictionary) fields and can be used for full-text searching of content or for even matching specific usernames in the orgin or source objects.
 
 <aside class="success">
   Setting new filters requires the Topic to be reindexed and may take up to **1 minute** for accurate results to appear.
@@ -640,7 +640,7 @@ Filters are applied to all [Result Type](/#result-type-dictionary) fields and ca
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -767,7 +767,7 @@ This endpoint enables cloning of sources and filters from a list of other topics
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -839,7 +839,7 @@ This endpoint enables removing the sources and filters that were cloned from oth
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The API token for the topic that you want to modify.  The token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -933,7 +933,7 @@ This endpoint removes sources from the topic.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -951,7 +951,7 @@ This endpoint removes sources from the topic.
 
 ### Available Services
 
-Reference the list of available services under the [Add Topic Sources](/#add-topic-sources) section.
+Reference the list of available services under the [Add Topic Sources](/api/#add-topic-sources) section.
 
 ### Returns
 
@@ -1034,7 +1034,7 @@ This endpoint removes global filters from the topic.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -1052,7 +1052,7 @@ This endpoint removes global filters from the topic.
 
 ### Available Filters
 
-Reference the list of available services under the [Add Topic Filters](/#add-topic-filters) section.
+Reference the list of available services under the [Add Topic Filters](/api/#add-topic-filters) section.
 
 ### Returns
 
@@ -1121,7 +1121,7 @@ This endpoint deletes the topic.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -1232,7 +1232,7 @@ This endpoint retrieves details about a topic.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Returns
 
@@ -1365,7 +1365,7 @@ the query.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
-| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/#create-topic) endpoint. |
+| TOPIC_TOKEN | yes | The topic's token generated from adding the API add-on from the topic editor or returned by the [Create Topic](/api/#create-topic) endpoint. |
 
 ### Query Parameters
 
@@ -1377,4 +1377,4 @@ the query.
 
 ### Returns
 
-An array of results.  Consult the [Result Type Dictionary](/#result-type-dictionary) for field descriptions.
+An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dictionary) for field descriptions.

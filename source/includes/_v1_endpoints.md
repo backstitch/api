@@ -223,7 +223,7 @@ This endpoint fetches the latest results from the topic.  All results are in des
 
 ### Returns
 
-An array of results.  Consult the [Result Type Dictionary](#result-type-dictionary) for field descriptions.
+An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dictionary) for field descriptions.
 
 ## Filter Topic Results
 
@@ -317,4 +317,4 @@ This endpoint filters the results from the topic based on a passed term.  All re
 
 ### Returns
 
-An array of results.  Consult the [Result Type Dictionary](/#result-type-dictionary) for field descriptions.
+An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dictionary) for field descriptions.

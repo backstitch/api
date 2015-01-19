@@ -2527,7 +2527,7 @@ urllib2.urlopen(req)
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>
-<p>An array of results.  Consult the <a href="/#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
+<p>An array of results.  Consult the <a href="#result-type-dictionary">Result Type Dictionary</a> for field descriptions.</p>
 <h2 id='filter-topic-results'>Filter Topic Results</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v1/topic/fetch.json'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:token</span> <span class="o">=&gt;</span> <span class="s1">'9523280292F046269CD4C2F8C'</span><span class="p">,</span> <span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span>

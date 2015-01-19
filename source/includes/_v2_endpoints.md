@@ -347,6 +347,20 @@ curl https://api.backstit.ch/v2/topics \
 {
   "message": "Invalid permission type: everyone"
 }
+{
+  "message": "Invalid filter-type: has",
+  "type": "has",
+  "phrase": "Detroit"
+}
+{
+  "message": "Invalid service: facebook_page",
+  "service": "facebook_page",
+  "value": "backstitch"
+}
+{
+  "message": "Invalid topic to clone from"
+  "token": "9b5d30a07d4001325ede482a14180728"
+}
 ```
 
 This endpoint creates a new organization owned topic with the API add-on enabled.
@@ -388,7 +402,10 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 |-------------|:----------|
 | A topic name is required. | A topic name was not provided in the required name parameter. |
 | Invalid organization API key | The API key provided in the required key parameter was invalid, or wasn't provided. |
-| Invalid permission type: permission | The permission provided via the permission parameter was invalid (only private or public are supported). |
+| Invalid permission type: *permission* | The permission provided via the permission parameter was invalid (only private or public are supported). |
+| Invalid filter-type: *filter-type* | The *filter-type* provided is not a backstitch-supported filter-type. Supported types can be found under *available filter types* in [Add Topic Filters](/api/#add-topic-filters). |
+| Invalid service: *service* | The given service was not a supported service. Supported services can be found under *available services* in [Add Topic Sources](/api/#add-topic-sources). |
+| Invalid topic to clone from | A token provided to clone from another topic was not found/invalid. |
 
 ## Add Topic Sources
 

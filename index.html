@@ -598,6 +598,20 @@ response = urllib2.urlopen(request)
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid permission type: everyone"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid filter-type: has"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"has"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Detroit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid service: facebook_page"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook_page"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backstitch"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic to clone from"</span><span class="w">
+  </span><span class="s2">"token"</span><span class="err">:</span><span class="w"> </span><span class="s2">"9b5d30a07d4001325ede482a14180728"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>This endpoint creates a new organization owned topic with the API add-on enabled.</p>
@@ -732,8 +746,20 @@ response = urllib2.urlopen(request)
 <td style="text-align: left">The API key provided in the required key parameter was invalid, or wasn&rsquo;t provided.</td>
 </tr>
 <tr>
-<td>Invalid permission type: permission</td>
+<td>Invalid permission type: <em>permission</em></td>
 <td style="text-align: left">The permission provided via the permission parameter was invalid (only private or public are supported).</td>
+</tr>
+<tr>
+<td>Invalid filter-type: <em>filter-type</em></td>
+<td style="text-align: left">The <em>filter-type</em> provided is not a backstitch-supported filter-type. Supported types can be found under <em>available filter types</em> in <a href="/api/#add-topic-filters">Add Topic Filters</a>.</td>
+</tr>
+<tr>
+<td>Invalid service: <em>service</em></td>
+<td style="text-align: left">The given service was not a supported service. Supported services can be found under <em>available services</em> in <a href="/api/#add-topic-sources">Add Topic Sources</a>.</td>
+</tr>
+<tr>
+<td>Invalid topic to clone from</td>
+<td style="text-align: left">A token provided to clone from another topic was not found/invalid.</td>
 </tr>
 </tbody></table>
 <h2 id='add-topic-sources'>Add Topic Sources</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
@@ -1375,6 +1401,18 @@ response = urllib2.urlopen(request)
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>Possible error messages: </p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">868892907</span><span class="err">e</span><span class="mi">0</span><span class="err">d</span><span class="mi">01327760482</span><span class="err">a</span><span class="mi">14180728</span><span class="err">'</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
 <p>This endpoint enables cloning of sources and filters from a list of other topics.  This is a great way to setup templates for your topics or to build user-specific streams.</p>
 
 <p><aside class="success">
@@ -1466,6 +1504,18 @@ response = urllib2.urlopen(request)
   </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Possible error messages: </p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid topic"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">868892907</span><span class="err">e</span><span class="mi">0</span><span class="err">d</span><span class="mi">01327760482</span><span class="err">a</span><span class="mi">14180728</span><span class="err">'</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
 </span></code></pre>
 
 <p>This endpoint enables removing the sources and filters that were cloned from other topics.  This is a great way to maintain user-specific streams where subtopics can be unsubscribed.</p>
@@ -2849,7 +2899,61 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that the user posted on</td>
 </tr>
 </tbody></table>
-<h2 id='photo'>Photo</h2>
+<h2 id='photo'>Photo</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63dc7a6082460132f50d1aa7948f105d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#MadCatz L.Y.N.X. 9 – a #transforming #controller for your #Android #devicesSee here- http://in.gamerekon.com/?p=3824"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-19T12:49:25+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/s150x150/e15/10903762_787557491324190_1049615505_n.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/10903762_787557491324190_1049615505_n.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lat_lon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"woeid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1596774574"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gamerekonindia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.instagram.com/gamerekonindia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/10852941_1570019279899463_61316027_a.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"901370557046947610_1596774574"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://instagram.com/p/yCT773x38a/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/instagram_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"comments_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>A photo most likely from a hosted service such as Flickr or posted to social media.</p>
 
 <table><thead>
@@ -2905,7 +3009,64 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that hosts this photo</td>
 </tr>
 </tbody></table>
-<h2 id='video'>Video</h2>
+<h2 id='video'>Video</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b322fa407d7c0132ccb81a238d96d9fe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"video"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Honest Trailers - Gone Girl"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Screen Junkies approved! Watch feature-length movies for free on Break ►► &lt;a href=\"http://brk.cm/MoviesonBreak\"&gt;http://brk.cm/MoviesonBreak&lt;/a&gt;\nBecome a Screen Junkie! ►► &lt;a href=\"http://bit.ly/sjsubscr\"&gt;http://bit.ly/sjsubscr&lt;/a&gt;\nWatch more Honest Trailers ►► &lt;a href=\"http://bit.ly/HonestTrailerPlaylist\"&gt;http://bit.ly/HonestTrailerPlaylist&lt;/a&gt;\n\nGet ready to cower in terror as you relive David Fincher's married-people version of Fatal Attraction: Gone Girl.\n\nGot a tip? Email us ► &lt;a href=\"mailto:tips@screenjunkies.com\"&gt;tips@screenjunkies.com&lt;/a&gt;\nFollow us on Twitter ► &lt;a href=\"http://twitter.com/screenjunkies\"&gt;http://twitter.com/screenjunkies&lt;/a&gt;\nLike us on Facebook ► &lt;a href=\"http://www.fb.com/screenjunkies\"&gt;http://www.fb.com/screenjunkies&lt;/a&gt;\n\nVoiceover Narration by Jon: &lt;a href=\"http://youtube.com/jon3pnt0\"&gt;http://youtube.com/jon3pnt0&lt;/a&gt;\n\nTitle design by Robert Holtby\n\nOriginal music by Sean Motley\n\nSeries Created by Andy Signore &lt;a href=\"http://twitter.com/andysignore\"&gt;http://twitter.com/andysignore&lt;/a&gt; &amp; Brett Weiner\nWritten by Dan Murrell, Spencer Gilbert, and Andy Signore\nEdited by Dan Murrell\n---\n\nLet us know in the comments below what movie or TV show you want to see next!"</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="err">:</span><span class="w"> </span><span class="s2">"2015-01-13T17:53:20Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.youtube.com/watch?v=l-1wldsq8_8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"embed_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;iframe type='text/html' src='http://www.youtube.com/embed/l-1wldsq8_8' width='640' height='360' frameborder='0' allowfullscreen='true'/&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.ytimg.com/vi/l-1wldsq8_8/default.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://i.ytimg.com/vi/l-1wldsq8_8/hqdefault.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">360</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lat_lon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"woeid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UCOpcACMWblDls9Z6GERVi1A"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Screen Junkies"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In a world full of movies and television, only one channel is keeping them honest every Tuesday and Thursday - SCREEN JUNKIES! \n\nHome of the epic Honest Trailers and The ScreenJunkies Show...it's the ScreenJunkies YouTube channel!  Enjoy our warped take on film &amp; TV with a steady stream of pop-culture parody, original series, thoughtful commentary, and whatever we can think of next.\n\nTuesdays: Honest Trailers\nThursdays: Screen Junkies Show\nSundays: Movie Fights, Powered by Schmoes Know Network"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.youtube.com/channel/UCOpcACMWblDls9Z6GERVi1A"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://yt3.ggpht.com/-YmAo2aa3-nM/AAAAAAAAAAI/AAAAAAAAAAA/WqpO7AUlJUM/s88-c-k-no/photo.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l-1wldsq8_8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YouTube"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.youtube.com/watch?v=l-1wldsq8_8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/youtube_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"comments_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>A video most likely from a hosted service such as YouTube or posted to social media.</p>
 
 <table><thead>
@@ -2976,7 +3137,76 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that hosts this video</td>
 </tr>
 </tbody></table>
-<h2 id='product'>Product</h2>
+<h2 id='product'>Product</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ae2365d081f00132c59f72a99ca73d0a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$19 for the Batman Gotham Rising Fleece Blanket - Shipping Included"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Batman is a favorite for both children and adults! What better way to express your love of the cartoon and film than with this warm fleece blanket. It measures 46&amp;quot; x 60&amp;quot; in size, and is made of 100% polyester. The blanket is an officially licensed product manufactured with superior quality by The Northwest Company. Get your warm and comfy blanket today &lt;b&gt;for $19, shipping included.&lt;/b&gt;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batman is a favorite for both children and adults! What better way to express your love of the cartoon and film than with this warm fleece blanket. It measures 46\" x 60\" in size, and is made of 100% polyester. The blanket is an officially licensed product manufactured with superior quality by The Northwest Company."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-19T09:00:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.ncrowd.com/national/46484-avi-mfg-corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reviews"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"purchase"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.ncrowd.com/images/dynamic/deal/4/6/4/8/4/46484_lyMntF.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comparison_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iso_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fine_print"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deal Find"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.ncrowd.com/national/46484-avi-mfg-corp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/dealfind_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>A physical product most likely from an ecommerce or daily deal site.</p>
 
 <table><thead>
@@ -3067,7 +3297,87 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that is selling this product</td>
 </tr>
 </tbody></table>
-<h2 id='service'>Service</h2>
+<h2 id='service'>Service</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04e90fb07d1d0132aff626915c07c83a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$35 for $70 Toward Custom Dress Shirts from EPIC Shirtmakers "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50% Off Custom Dress Shirts"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;/p&gt;\n\n&lt;h4&gt;The Deal&lt;/h4&gt;\n\n&lt;ul&gt;\n  &lt;li&gt;\n    &lt;p&gt;$35 for $70 toward &lt;a href=\"http://epicshirtmakers.com/custom-tailored-dress-shirts\"&gt;custom dress shirts&lt;/a&gt;&lt;/p&gt;\n  &lt;/li&gt;\n  &lt;li&gt;\n    &lt;p&gt;Shirts start as low as $70 each.&lt;/p&gt;\n  &lt;/li&gt;\n&lt;/ul&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Deal Shirts start as low as $70 each."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"full_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-13T05:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.groupon.com/deals/epic-shirtmakers-ann-arbor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reviews"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"purchase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.groupon.com/deals/epic-shirtmakers-ann-arbor/confirmation?pledge_id=12286850"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://img.grouponcdn.com/deal/mXWCbsetzqqpp8gwBbUu/6Y-1500x900/v1/t50x50.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://img.grouponcdn.com/deal/mXWCbsetzqqpp8gwBbUu/6Y-1500x900/v1/t440x300.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lat_lon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"woeid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comparison_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iso_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fine_print"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limit 1 per person, may buy 2 additional as gifts. Limit 1 per order. Online only. $12.99 shipping fee for single shirt orders. &lt;b&gt;Free shipping on orders of two or more shirts.&lt;/b&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EPIC Shirtmakers"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://epicshirtmakers.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"epic-shirtmakers-ann-arbor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Groupon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.groupon.com/deals/epic-shirtmakers-ann-arbor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/groupon_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>A professional service such as a restaurant.</p>
 
 <table><thead>
@@ -3143,7 +3453,89 @@ HTML formatted.</p>
 <td style="text-align: left">Details about the website that is selling this service</td>
 </tr>
 </tbody></table>
-<h2 id='hotel'>Hotel</h2>
+<h2 id='hotel'>Hotel</h2><pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04996b507d300132ef4b32a97471a3dd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hotel"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-, 4-, or 7-Night Stay for Two in a One-Bedroom Villa at Acanto Boutique Hotel in Playa del Carmen, Mexico"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-Star Boutique Villas in Playa del Carmen"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;/p&gt;\n\n&lt;h4&gt;Four-Star Boutique Hotel Steps from Caribbean Sea&lt;/h4&gt;\n\n&lt;p&gt;You won't see a car driving down Playa del Carmen's main thoroughfare, Quinta Avenida (or Fifth Avenue in English). Cars are off-limits here. Instead, live marimba musicians, pedestrians, fire-breathers, and vendors hawking handmade goods and Cuban cigars flood the cobblestone street. Less than a block from this lively main drag, the four-star Acanto Boutique Hotel puts you in prime position for exploring Playa del Carmen's Mayan architecture, checking out its hip nightlife, and kicking back on the Caribbean beaches that are just steps away.&lt;/p&gt;\n\n&lt;p&gt;Tropical trees shade the hotel, which resembles a hacienda with wrought-iron terraces, arched windows, and an adobe façade. Walk down to the grotto-like courtyard to take a dip in a swimming pool surrounded by palm trees and stone siding, or head up to a rooftop hot tub to find ocean views. A marble bathroom, a terrace, and a full kitchen make each of the hotel's artfully designed one-bedroom villas feel luxurious and contemporary.&lt;/p&gt;\n\n&lt;p&gt;If you want to pick up the pace, the concierge can set up eco-tours. Go scuba-diving along Playa del Carmen's massive barrier reef or swim with dolphins and teach them to whistle Creedence Clearwater Revival songs through their blowholes. You can also opt for horseback riding, ziplining through the jungle, or a day trip to the Mayan pyramid at Chichén Itzá.&lt;/p&gt;\n\n&lt;h4&gt;Playa del Carmen, Mexico: Trendy Beach Area and Diving Destination&lt;/h4&gt;\n\n&lt;p&gt;Just across the sea from the island of Cozumel, Playa del Carmen has been called \"the hippest city in all of the Yucatán Peninsula\" by Lonely Planet. The laid-back beach bars and cafés have a way of converting vacationers into expats, but Playa's most compelling draw might be its cenotes—cavernous sinkholes filled with turquoise pools. The water in the cenotes is crystal clear, particularly at the lily-pad-dotted Xlacah cenote, where you can snorkel among schools of colorful fish.&lt;/p&gt;\n\n&lt;p&gt;To the south, you'll find preserved ruins of pre-Columbian cities. &lt;a href=\"http://www.groupon.com/articles/tulum-mexico-swim-next-to-ancient-mayan-ruins-ga\"&gt;Tulum's&lt;/a&gt; crumbling temples are situated above a dramatic ocean bluff, and Coba's enormous pyramid rises between two lagoons. For a fun day trip, hop aboard the ferry to Cozumel, which docks about a 15-minute walk from the hotel at the pier east of Calle 1. There are about a dozen dive shops on Cozumel, and they offer trips offshore to the reefs that Jacques Cousteau declared some of the world's most beautiful.&lt;/p&gt;\n\n&lt;hr /&gt;\n\n&lt;h3&gt;Frequently Asked Questions&lt;/h3&gt;\n\n&lt;p&gt;&lt;strong&gt;1. What is the best way to travel to the hotel from the airport?&lt;/strong&gt; A shuttle from Cancún International Airport (CUN) is available for $140 roundtrip for up to six people.&lt;br /&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;2. Is there an additional occupancy fee, or do I have to purchase another Groupon?&lt;/strong&gt; The Groupon covers two guests. Adding an occupant above standard is $75 per night for an additional guest 13 or older; $55 per night for an additional guest 3–12; a kid 2 or younger stays free.&lt;br /&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;3. Will I be approached to attend a timeshare sales presentation?&lt;/strong&gt; Groupon customers are never obligated to attend a sales presentation. If you are approached and decline a presentation, you will not lose the value of your Groupon or have to pay additional fees.&lt;br /&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;4. Which activities and amenities are included in the resort credits?&lt;/strong&gt; Resort credits are not included with the Groupon.&lt;br /&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;5. Are dinner reservations required for restaurants? Is there a dress code?&lt;/strong&gt; For information regarding your dining options, please click &lt;a href=\"http://www.acantohotels.com/dining/playa-del-carmen-dining-overview.htm\"&gt;here&lt;/a&gt; or call 888-331-2177.&lt;br /&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;em&gt;Love to travel? Follow us on &lt;a href=\"http://gr.pn/17RUxNX\"&gt;Facebook&lt;/a&gt; and &lt;a href=\"http://gr.pn/1e9KPhk\"&gt;Twitter&lt;/a&gt; for travel tips, inspiration, and photos from around the world.&lt;/em&gt;&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You won't see a car driving down Playa del Carmen's main thoroughfare, Quinta Avenida (or Fifth Avenue in English). Cars are off-limits here. Instead, live marimba musicians, pedestrians, fire-breathers, and vendors hawking handmade goods and Cuban cigars flood the cobblestone street. Less than a block from this lively main drag, the four-star Acanto Boutique Hotel puts you in prime position for exploring Playa del Carmen's Mayan architecture, checking out its hip nightlife, and kicking back on the Caribbean beaches that are just steps away."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-13T06:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.groupon.com/deals/ga-acanto-boutique-hotel-9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reviews"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tripadvisor.com/Hotel_Review-g150812-d535230-Reviews-Acanto_Boutique_Hotel-Playa_del_Carmen_Yucatan_Peninsula.html#REVIEWS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"purchase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.groupon.com/deals/ga-acanto-boutique-hotel-9/confirmation?pledge_id=12223065"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://img.grouponcdn.com/deal/YYeRx1sMmgiooQoWUBu/Hv-960x582/v1/t50x50.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"full_size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://img.grouponcdn.com/deal/YYeRx1sMmgiooQoWUBu/Hv-960x582/v1/t440x300.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"lat_lon"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">20.6285958</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-87.0695653</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"  "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"region_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mexico"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"woeid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.6285958</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-87.0695653</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comparison_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iso_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fine_print"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Must book by 3/13/15 or promotional value expires. Travel 1/18/15–3/31/15 or 4/1/15–8/31/15. Limit 1 per person, may buy 2 additional as gifts. Limit 1 per visit. Valid only for option purchased. Reservation required, subject to availability. 30-day cancellation notice required or fee up to the Groupon price applies. Must be 21+ to check in. Credit card required at booking and check-in. Must use promotional value in 1 visit. Not valid with reward points. $250 refundable credit card authorization required as security deposit at check-in. 19% tax not included.\n"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acanto Boutique Hotel"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"888-331-2177"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.acantohotels.com/"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ga-acanto-boutique-hotel-9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Groupon Getaway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.groupon.com/deals/ga-acanto-boutique-hotel-9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://images-backstitch.s3.amazonaws.com/next/service_catalog/groupon_icon.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>A place that offers paid lodging.</p>
 
 <table><thead>

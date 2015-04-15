@@ -5,7 +5,8 @@ The backstitch widget allows you to easily embed content on your blog or website
 Since the widget is responsive it will fit to the width of its container (and will expand from one column to two or three).
 
 <div class="widget-example">
-  <script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget.js?count=6&token=70c75bc0f4230131de3e5e8fe3ade264&ref=encodeURIComponent(window.location.href)'></script>
+  <script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget.js?count=4&token=cee55090c591013233444a64a6b89653&ref=encodeURIComponent(window.location.href)'>
+  </script>
 </div>
 
 <aside class="notice">The widget is built on top of the API 1.0 spec and each page view will count as a single API call according to your subscription plan.</aside>
@@ -28,6 +29,29 @@ If you prefer to place the script tag in your page's `HEAD` section or if you ar
 | count | Yes | How many topic results to desplay. |
 | ref | Yes | The url of the page loading the widget.  This is used so backstitch can provide you metrics on user engagement. |
 | container_id | No | The id of the container to load the widget.  If not provided the widget will render wherever you place the bootstrap script. |
+| theme="none" | No | Disables loading of the default style letting you supply your own. |
 
+## Styling the Widget
 
+By default the widget loads a responsive card layout similar to the native interface found on the [backstitch web app](http://backstit.ch).
 
+### If you want to override this with your own styles you can either:
+
+- Declare your styles using [!important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) 
+
+- Turn off the default theme by passing the `theme="none"` URL parameter and supply your own styles.  You can download a sample blank [SASS](http://sass-lang.com/) template to [get you started](http://assets-api.s3.amazonaws.com/v1/custom_widget.scss).
+
+### Source-Specific Styling
+
+Each result in the widget also has an extra class at its root that denotes where it originally came from.  
+
+While the default theme doesn't provide any style rules for these they are available if you wanted to style results different based on source.
+
+| Root Classes |
+|--------------|
+| backstitch-twitter-result |
+| backstitch-facebook-result |
+| backstitch-instagram-result |
+| backstitch-youtube-result |
+| backstitch-linkedin-result |
+| backstitch-news-result |

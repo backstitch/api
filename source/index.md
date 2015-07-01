@@ -23,7 +23,7 @@ search: true
 
 Welcome to the backstitch API!  You can use our API to build and access backstitch topic pages to leverage our content curation engine for your app.
 
-Information regarding limits and pricing can be found here [http://backstit.ch/pricing]http://backstit.ch/pricing
+Information regarding limits and pricing can be found [here](http://backstit.ch/pricing).
 
 # Authentication
 

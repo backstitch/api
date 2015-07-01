@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://backstit.ch', target="_blank">Visit backstitch</a>
-  - <a href='mailto:team@backstit.ch?subject=Request for Developer Key', target="_blank">Contact Us For A Developer Key</a>
+  - <a href='http://backstit.ch/tour/api', target="_blank">Register For A Developer Key</a>
   - <a href='http://github.com/tripit/slate', target="_blank">Documentation Powered by Slate</a>
 
 includes:
@@ -23,8 +23,7 @@ search: true
 
 Welcome to the backstitch API!  You can use our API to build and access backstitch topic pages to leverage our content curation engine for your app.
 
-Currently access to our API is on a request basis for a small monthly charge.  To request access you can email us at
-[team@backstit.ch](mailto:team@backstit.ch?subject=Request for Developer Key).
+Information regarding limits and pricing can be found here [http://backstit.ch/pricing]http://backstit.ch/pricing
 
 # Authentication
 

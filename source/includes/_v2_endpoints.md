@@ -1312,10 +1312,10 @@ response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ed
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20, :min_result_id => '6dd447800d1b0133b29950e140978a72'}
 
 # Search Results
-response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:query => 'restaurants'} 
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:term => 'restaurants'} 
 
 # Search for results published after a certain date
-response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:min_date => '2015-07-01', :query => 'restaurants'}
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:min_date => '2015-07-01', :term => 'restaurants'}
 ```
 
 <!-- ```python
@@ -1354,7 +1354,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date=2015-07-15&min_result_id=6dd447800d1b0133b29950e140978a72"
   
 # Search Results
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&query=restaurants"
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&term=restaurants"
   
 # Search for results published after a certain date
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?min_date=2015-07-01&term=restaurants"
@@ -1431,7 +1431,7 @@ the query.
 |---------|:-------:|:-------:|:-----------|
 | count | no | 20 | The number of results to return per call, up to a maximum of 50. |
 | skip | no | 0 | The number of results to skip per call, to be used for paging. |
-| query | no | | This will return results that are most relevant to the passed term. | 
+| term | no | | This will return results that are most relevant to the passed term. | 
 | max_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
 | min_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
 | max_result_id | no | | This will return results that were published before the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |

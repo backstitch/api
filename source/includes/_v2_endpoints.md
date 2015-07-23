@@ -1309,7 +1309,7 @@ response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ed
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20, :min_date => '2015-07-01', :max_date => '2015-07-15'}
 
 # Retrieve results published after a specific article was published
-response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20, :min_result_id => '6dd447800d1b0133b29950e140978a72'}
+response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:skip => 20, :min_id => '6dd447800d1b0133b29950e140978a72'}
 
 # Search Results
 response = RestClient.get 'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results', :params => {:term => 'restaurants'} 
@@ -1351,7 +1351,7 @@ curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date=2015-07-15&min_date=2015-07-01"
   
 # Retrieve results published after a specific article was published
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date=2015-07-15&min_result_id=6dd447800d1b0133b29950e140978a72"
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date=2015-07-15&min_id=6dd447800d1b0133b29950e140978a72"
   
 # Search Results
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&term=restaurants"
@@ -1434,8 +1434,8 @@ the query.
 | term | no | | This will return results that are most relevant to the passed term. | 
 | max_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
 | min_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
-| max_result_id | no | | This will return results that were published before the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
-| min_result_id | no | | This will return results that were published after the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
+| max_id | no | | This will return results that were published before the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
+| min_id | no | | This will return results that were published after the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
 
 ### Returns
 

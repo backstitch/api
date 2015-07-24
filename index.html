@@ -2216,8 +2216,17 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 <span class="c1"># Retrieve second page of latest results</span>
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:skip</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">}</span> 
 
+<span class="c1"># Retrieve results published between two dates</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:skip</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">:min_date</span> <span class="o">=&gt;</span> <span class="s1">'2015-07-01'</span><span class="p">,</span> <span class="ss">:max_date</span> <span class="o">=&gt;</span> <span class="s1">'2015-07-15'</span><span class="p">}</span>
+
+<span class="c1"># Retrieve results published after a specific article was published</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:skip</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span> <span class="ss">:min_id</span> <span class="o">=&gt;</span> <span class="s1">'6dd447800d1b0133b29950e140978a72'</span><span class="p">}</span>
+
 <span class="c1"># Search Results</span>
-<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:query</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span> 
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span> 
+
+<span class="c1"># Search for results published after a certain date</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results'</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:min_date</span> <span class="o">=&gt;</span> <span class="s1">'2015-07-01'</span><span class="p">,</span> <span class="ss">:term</span> <span class="o">=&gt;</span> <span class="s1">'restaurants'</span><span class="p">}</span>
 </code></pre>
 
 <!-- ```python
@@ -2245,13 +2254,21 @@ response = urllib2.urlopen(req)
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results
 
 <span class="c"># Retrieve second page of latest results</span>
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results <span class="se">\</span>
-  -d <span class="s2">"skip=20"</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&amp;skip<span class="o">=</span>20<span class="s2">"
 
-<span class="c"># Search Results</span>
-curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results <span class="se">\</span>
-  -d <span class="s2">"query=restaurants"</span>
-</code></pre>
+# Retrieve results between two dates
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date=2015-07-15&amp;min_date=2015-07-01"</span>
+
+<span class="c"># Retrieve results published after a specific article was published</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?max_date<span class="o">=</span>2015-07-15&amp;min_id<span class="o">=</span>6dd447800d1b0133b29950e140978a72<span class="s2">"
+
+# Search Results
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results&amp;term=restaurants"</span>
+
+<span class="c"># Search for results published after a certain date</span>
+curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/results?min_date<span class="o">=</span>2015-07-01&amp;term<span class="o">=</span>restaurants<span class="s2">"
+
+</span></code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2344,10 +2361,34 @@ the query.</p>
 <td style="text-align: left">The number of results to skip per call, to be used for paging.</td>
 </tr>
 <tr>
-<td>query</td>
+<td>term</td>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
 <td style="text-align: left">This will return results that are most relevant to the passed term.</td>
+</tr>
+<tr>
+<td>max_date</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that were published before the given date (accepts epoch integer time or ISO 8601 formatted datetime)</td>
+</tr>
+<tr>
+<td>min_date</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime)</td>
+</tr>
+<tr>
+<td>max_id</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that were published before the result with the given id.</td>
+</tr>
+<tr>
+<td>min_id</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">This will return results that were published after the result with the given id.</td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>

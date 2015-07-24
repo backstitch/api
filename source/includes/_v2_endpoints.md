@@ -1432,10 +1432,10 @@ the query.
 | count | no | 20 | The number of results to return per call, up to a maximum of 50. |
 | skip | no | 0 | The number of results to skip per call, to be used for paging. |
 | term | no | | This will return results that are most relevant to the passed term. | 
-| max_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
+| max_date | no | | This will return results that were published before the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
 | min_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
-| max_id | no | | This will return results that were published before the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
-| min_id | no | | This will return results that were published after the result with the given reference ID.  (accepts epoch integer time or ISO 8601 formatted datetime) |
+| max_id | no | | This will return results that were published before the result with the given id. |
+| min_id | no | | This will return results that were published after the result with the given id. |
 
 ### Returns
 

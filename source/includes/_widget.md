@@ -21,6 +21,15 @@ If you prefer to place the script tag in your page's `HEAD` section or if you ar
 
 <aside class="success">This code works as a bootstrapper so it won't conflict with the loading of the rest of your page and will always load the latest version of the 1.0 widget.</aside>
 
+
+### Opening Results 
+
+Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the "open_in_widget=true" parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded. 
+
+To close this modal once opened, the user can either press the escape key, click off the modal, or click the "X" in the upper-right corner of the modal. 
+
+This modal can also be custom-styled by passing the "content_theme=none" parameter. 
+
 ### Widget URL Parameters
 
 | Parameter | Required | Description |
@@ -29,7 +38,11 @@ If you prefer to place the script tag in your page's `HEAD` section or if you ar
 | count | Yes | How many topic results to desplay. |
 | ref | Yes | The url of the page loading the widget.  This is used so backstitch can provide you metrics on user engagement. |
 | container_id | No | The id of the container to load the widget.  If not provided the widget will render wherever you place the bootstrap script. |
-| theme="none" | No | Disables loading of the default style letting you supply your own. |
+| on_click | No | A JavaScript method name that will be called when a result is clicked from the widget on your page. Method will be passed the result ID, result URL, result reference ID, result type, and a boolean telling whether the result has been scraped or not (in that order). |
+| open_in_widget | No | Passing true will open results from the widget in a content viewer on the page rather than opening a new window. |
+| card_theme='none' | No | Disables loading of the default style for the result cards, letting you supply your own. |
+| content_theme="none" | No | Disables loading of the default stype for the content viewer, letting you supply your own. |
+| theme="none" | No | Disables loading of the default style for both the cards and the content viewer, letting you supply your own. |
 
 ## Styling the Widget
 

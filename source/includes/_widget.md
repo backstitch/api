@@ -52,7 +52,7 @@ By default the widget loads a responsive card layout similar to the native inter
 
 - Declare your styles using [!important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) 
 
-- Turn off the default theme by passing the `theme="none"` URL parameter and supply your own styles.  You can download a sample blank [SASS](http://sass-lang.com/) template to [get you started](http://assets-api.s3.amazonaws.com/v1/custom_widget.scss).
+- Turn off the default theme by passing the `card_theme="none"` URL parameter for only custom-styling the cards, 'content_theme="none"' URL parameter for only custom-styling the content viewer, or 'theme="none"' parameter for custom styling the entire widget, and supply your own styles.  You can download a sample blank [SASS](http://sass-lang.com/) template to [get you started](http://assets-api.s3.amazonaws.com/v1/custom_widget.scss).
 
 ### Source-Specific Styling
 

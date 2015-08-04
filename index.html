@@ -144,6 +144,12 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 <p>If you prefer to place the script tag in your page&rsquo;s <code class="prettyprint">HEAD</code> section or if you are building the widget dynamically and appending to the DOM using Javscript reference the <code class="prettyprint">container_id</code> parameter in the table below.</p>
 
 <p><aside class="success">This code works as a bootstrapper so it won&rsquo;t conflict with the loading of the rest of your page and will always load the latest version of the 1.0 widget.</aside></p>
+<h3 id='opening-results'>Opening Results</h3>
+<p>Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the &ldquo;open_in_widget=true&rdquo; parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded. </p>
+
+<p>To close this modal once opened, the user can either press the escape key, click off the modal, or click the &ldquo;X&rdquo; in the upper-right corner of the modal. </p>
+
+<p>This modal can also be custom-styled by passing the &ldquo;content_theme=none&rdquo; parameter. </p>
 <h3 id='widget-url-parameters'>Widget URL Parameters</h3>
 <table><thead>
 <tr>
@@ -173,9 +179,29 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 <td style="text-align: left">The id of the container to load the widget.  If not provided the widget will render wherever you place the bootstrap script.</td>
 </tr>
 <tr>
+<td>on_click</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">A JavaScript method name that will be called when a result is clicked from the widget on your page. Method will be passed the result URL, result reference ID, result type, and a boolean telling whether the result has been scraped or not (in that order).</td>
+</tr>
+<tr>
+<td>open_in_widget</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">Passing true will open results from the widget in a content viewer on the page rather than opening a new window.</td>
+</tr>
+<tr>
+<td>card_theme=&lsquo;none&rsquo;</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">Disables loading of the default style for the result cards, letting you supply your own.</td>
+</tr>
+<tr>
+<td>content_theme=&ldquo;none&rdquo;</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">Disables loading of the default stype for the content viewer, letting you supply your own.</td>
+</tr>
+<tr>
 <td>theme=&ldquo;none&rdquo;</td>
 <td style="text-align: center">No</td>
-<td style="text-align: left">Disables loading of the default style letting you supply your own.</td>
+<td style="text-align: left">Disables loading of the default style for both the cards and the content viewer, letting you supply your own.</td>
 </tr>
 </tbody></table>
 <h2 id='styling-the-widget'>Styling the Widget</h2>
@@ -183,7 +209,7 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 <h3 id='if-you-want-to-override-this-with-your-own-styles-you-can-either'>If you want to override this with your own styles you can either:</h3>
 <ul>
 <li><p>Declare your styles using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">!important</a> </p></li>
-<li><p>Turn off the default theme by passing the <code class="prettyprint">theme=&quot;none&quot;</code> URL parameter and supply your own styles.  You can download a sample blank <a href="http://sass-lang.com/">SASS</a> template to <a href="http://assets-api.s3.amazonaws.com/v1/custom_widget.scss">get you started</a>.</p></li>
+<li><p>Turn off the default theme by passing the <code class="prettyprint">card_theme=&quot;none&quot;</code> URL parameter for only custom-styling the cards, &lsquo;content_theme=&ldquo;none&rdquo;&rsquo; URL parameter for only custom-styling the content viewer, or &lsquo;theme=&ldquo;none&rdquo;&rsquo; parameter for custom styling the entire widget, and supply your own styles.  You can download a sample blank <a href="http://sass-lang.com/">SASS</a> templates to get you started on <a href="http://assets-api.s3.amazonaws.com/v1/custom_widget.scss">styling the cards</a> and <a href="http://assets-api.s3.amazonaws.com/v1/custom_content_viewer.scss">styling the viewer</a>.</p></li>
 </ul>
 <h3 id='source-specific-styling'>Source-Specific Styling</h3>
 <p>Each result in the widget also has an extra class at its root that denotes where it originally came from.  </p>

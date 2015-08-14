@@ -189,6 +189,11 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 <td style="text-align: left">Passing true will open results from the widget in a content viewer on the page rather than opening a new window.</td>
 </tr>
 <tr>
+<td>suppress_duplicates</td>
+<td style="text-align: center">No</td>
+<td style="text-align: left">Passing true will attempt to suppress any duplicate results that might be displayed on the widget.</td>
+</tr>
+<tr>
 <td>card_theme=&lsquo;none&rsquo;</td>
 <td style="text-align: center">No</td>
 <td style="text-align: left">Disables loading of the default style for the result cards, letting you supply your own.</td>
@@ -2415,6 +2420,12 @@ the query.</p>
 <td style="text-align: center">no</td>
 <td style="text-align: center"></td>
 <td style="text-align: left">This will return results that were published after the result with the given id.</td>
+</tr>
+<tr>
+<td>suppress_duplicates</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">false</td>
+<td style="text-align: left">Passing true will attempt to only return unique results. It is highly recommended to request results by date or by ID rather than using skip and count while suppressing duplicates.</td>
 </tr>
 </tbody></table>
 <h3 id='returns'>Returns</h3>

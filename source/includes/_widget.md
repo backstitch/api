@@ -40,6 +40,7 @@ This modal can also be custom-styled by passing the "content_theme=none" paramet
 | container_id | No | The id of the container to load the widget.  If not provided the widget will render wherever you place the bootstrap script. |
 | on_click | No | A JavaScript method name that will be called when a result is clicked from the widget on your page. Method will be passed the result URL, result reference ID, result type, and a boolean telling whether the result has been scraped or not (in that order). |
 | open_in_widget | No | Passing true will open results from the widget in a content viewer on the page rather than opening a new window. |
+| suppress_duplicates| No | Passing true will attempt to suppress any duplicate results that might be displayed on the widget. |
 | card_theme='none' | No | Disables loading of the default style for the result cards, letting you supply your own. |
 | content_theme="none" | No | Disables loading of the default stype for the content viewer, letting you supply your own. |
 | theme="none" | No | Disables loading of the default style for both the cards and the content viewer, letting you supply your own. |

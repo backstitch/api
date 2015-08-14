@@ -1436,6 +1436,7 @@ the query.
 | min_date | no | | This will return results that were published after the given date (accepts epoch integer time or ISO 8601 formatted datetime) |
 | max_id | no | | This will return results that were published before the result with the given id. |
 | min_id | no | | This will return results that were published after the result with the given id. |
+| suppress_duplicates| no | false | Passing true will attempt to only return unique results. It is highly recommended to request results by date or by ID rather than using skip and count while suppressing duplicates. |
 
 ### Returns
 

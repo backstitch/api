@@ -639,7 +639,7 @@ encoded_params = urllib.urlencode(params)
 request = urllib2.Request(endpoint, encoded_params)
 response = urllib2.urlopen(request)
 ``` -->
-<pre><code class="highlight shell">curl https://api.backstit.ch/v2/topics <span class="se">\</span>
+<pre><code class="highlight shell">curl -X POST https://api.backstit.ch/v2/topics
   -d <span class="s2">"key=70b5aa707ca6013231ce482a14180728&amp;name=Local%20Detroit%20News"</span>
 </code></pre>
 

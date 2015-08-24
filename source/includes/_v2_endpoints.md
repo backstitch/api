@@ -316,7 +316,7 @@ response = urllib2.urlopen(request)
 ``` -->
 
 ```shell
-curl https://api.backstit.ch/v2/topics \
+curl -X POST https://api.backstit.ch/v2/topics
   -d "key=70b5aa707ca6013231ce482a14180728&name=Local%20Detroit%20News"
 ```
 

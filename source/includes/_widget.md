@@ -81,7 +81,7 @@ You can also use our widget to display a single result on your blog or website, 
 | Parameter | Required | Description |
 |---------|:-------:|:-----------|
 | token | Yes | The API token of the topic that this result belongs to. |
-| container_id | Yes | The id of the container to load the widget.|
+| container_id | Yes | The id of the container to load the widget. Note that our single result widget uses position: absolute, so the container must have either position: relative or position: absolute set. |
 | type | Yes | The type of the result you would like to show (article, photo, status, video, service, product, or hotel).|
 | content_theme="none" | No | Disables loading of the default style for the loaded result, letting you supply your own. |
 | theme="none" | No | Will have the same effect as content_theme='none'.|
@@ -89,6 +89,8 @@ You can also use our widget to display a single result on your blog or website, 
 ### Styling the Single Result Widget
 
 By default the result will be styled in a responsive layout very similar to the layout of the result if viewed on the [backstitch web app](http://backstit.ch).
+
+<aside class="warning">The single result widget uses position:absolute to position itself accurately. The container that the widget is placed in must have it's position CSS attribute set to either absolute or relative.</aside>
 
 ### If you want to override this with your own styles you can either:
 

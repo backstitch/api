@@ -13,7 +13,7 @@ Since the widget is responsive it will fit to the width of its container (and wi
 
 ## Using the Widget
 
-To use simply paste the following code wherever your want your widget to appear.  
+To use simply paste the following code wherever you want your widget to appear.  
 
 `<script async type="text/javascript" src="https://api.backstit.ch/v1/topic/widget.js?count=10&token={TOPIC_TOKEN}&ref=encodeURIComponent(window.location.href)"></script>`
 
@@ -69,3 +69,30 @@ While the default theme doesn't provide any style rules for these they are avail
 | backstitch-youtube-result |
 | backstitch-linkedin-result |
 | backstitch-news-result |
+
+## Single Result Widget
+
+You can also use our widget to display a single result on your blog or website, as well. In order to do this, you must know the reference ID of the result you'd like to show, as well as the semantic type of the result (photo, article, status, video, service, product, or hotel). 
+
+<aside class="notice">Viewing single results with our widget is best done alongside our API, as our API makes retreiving reference IDs and result types very easy.</aside>
+
+### Single Result Widget URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| token | Yes | The API token of the topic that this result belongs to. |
+| container_id | Yes | The id of the container to load the widget.|
+| type | Yes | The type of the result you would like to show (article, photo, status, video, service, product, or hotel).|
+| content_theme="none" | No | Disables loading of the default style for the loaded result, letting you supply your own. |
+| theme="none" | No | Will have the same effect as content_theme='none'.|
+
+### Styling the Single Result Widget
+
+By default the result will be styled in a responsive layout very similar to the layout of the result if viewed on the [backstitch web app](http://backstit.ch).
+
+### If you want to override this with your own styles you can either:
+
+- Declare your styles using [!important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) 
+
+- Turn off the default theme by passing the 'content_theme="none"' 'theme="none"' URL parameters, and supply your own styles.  You can download a sample blank [SASS](http://sass-lang.com/) templates to get you started [here](http://assets-api.s3.amazonaws.com/v1/custom_content_viewer.scss).
+

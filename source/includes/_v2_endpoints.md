@@ -1449,6 +1449,24 @@ An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dic
 ```ruby
 require 'rest_client'
 
+# Post a link
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'link', :url => 'http://shoryuken.com/2015/09/03/japans-ruu-organizes-guilty-gear-round-robin-broadcast-for-american-players/', :email => 'admin@backstit.ch'}
+
+# Post an image
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'http://user-topic-images.s3.amazonaws.com/banner/example_image.jpg', :description => 'Example Image', :email => 'admin@backstit.ch'}
+
+# Post a text post
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Test Source", :type => 'text', :text => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." , :title => 'Example Text Post', :email => 'admin@backstit.ch'}
+
+```
+
+```shell
+# Post a link
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=http%3A%2F%2Fwww.wxyz.com%2Fdecodedc%2Fwarning-for-sitting-governors
+
 ```
 
 This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that have the custom source added to them. 

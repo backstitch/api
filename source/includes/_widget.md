@@ -83,7 +83,6 @@ You can also use our widget to display a single result on your blog or website, 
 | token | Yes | The API token of the topic that this result belongs to. |
 | container_id | Yes | The id of the container to load the widget. Note that our single result widget uses position: absolute, so the container must have either position: relative or position: absolute set. |
 | type | Yes | The type of the result you would like to show (article, photo, status, video, service, product, or hotel).|
-| content_theme="none" | No | Disables loading of the default style for the loaded result, letting you supply your own. |
 | theme="none" | No | Will have the same effect as content_theme='none'.|
 
 ### Styling the Single Result Widget

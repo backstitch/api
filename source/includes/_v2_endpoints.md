@@ -1467,6 +1467,12 @@ RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950
 # Post a link
 curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=http%3A%2F%2Fwww.wxyz.com%2Fdecodedc%2Fwarning-for-sitting-governors
 
+# Post an image
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=http%3A%2F%2Fuser-topic-images.s3.amazonaws.com%2Fbanner%2Fexample_image.jpg&description=Example%20image
+
+# Post a text post
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=text&title=Test%20title&text=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit%2C+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.+Ut+enim+ad+minim+veniam%2C+quis+nostrud+exercitation+ullamco+laboris+nisi+ut+aliquip+ex+ea+commodo+consequat.+Duis+aute+irure+dolor+in+reprehenderit+in+voluptate+velit+esse+cillum+dolore+eu+fugiat+nulla+pariatur.+Excepteur+sint+occaecat+cupidatat+non+proident%2C+sunt+in+culpa+qui+officia+deserunt+mollit+anim+id+est+laborum.
+
 ```
 
 This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that have the custom source added to them. 

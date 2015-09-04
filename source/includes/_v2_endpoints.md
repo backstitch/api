@@ -1441,3 +1441,55 @@ the query.
 ### Returns
 
 An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dictionary) for field descriptions.
+
+
+
+## Post Results to Custom Sources
+
+```ruby
+require 'rest_client'
+
+```
+
+This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that have the custom source added to them. 
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/post`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization’s api key is obtained from the organization dashboard under settings. |
+
+### Query Parameters
+
+These parameters are required regardless of the type of result that is being posted.
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| feed_name | yes | The name of the custom feed that this result will be posted to. |
+| type | yes | The type of result that is being posted to the feed (text, image, or link). |
+| email | yes | The email address of the user that will be credited for posting this result. |
+
+### Link Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| url | yes | The URL of the article that you would like to be scraped for the result. |
+| title | no | What you would like the article to be titled (if none is provided, we will attempt to scrape the article's title from the source). |
+
+### Image Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| image | yes | The URL of the image that you would like added to the custom source. |
+| description | no | A short description of the image provided. |
+
+### Text Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| text | yes | The actual content of the text post. Can be either plain-text or HTML. |
+| title | yes | The title of the result that is being posted. |

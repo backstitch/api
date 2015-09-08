@@ -1515,5 +1515,5 @@ These parameters are required regardless of the type of result that is being pos
 
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
-| text | yes | The actual content of the text post. Can be either plain-text or HTML. |
-| title | yes | The title of the result that is being posted. |
+| text | yes | The actual content of the post. This can be either plain-text or HTML. |
+| title | yes | The title of the post. |

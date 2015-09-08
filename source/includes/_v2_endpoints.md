@@ -1451,31 +1451,31 @@ require 'rest_client'
 
 # Post a link
 
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'link', :url => 'http://shoryuken.com/2015/09/03/japans-ruu-organizes-guilty-gear-round-robin-broadcast-for-american-players/', :email => 'admin@backstit.ch'}
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'link', :url => 'https://medium.com/backstitch-inc/100-industries-over-100-days-7521e75027ff', :email => 'api_example@backstit.ch'}
 
 # Post an image
 
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'http://user-topic-images.s3.amazonaws.com/banner/example_image.jpg', :description => 'Example Image', :email => 'admin@backstit.ch'}
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'https://images-backstitch.s3.amazonaws.com/next/logos/backstitch_white_small.png', :description => 'Example Image', :email => 'api_example@backstit.ch'}
 
 # Post a text post
 
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Test Source", :type => 'text', :text => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." , :title => 'Example Text Post', :email => 'admin@backstit.ch'}
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'text', :text => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." , :title => 'Example Text Post', :email => 'api_example@backstit.ch'}
 
 ```
 
 ```shell
 # Post a link
-curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=http%3A%2F%2Fwww.wxyz.com%2Fdecodedc%2Fwarning-for-sitting-governors
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=https%3A%2F%2Fmedium.com%2Fbackstitch-inc%2F100-industries-over-100-days-7521e75027ff&email=api_example%40backstit.ch&feed_name=Test+Source
 
 # Post an image
-curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=http%3A%2F%2Fuser-topic-images.s3.amazonaws.com%2Fbanner%2Fexample_image.jpg&description=Example%20image
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=https%3A%2F%2Fimages-backstitch.s3.amazonaws.com%2Fnext%2Flogos%2Fbackstitch_white_small.png&description=Example%20image&email=api_example%40backstit.ch&feed_name=Test+Source
 
 # Post a text post
-curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=text&title=Test%20title&text=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit%2C+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.+Ut+enim+ad+minim+veniam%2C+quis+nostrud+exercitation+ullamco+laboris+nisi+ut+aliquip+ex+ea+commodo+consequat.+Duis+aute+irure+dolor+in+reprehenderit+in+voluptate+velit+esse+cillum+dolore+eu+fugiat+nulla+pariatur.+Excepteur+sint+occaecat+cupidatat+non+proident%2C+sunt+in+culpa+qui+officia+deserunt+mollit+anim+id+est+laborum.
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=text&title=Test%20title&text=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit%2C+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.+Ut+enim+ad+minim+veniam%2C+quis+nostrud+exercitation+ullamco+laboris+nisi+ut+aliquip+ex+ea+commodo+consequat.+Duis+aute+irure+dolor+in+reprehenderit+in+voluptate+velit+esse+cillum+dolore+eu+fugiat+nulla+pariatur.+Excepteur+sint+occaecat+cupidatat+non+proident%2C+sunt+in+culpa+qui+officia+deserunt+mollit+anim+id+est+laborum&email=api_example%40backstit.ch&feed_name=Test+Source
 
 ```
 
-This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that have the custom source added to them. 
+This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that the custom source has been added to. 
 
 ### HTTP Request
 
@@ -1494,21 +1494,21 @@ These parameters are required regardless of the type of result that is being pos
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
 | feed_name | yes | The name of the custom feed that this result will be posted to. |
-| type | yes | The type of result that is being posted to the feed (text, image, or link). |
-| email | yes | The email address of the user that will be credited for posting this result. |
+| type | yes | The type of result that is being posted to the feed (text, image, or link). Note that different parameters are required for each type of post (see below). |
+| email | yes | The email address of the user that will be credited for the post. |
 
 ### Link Parameters
 
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
-| url | yes | The URL of the article that you would like to be scraped for the result. |
-| title | no | What you would like the article to be titled (if none is provided, we will attempt to scrape the article's title from the source). |
+| url | yes | The URL of the article that you would like to be scraped for the post. |
+| title | no | What you would like the article to be titled (if none is provided, backstitch will attempt to scrape the article's title from the source). |
 
 ### Image Parameters
 
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
-| image | yes | The URL of the image that you would like added to the custom source. |
+| image | yes | The URL of the image that you would like added to the post. |
 | description | no | A short description of the image provided. |
 
 ### Text Parameters

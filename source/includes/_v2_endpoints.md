@@ -1455,7 +1455,7 @@ RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950
 
 # Post an image
 
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'https://images-backstitch.s3.amazonaws.com/next/logos/backstitch_white_small.png', :description => 'Example Image', :email => 'api_example@backstit.ch'}
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'https://images-backstitch.s3.amazonaws.com/next/logos/backstitch_white_small.png', :description => 'The backstitch logo in white', :email => 'api_example@backstit.ch'}
 
 # Post a text post
 
@@ -1468,7 +1468,7 @@ RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950
 curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=https%3A%2F%2Fmedium.com%2Fbackstitch-inc%2F100-industries-over-100-days-7521e75027ff&email=api_example%40backstit.ch&feed_name=Test+Source
 
 # Post an image
-curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=https%3A%2F%2Fimages-backstitch.s3.amazonaws.com%2Fnext%2Flogos%2Fbackstitch_white_small.png&description=Example%20image&email=api_example%40backstit.ch&feed_name=Test+Source
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=https%3A%2F%2Fimages-backstitch.s3.amazonaws.com%2Fnext%2Flogos%2Fbackstitch_white_small.png&description=The+backstitch+logo+in+white&email=api_example%40backstit.ch&feed_name=Test+Source
 
 # Post a text post
 curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=text&title=Test%20title&text=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit%2C+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.+Ut+enim+ad+minim+veniam%2C+quis+nostrud+exercitation+ullamco+laboris+nisi+ut+aliquip+ex+ea+commodo+consequat.+Duis+aute+irure+dolor+in+reprehenderit+in+voluptate+velit+esse+cillum+dolore+eu+fugiat+nulla+pariatur.+Excepteur+sint+occaecat+cupidatat+non+proident%2C+sunt+in+culpa+qui+officia+deserunt+mollit+anim+id+est+laborum&email=api_example%40backstit.ch&feed_name=Test+Source
@@ -1502,7 +1502,7 @@ These parameters are required regardless of the type of result that is being pos
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
 | url | yes | The URL of the article that you would like to be scraped for the post. |
-| title | no | What you would like the article to be titled (if none is provided, backstitch will attempt to scrape the article's title from the source). |
+| title | no | The title of the post (if none is provided, backstitch will attempt to scrape the article's title from the source). |
 
 ### Image Parameters
 

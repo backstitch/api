@@ -1489,7 +1489,7 @@ This endpoint allows you to post a custom result to a custom source. This result
 
 ### Query Parameters
 
-These parameters are required regardless of the type of result that is being posted.
+These parameters are required regardless of the post type.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|

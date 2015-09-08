@@ -1475,7 +1475,7 @@ curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e14
 
 ```
 
-This endpoint allows you to post a custom result to a custom source. This result will appear in all topics that the custom source has been added to. 
+This endpoint allows you to post to custom sources. These posts will appear in all topics that the custom source has been added to.
 
 ### HTTP Request
 
@@ -1493,8 +1493,8 @@ These parameters are required regardless of the post type.
 
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
-| feed_name | yes | The name of the custom feed that this result will be posted to. |
-| type | yes | The type of result that is being posted to the feed (text, image, or link). Note that different parameters are required for each type of post (see below). |
+| feed_name | yes | The name of the custom feed that will be posted to. |
+| type | yes | The type of post that is being posted to the feed (text, image, or link). Note that different parameters are required for each type of post (see below). |
 | email | yes | The email address of the user that will be credited for the post. |
 
 ### Link Parameters

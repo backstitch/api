@@ -1494,7 +1494,7 @@ These parameters are required regardless of the post type.
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
 | feed_name | yes | The name of the custom feed that will be posted to. |
-| type | yes | The type of post that is being posted to the feed (text, image, or link). Note: that different parameters are required for each type of post (see below). |
+| type | yes | The type of post that is being posted to the feed (text, image, or link). Note: Different parameters are required for each type of post (see below). |
 | email | yes | The email address of the user that will be credited for the post. |
 
 ### Link Parameters
@@ -1502,7 +1502,7 @@ These parameters are required regardless of the post type.
 | Parameter | Required | Description |
 |---------|:-------:|:-------:|:-----------|
 | url | yes | The URL of the article that you would like to be scraped for the post. |
-| title | no | The title of the post. Note: if none is provided, backstitch will attempt to scrape the article's title from the source. |
+| title | no | The title of the post. Note: If none is provided, backstitch will attempt to scrape the article's title from the source. |
 
 ### Image Parameters
 

@@ -407,6 +407,78 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | Invalid service: *service* | The given service was not a supported service. Supported services can be found under *available services* in [Add Topic Sources](/api/#add-topic-sources). |
 | Invalid topic to clone from | A token provided to clone from another topic was not found/invalid. |
 
+## Create Custom Sources
+
+```ruby
+requre 'rest_client'
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source', {:team_id => 55, :name => "Test API Source", :description => "Test Description", :visible_days => 10, :allow_sharing => true}
+```
+
+```shell
+
+curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source?team_id=55&name=Test+API+Source&description=Test+Description&visible_days=10&allow_sharing=true
+
+```
+
+This endpoint is for creating new custom sources for the organization.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/create_source`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| name | yes | | The name of the custom source. |
+| description | no| | A brief description of the custom source. |
+| visible_days | no | 0 | The amount of days that posts to this source will be displayed at the very top of the topic. |
+| allow_sharing | no | false | A boolean dictating whether or not posts to this source can be shared publicly or not. |
+| icon | no | backstitch logo | The icon to be displayed on posts to this source. |
+
+## Add Custom Sources to Topic
+
+```ruby
+requre 'rest_client'
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/topics/124/add_custom_source', {:source_name => "Test API Source"}
+
+```
+
+```shell
+
+curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/topics/124/add_custom_source?source_name=Test+API+Source
+
+```
+
+This endpoint allows you to add team-owned custom sources to team topics.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/topics/{TOPIC_ID}/add_custom_source`
+
+<aside>Note: the custom source and the topic it is being added to must belong to the same team. </aside>
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+| TOPIC_ID | yes | The ID of the topic that the custom source should be added to.
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| source_name | yes | | The name of the custom source. |
+
 ## Add Topic Sources
 
 ```ruby

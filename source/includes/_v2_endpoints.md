@@ -439,9 +439,9 @@ This endpoint is for creating new custom sources for the organization.
 |---------|:-------:|:-------:|:-----------|
 | name | yes | | The name of the custom source. |
 | description | no| | A brief description of the custom source. |
-| visible_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
-| allow_sharing | no | false | A boolean dictating whether or not posts to this source can be shared publicly or not. |
-| icon | no | backstitch logo | The icon to be displayed on posts to this source. |
+| promoted_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
+| allow_sharing | no | false | Sets whether or not posts from this source can be shared publicly. |
+| icon | no | backstitch logo | The icon to be displayed on posts from this source. |
 | team_name | no | primary team | The team that the custom source will belong to. |
 
 

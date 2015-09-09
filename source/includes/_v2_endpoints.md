@@ -443,41 +443,6 @@ This endpoint is for creating new custom sources for the organization.
 | allow_sharing | no | false | A boolean dictating whether or not posts to this source can be shared publicly or not. |
 | icon | no | backstitch logo | The icon to be displayed on posts to this source. |
 
-## Add Custom Sources to Topic
-
-```ruby
-requre 'rest_client'
-
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/topics/124/add_custom_source', {:source_name => "Test API Source"}
-
-```
-
-```shell
-
-curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/topics/124/add_custom_source?source_name=Test+API+Source
-
-```
-
-This endpoint allows you to add team-owned custom sources to team topics.
-
-### HTTP Request
-
-`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/topics/{TOPIC_ID}/add_custom_source`
-
-<aside>Note: the custom source and the topic it is being added to must belong to the same team. </aside>
-
-### URL Parameters
-
-| Parameter | Required | Description |
-|---------|:-------:|:-----------|
-| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
-| TOPIC_ID | yes | The ID of the topic that the custom source should be added to.
-
-### Query Parameters
-
-| Parameter | Required | Default | Description |
-|---------|:-------:|:-------:|:-----------|
-| source_name | yes | | The name of the custom source. |
 
 ## Add Topic Sources
 
@@ -601,6 +566,7 @@ This endpoint is for including new sources into the topic.
 | username | *"backstitch"* |
 | location | *"Detroit, MI"* |
 | url | *"http://rss.cnn.com/rss/cnn_topstories.rss"* |
+| custom source name | *"internal feed"* |
 
 ### Available Services
 
@@ -608,6 +574,7 @@ This endpoint is for including new sources into the topic.
 |:---------:|:---------|:-------:|:-------|
 |X| app_dot_net_hashtag | tag | Retrieves public App.net Alpha posts by hashtag. |
 || dealfind_deals | nothing | Retrieves the latest deals from Dealfind. |
+|| backstitch_custom | custom source name | Adds a backstitch-created custom source. |
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
 |X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |

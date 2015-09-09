@@ -438,10 +438,10 @@ This endpoint is for creating new custom sources for the organization.
 | Parameter | Required | Default | Description |
 |---------|:-------:|:-------:|:-----------|
 | name | yes | | The name of the custom source. |
-| description | no| | A brief description of the custom source. |
+| description | no| | An optional description of the source. |
 | promoted_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
 | allow_sharing | no | false | Sets whether or not posts from this source can be shared publicly. |
-| icon | no | backstitch logo | The icon to be displayed on posts from this source. |
+| icon | no | backstitch logo | The url of an image to upload as the source's icon. Must include http or https and be a png, jpg, or gif. |
 | team_name | no | Organization(all) | The team that the custom source will belong to. |
 
 

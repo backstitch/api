@@ -412,12 +412,12 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 ```ruby
 requre 'rest_client'
 
-RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source', {:team_id => 55, :name => "Test API Source", :description => "Test Description", :visible_days => 10, :allow_sharing => true}
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source', {:team_name => 'Research and Development', :name => "Test API Source", :description => "Test Description", :visible_days => 10, :allow_sharing => true}
 ```
 
 ```shell
 
-curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source?team_id=55&name=Test+API+Source&description=Test+Description&visible_days=10&allow_sharing=true
+curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source?team_name=Researc+and+Development&name=Test+API+Source&description=Test+Description&visible_days=10&allow_sharing=true
 
 ```
 
@@ -439,9 +439,10 @@ This endpoint is for creating new custom sources for the organization.
 |---------|:-------:|:-------:|:-----------|
 | name | yes | | The name of the custom source. |
 | description | no| | A brief description of the custom source. |
-| visible_days | no | 0 | The amount of days that posts to this source will be displayed at the very top of the topic. |
+| visible_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
 | allow_sharing | no | false | A boolean dictating whether or not posts to this source can be shared publicly or not. |
 | icon | no | backstitch logo | The icon to be displayed on posts to this source. |
+| team_name | no | primary team | The team that the custom source will belong to. |
 
 
 ## Add Topic Sources

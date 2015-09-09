@@ -407,6 +407,44 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | Invalid service: *service* | The given service was not a supported service. Supported services can be found under *available services* in [Add Topic Sources](/api/#add-topic-sources). |
 | Invalid topic to clone from | A token provided to clone from another topic was not found/invalid. |
 
+## Create Custom Sources
+
+```ruby
+requre 'rest_client'
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source', {:team => 'Research and Development', :name => "Test API Source", :description => "Test Description", :visible_days => 10, :allow_sharing => true}
+```
+
+```shell
+
+curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source?team=Researc+and+Development&name=Test+API+Source&description=Test+Description&visible_days=10&allow_sharing=true
+
+```
+
+This endpoint is for creating new custom sources for the organization.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/create_source`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| name | yes | | The name of the custom source. |
+| description | no| | An optional description of the source. |
+| promoted_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
+| allow_sharing | no | false | Passing true will allow posts from this source to be shared publicly. |
+| icon | no | backstitch logo | The url of an image to upload as the source's icon. Must include http or https and be a png, jpg, or gif. |
+| team | no | Organization(all) | The team that the custom source will belong to. |
+
+
 ## Add Topic Sources
 
 ```ruby
@@ -529,6 +567,7 @@ This endpoint is for including new sources into the topic.
 | username | *"backstitch"* |
 | location | *"Detroit, MI"* |
 | url | *"http://rss.cnn.com/rss/cnn_topstories.rss"* |
+| custom source name | *"internal feed"* |
 
 ### Available Services
 
@@ -536,6 +575,7 @@ This endpoint is for including new sources into the topic.
 |:---------:|:---------|:-------:|:-------|
 |X| app_dot_net_hashtag | tag | Retrieves public App.net Alpha posts by hashtag. |
 || dealfind_deals | nothing | Retrieves the latest deals from Dealfind. |
+|| backstitch_custom | custom source name | Adds a backstitch-created custom source. |
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
 |X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |

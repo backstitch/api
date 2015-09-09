@@ -442,7 +442,7 @@ This endpoint is for creating new custom sources for the organization.
 | promoted_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
 | allow_sharing | no | false | Sets whether or not posts from this source can be shared publicly. |
 | icon | no | backstitch logo | The icon to be displayed on posts from this source. |
-| team_name | no | primary team | The team that the custom source will belong to. |
+| team_name | no | Organization(all) | The team that the custom source will belong to. |
 
 
 ## Add Topic Sources

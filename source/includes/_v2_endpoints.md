@@ -407,6 +407,44 @@ This endpoint creates a new organization owned topic with the API add-on enabled
 | Invalid service: *service* | The given service was not a supported service. Supported services can be found under *available services* in [Add Topic Sources](/api/#add-topic-sources). |
 | Invalid topic to clone from | A token provided to clone from another topic was not found/invalid. |
 
+## Create Custom Sources
+
+```ruby
+requre 'rest_client'
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source', {:team => 'Research and Development', :name => "Test API Source", :description => "Test Description", :visible_days => 10, :allow_sharing => true}
+```
+
+```shell
+
+curl -X POST https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/create_source?team=Researc+and+Development&name=Test+API+Source&description=Test+Description&visible_days=10&allow_sharing=true
+
+```
+
+This endpoint is for creating new custom sources for the organization.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/create_source`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization's api key is obtained from the organization dashboard under settings. |
+
+### Query Parameters
+
+| Parameter | Required | Default | Description |
+|---------|:-------:|:-------:|:-----------|
+| name | yes | | The name of the custom source. |
+| description | no| | An optional description of the source. |
+| promoted_days | no | 0 | The number of days the posts will be promoted to the top of the topic. |
+| allow_sharing | no | false | Passing true will allow posts from this source to be shared publicly. |
+| icon | no | backstitch logo | The url of an image to upload as the source's icon. Must include http or https and be a png, jpg, or gif. |
+| team | no | Organization(all) | The team that the custom source will belong to. |
+
+
 ## Add Topic Sources
 
 ```ruby
@@ -529,6 +567,7 @@ This endpoint is for including new sources into the topic.
 | username | *"backstitch"* |
 | location | *"Detroit, MI"* |
 | url | *"http://rss.cnn.com/rss/cnn_topstories.rss"* |
+| custom source name | *"internal feed"* |
 
 ### Available Services
 
@@ -536,6 +575,7 @@ This endpoint is for including new sources into the topic.
 |:---------:|:---------|:-------:|:-------|
 |X| app_dot_net_hashtag | tag | Retrieves public App.net Alpha posts by hashtag. |
 || dealfind_deals | nothing | Retrieves the latest deals from Dealfind. |
+|| backstitch_custom | custom source name | Adds a backstitch-created custom source. |
 |X| facebook_user | username | Retrieves public Facebook posts made by a user or a company page. |
 |X| flickr_group | username | Retrieves public Flickr photos published to a Flickr group. |
 |X| flickr_mention | phrase | Retrieves public Flickr photos that mentions the phrase in its description. |
@@ -1441,3 +1481,79 @@ the query.
 ### Returns
 
 An array of results.  Consult the [Result Type Dictionary](/api/#result-type-dictionary) for field descriptions.
+
+
+
+## Post Results to Custom Sources
+
+```ruby
+require 'rest_client'
+
+# Post a link
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'link', :url => 'https://medium.com/backstitch-inc/100-industries-over-100-days-7521e75027ff', :email => 'api_example@backstit.ch'}
+
+# Post an image
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'image', :image => 'https://images-backstitch.s3.amazonaws.com/next/logos/backstitch_white_small.png', :description => 'The backstitch logo in white', :email => 'api_example@backstit.ch'}
+
+# Post a text post
+
+RestClient.post 'https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post', {:feed_name => "Internal Feed", :type => 'text', :text => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." , :title => 'Example Text Post', :email => 'api_example@backstit.ch'}
+
+```
+
+```shell
+# Post a link
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=link&url=https%3A%2F%2Fmedium.com%2Fbackstitch-inc%2F100-industries-over-100-days-7521e75027ff&email=api_example%40backstit.ch&feed_name=Test+Source
+
+# Post an image
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=image&image=https%3A%2F%2Fimages-backstitch.s3.amazonaws.com%2Fnext%2Flogos%2Fbackstitch_white_small.png&description=The+backstitch+logo+in+white&email=api_example%40backstit.ch&feed_name=Test+Source
+
+# Post a text post
+curl -X POST  https://api.backstit.ch/v2/organizations/9211967035420133bff950e140978a72/post?type=text&title=Test%20title&text=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit%2C+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.+Ut+enim+ad+minim+veniam%2C+quis+nostrud+exercitation+ullamco+laboris+nisi+ut+aliquip+ex+ea+commodo+consequat.+Duis+aute+irure+dolor+in+reprehenderit+in+voluptate+velit+esse+cillum+dolore+eu+fugiat+nulla+pariatur.+Excepteur+sint+occaecat+cupidatat+non+proident%2C+sunt+in+culpa+qui+officia+deserunt+mollit+anim+id+est+laborum&email=api_example%40backstit.ch&feed_name=Test+Source
+
+```
+
+This endpoint allows you to post to custom sources. These posts will appear in all topics that the custom source has been added to.
+
+### HTTP Request
+
+`POST https://api.backstit.ch/v2/organizations/{ORGANIZATION_KEY}/post`
+
+### URL Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-----------|
+| ORGANIZATION_KEY | yes | Your organization’s api key is obtained from the organization dashboard under settings. |
+
+### Query Parameters
+
+These parameters are required regardless of the post type.
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| feed_name | yes | The name of the custom feed that will be posted to. |
+| type | yes | The type of post that is being posted to the feed (text, image, or link). Note: Different parameters are required for each type of post (see below). |
+| email | yes | The email address of the user that will be credited for the post. |
+
+### Link Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| url | yes | The URL of the article that you would like to be scraped for the post. |
+| title | no | The title of the post. Note: If none is provided, backstitch will attempt to scrape the article's title from the source. |
+
+### Image Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| image | yes | The URL of the image that you would like added to the post. |
+| description | no | A short description of the image provided. |
+
+### Text Parameters
+
+| Parameter | Required | Description |
+|---------|:-------:|:-------:|:-----------|
+| text | yes | The actual content of the post. This can be either plain-text or HTML. |
+| title | yes | The title of the post. |

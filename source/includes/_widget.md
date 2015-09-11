@@ -74,6 +74,11 @@ While the default theme doesn't provide any style rules for these they are avail
 
 backstitch also provides a widget to display a single result on your blog or website.
 
+<div class="widget-example" id='single-result' style='position: relative; width: 50%;height: 500px'>
+  <script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget/856a524032310133795b0242ac11000c.js?token=1562a3f012cd0133439b0242ac110009&type=article&container_id=single-result'>
+  </script>
+</div>
+
 <aside class="notice">Viewing single results with our widget is best done alongside our API, as our API makes retreiving reference IDs and result types very easy.</aside>
 
 ### Single Result Widget URL Parameters

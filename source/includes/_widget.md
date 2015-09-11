@@ -79,6 +79,11 @@ backstitch also provides a widget to display a single result on your blog or web
   </script>
 </div>
 
+### Using the single result widget
+
+`<script async type='text/javascript' src='https://api.backstit.ch/v1/topic/widget/{REFERENCE_ID}.js?token={TOPIC_KEY}&type={RESULT_TYPE}&container_id={CONTAINER_ID}'>
+  </script>`
+
 <aside class="notice">Viewing single results with our widget is best done alongside our API, as our API makes retreiving reference IDs and result types very easy.</aside>
 
 ### Single Result Widget URL Parameters

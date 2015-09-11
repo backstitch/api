@@ -72,7 +72,7 @@ While the default theme doesn't provide any style rules for these they are avail
 
 ## Single Result Widget
 
-You can also use our widget to display a single result on your blog or website, as well. In order to do this, you must know the reference ID of the result you'd like to show, as well as the semantic type of the result (photo, article, status, video, service, product, or hotel). 
+backstitch also provides a widget to display a single result on your blog or website.
 
 <aside class="notice">Viewing single results with our widget is best done alongside our API, as our API makes retreiving reference IDs and result types very easy.</aside>
 
@@ -83,6 +83,7 @@ You can also use our widget to display a single result on your blog or website, 
 | token | Yes | The API token of the topic that this result belongs to. |
 | container_id | Yes | The id of the container to load the widget. Note that our single result widget uses position: absolute, so the container must have either position: relative or position: absolute set. |
 | type | Yes | The type of the result you would like to show (article, photo, status, video, service, product, or hotel).|
+| reference_id | Yes | The reference ID of the result. |
 | theme="none" | No | Will have the same effect as content_theme='none'.|
 
 ### Styling the Single Result Widget

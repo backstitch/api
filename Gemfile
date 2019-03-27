@@ -14,7 +14,7 @@ gem "middleman", "~>3.3.0"
 gem "middleman-syntax"
 
 # Plugin for middleman to generate Github pages
-gem 'middleman-gh-pages'
+gem 'middleman-gh-pages', "0.0.3"
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.3.0"

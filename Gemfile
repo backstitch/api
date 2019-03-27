@@ -4,9 +4,6 @@ source 'http://rubygems.org'
 
 gem "hitimes", "~> 1.2.2"
 
-gem "rb-inotify", "0.9.5"
-gem "ffi", "1.9.10"
-
 gem "rouge", "1.7.2"
 
 gem "middleman", "~>3.3.0"
@@ -28,6 +25,12 @@ gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 # Cross-templating language block fix for Ruby 1.8
 platforms :mri_18 do
   gem "ruby18_source_location"
+end
+
+group :development do
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
 end
 
 gem "rake", "~> 10.3.0"

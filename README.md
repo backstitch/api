@@ -9,5 +9,4 @@ Publishing your API documentation couldn't be more simple.
 1. Add "gh-pages" as a local branch pointing to the remote (GitHub doc)
 1. Compile to HTML, and push the HTML to Github pages: rake publish
 
-## More Information: [http://backstit.ch/tour/api](http://backstit.ch/tour/api)
 ## Full Documentation: [http://docs.backstit.ch/api](http://docs.backstit.ch/api)

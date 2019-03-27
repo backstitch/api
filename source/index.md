@@ -6,8 +6,7 @@ language_tabs:
   - ruby
 
 toc_footers:
-  - <a href='http://backstit.ch', target="_blank">Visit backstitch</a>
-  - <a href='http://backstit.ch/tour/api', target="_blank">Register For A Developer Key</a>
+  - <a href='http://backstitch.io', target="_blank">Visit backstitch</a>
   - <a href='http://github.com/tripit/slate', target="_blank">Documentation Powered by Slate</a>
 
 includes:
@@ -22,8 +21,6 @@ search: true
 # Introduction
 
 Welcome to the backstitch API!  You can use our API to build and access backstitch topic pages to leverage our content curation engine for your app.
-
-Information regarding limits and pricing can be found [here](http://backstit.ch/pricing).
 
 # Authentication
 
@@ -57,7 +54,7 @@ response = urllib2.urlopen('https://api.backstit.ch/v2/topics/9b5d30a07d4001325e
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728/sources \
   -H "Content-Type: application/json" \
   -d '{"key": "70b5aa707ca6013231ce482a14180728", "data": [{"service": "twitter_user", "value": "backstitch"}]}'
-  
+
 # Read-Only request only requires a topic's token
 curl https://api.backstit.ch/v2/topics/9b5d30a07d4001325ede482a14180728
 ```
@@ -77,5 +74,3 @@ DELETE | X | X |
 <aside class="warning">
 If you're using API 1.0 consult the authentication documentation in that section or consider upgrading to API 2.0
 </aside>
-
-

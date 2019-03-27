@@ -1,4 +1,4 @@
-# Widget 
+# Widget
 
 The backstitch widget allows you to easily embed content on your blog or website. Using our lightweight widget, your topic's results can be displayed responsively anywhere that JavaScript is embeddable.  
 
@@ -22,13 +22,13 @@ If you prefer to place the script tag in your page's `HEAD` section or if you ar
 <aside class="success">This code works as a bootstrapper so it won't conflict with the loading of the rest of your page and will always load the latest version of the 1.0 widget.</aside>
 
 
-### Opening Results 
+### Opening Results
 
-Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the "open_in_widget=true" parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded. 
+Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the "open_in_widget=true" parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded.
 
-To close this modal once opened, the user can either press the escape key, click off the modal, or click the "X" in the upper-right corner of the modal. 
+To close this modal once opened, the user can either press the escape key, click off the modal, or click the "X" in the upper-right corner of the modal.
 
-This modal can also be custom-styled by passing the "content_theme=none" parameter. 
+This modal can also be custom-styled by passing the "content_theme=none" parameter.
 
 ### Widget URL Parameters
 
@@ -47,11 +47,11 @@ This modal can also be custom-styled by passing the "content_theme=none" paramet
 
 ## Styling the Widget
 
-By default the widget loads a responsive card layout similar to the native interface found on the [backstitch web app](http://backstit.ch).
+By default the widget loads a responsive card layout similar to the native interface found on the [backstitch web app](http://backstitch.io).
 
 ### If you want to override this with your own styles you can either:
 
-- Declare your styles using [!important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) 
+- Declare your styles using [!important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 
 - Turn off the default theme by passing the `card_theme="none"` URL parameter for only custom-styling the cards, 'content_theme="none"' URL parameter for only custom-styling the content viewer, or 'theme="none"' parameter for custom styling the entire widget, and supply your own styles.  You can download a sample blank [SASS](http://sass-lang.com/) templates to get you started on [styling the cards](http://assets-api.s3.amazonaws.com/v1/custom_widget.scss) and [styling the viewer](http://assets-api.s3.amazonaws.com/v1/custom_content_viewer.scss).
 

@@ -5,17 +5,17 @@ source 'http://rubygems.org'
 gem "hitimes", "~> 1.2.2"
 
 gem "rb-inotify", "0.9.5"
+gem "ffi", "1.9.10"
 
 gem "rouge", "1.7.2"
 
 gem "middleman", "~>3.3.0"
-gem "middleman-sprockets", "3.4.2"
 
 # For syntax highlighting
 gem "middleman-syntax"
 
 # Plugin for middleman to generate Github pages
-gem 'middleman-gh-pages', "0.0.3"
+gem 'middleman-gh-pages'
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.3.0"

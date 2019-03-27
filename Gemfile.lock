@@ -32,7 +32,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    ffi (1.10.0)
+    ffi (1.9.10)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -72,13 +72,13 @@ GEM
       rack-test (~> 0.6.2)
       thor (>= 0.15.2, < 2.0)
       tilt (~> 1.4.1, < 2.0)
-    middleman-gh-pages (0.0.3)
+    middleman-gh-pages (0.4.1)
       rake (> 0.9.3)
     middleman-livereload (3.3.4)
       em-websocket (~> 0.5.1)
       middleman-core (~> 3.2)
       rack-livereload (~> 0.3.15)
-    middleman-sprockets (3.4.2)
+    middleman-sprockets (3.5.0)
       middleman-core (>= 3.3)
       sprockets (~> 2.12.1)
       sprockets-helpers (~> 1.1.0)
@@ -138,11 +138,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ffi (= 1.9.10)
   hitimes (~> 1.2.2)
   middleman (~> 3.3.0)
-  middleman-gh-pages (= 0.0.3)
+  middleman-gh-pages
   middleman-livereload (~> 3.3.0)
-  middleman-sprockets (= 3.4.2)
   middleman-syntax
   rake (~> 10.3.0)
   rb-inotify (= 0.9.5)

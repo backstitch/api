@@ -22,12 +22,12 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
       <a href="http://docs.backstit.ch/api">
-        <img src="images/logo.png" />
+        <img src="images/logo.png" alt="Logo" />
       </a>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
@@ -40,8 +40,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://backstit.ch', target="_blank">Visit backstitch</a></li>
-            <li><a href='http://backstit.ch/tour/api', target="_blank">Register For A Developer Key</a></li>
+            <li><a href='http://backstitch.io', target="_blank">Visit backstitch</a></li>
             <li><a href='http://github.com/tripit/slate', target="_blank">Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -50,8 +49,6 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the backstitch API!  You can use our API to build and access backstitch topic pages to leverage our content curation engine for your app.</p>
-
-<p>Information regarding limits and pricing can be found <a href="http://backstit.ch/pricing">here</a>.</p>
 <h1 id='authentication'>Authentication</h1><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rest_client'</span>
 
 <span class="c1"># Modification requires both an organization's key and a topic's token</span>
@@ -145,11 +142,11 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 
 <p><aside class="success">This code works as a bootstrapper so it won&rsquo;t conflict with the loading of the rest of your page and will always load the latest version of the 1.0 widget.</aside></p>
 <h3 id='opening-results'>Opening Results</h3>
-<p>Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the &ldquo;open_in_widget=true&rdquo; parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded. </p>
+<p>Clicking on a result by default will open the link in a new window or tab (depending on your browser). Passing the &ldquo;open_in_widget=true&rdquo; parameter will cause results to open in a pop-up modal, never taking the user off your page where the widget is embedded.</p>
 
-<p>To close this modal once opened, the user can either press the escape key, click off the modal, or click the &ldquo;X&rdquo; in the upper-right corner of the modal. </p>
+<p>To close this modal once opened, the user can either press the escape key, click off the modal, or click the &ldquo;X&rdquo; in the upper-right corner of the modal.</p>
 
-<p>This modal can also be custom-styled by passing the &ldquo;content_theme=none&rdquo; parameter. </p>
+<p>This modal can also be custom-styled by passing the &ldquo;content_theme=none&rdquo; parameter.</p>
 <h3 id='widget-url-parameters'>Widget URL Parameters</h3>
 <table><thead>
 <tr>
@@ -210,10 +207,10 @@ If you&rsquo;re using API 1.0 consult the authentication documentation in that s
 </tr>
 </tbody></table>
 <h2 id='styling-the-widget'>Styling the Widget</h2>
-<p>By default the widget loads a responsive card layout similar to the native interface found on the <a href="http://backstit.ch">backstitch web app</a>.</p>
+<p>By default the widget loads a responsive card layout similar to the native interface found on the <a href="http://backstitch.io">backstitch web app</a>.</p>
 <h3 id='if-you-want-to-override-this-with-your-own-styles-you-can-either'>If you want to override this with your own styles you can either:</h3>
 <ul>
-<li><p>Declare your styles using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">!important</a> </p></li>
+<li><p>Declare your styles using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">!important</a></p></li>
 <li><p>Turn off the default theme by passing the <code class="prettyprint">card_theme=&quot;none&quot;</code> URL parameter for only custom-styling the cards, &lsquo;content_theme=&ldquo;none&rdquo;&rsquo; URL parameter for only custom-styling the content viewer, or &lsquo;theme=&ldquo;none&rdquo;&rsquo; parameter for custom styling the entire widget, and supply your own styles.  You can download a sample blank <a href="http://sass-lang.com/">SASS</a> templates to get you started on <a href="http://assets-api.s3.amazonaws.com/v1/custom_widget.scss">styling the cards</a> and <a href="http://assets-api.s3.amazonaws.com/v1/custom_content_viewer.scss">styling the viewer</a>.</p></li>
 </ul>
 <h3 id='source-specific-styling'>Source-Specific Styling</h3>

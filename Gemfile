@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 
 gem "hitimes", "~> 1.2.2"
 
-gem "rb-inotify", "~> 0.9.5"
+gem "rb-inotify", "0.9.5"
 
 gem "rouge", "1.7.2"
 

@@ -9,6 +9,7 @@ gem "rb-inotify", "0.9.5"
 gem "rouge", "1.7.2"
 
 gem "middleman", "~>3.3.0"
+gem "middleman-sprockets", "3.4.2"
 
 # For syntax highlighting
 gem "middleman-syntax"

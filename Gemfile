@@ -2,6 +2,10 @@
 # the following line to use "https"
 source 'http://rubygems.org'
 
+gem "hitimes", "~> 1.2.2"
+
+gem "rb-inotify", "~> 0.9.5"
+
 gem "rouge", "1.7.2"
 
 gem "middleman", "~>3.3.0"
